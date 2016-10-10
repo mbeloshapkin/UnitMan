@@ -14,6 +14,7 @@ using System.Text;
 using System.Xml;
 using System.IO;
 using System.Globalization;
+using System.Diagnostics;
 
 namespace AeroGIS.Common {
     // The names should be exactly as inside XML and must me always synchronized
@@ -21,7 +22,14 @@ namespace AeroGIS.Common {
                     DefaultPlantingRate }
     enum StdList { PurchasingUnits, AppVolRate, AppMassRate, Concentration }
 
+    [DebuggerDisplay("UnitMan({_ISO639Code})")]
     partial class UnitMan {
+        protected string _ISO639Code = "";
+        public string ISO639Code { get { return _ISO639Code; } }
+        protected string _Description;
+        public string Description { get { return _Description; } }
+        protected string UOMRegex;
+
         private static char[] Digits = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
         private const string strDigits = "0123456789";
         private Dictionary<string, UOM> UOMs;
@@ -29,24 +37,26 @@ namespace AeroGIS.Common {
         private Dictionary<string, string[]> Lists;        
         private string _Culture;
         public string Culture { get { return _Culture; } }
-        private string _Description;
-        public string Description;        
+        
 
+        /// <summary>
+        /// Load a unit system from XML document.
+        /// </summary>        
         public void Load(XmlDocument ADoc) {
-            
+
+            // Process UnitsSystem node
+            XmlNode root = ADoc.DocumentElement;
+            _ISO639Code = root.Attributes["ISO639Code"].InnerText;
+            _Description = root.Attributes["Description"].InnerText;
+            UOMRegex = root.Attributes["UOMRegEx"].InnerText;
+
+
             Lists = new Dictionary<string, string[]>();
             Variables = new Dictionary<string, string>();
-                                                
-            XmlNode root = ADoc.SelectSingleNode("UnitSystem");
-            XmlNode xn = root.SelectSingleNode("Culture");
-            _Culture = xn.InnerText;
-            xn = root.SelectSingleNode("Description");
-            _Description = xn.InnerText;
-            xn = root.SelectSingleNode("UOMDefinitions");                                    
-            XmlNode uomroot = ADoc.SelectSingleNode("UnitsOfMeasure");
-            string uomstr = "";
-            try {
-                XmlNode x = uomroot.SelectSingleNode("MasterUnits");
+                                                                                  
+            XmlNode xnUOMs = ADoc.SelectSingleNode("UnitsOfMeasure");
+            string uomstr = "";            
+                XmlNode x = xnUOMs.SelectSingleNode("MasterUnits");
                 UOMs = new Dictionary<string, UOM>();
                 // Load primary UOMs
                 foreach (XmlNode xu in x.ChildNodes) {
@@ -62,7 +72,7 @@ namespace AeroGIS.Common {
                     }
                 }
                 // Load Inherited UOMs
-                x = uomroot.SelectSingleNode("InheritedUnits");
+                x = xnUOMs.SelectSingleNode("InheritedUnits");
                 foreach (XmlNode xu in x.ChildNodes) {
                     uomstr = xu.InnerText;
                     if (xu.NodeType != XmlNodeType.Comment) {
@@ -75,12 +85,7 @@ namespace AeroGIS.Common {
                         u.Domain = u.Master.Domain;
                         UOMs.Add(u.Signature, u);
                     }
-                }
-            }
-            catch (Exception e) {
-                Log.Err("Units manager failed to load unit [" + uomstr + "]", e);
-                return;
-            }
+                }            
             // Load standard precision variables
             try {
                 XmlNode rxn = ADoc.SelectSingleNode("UnitSystem/Variables");
@@ -98,12 +103,13 @@ namespace AeroGIS.Common {
 
         }                
 
-        public double Normalize(double x, string uom) {
+        protected double Normalize(double x, string uom) {
             UOM u = UOMs[uom] as UOM;            
             return x * u.Scale;
         }
 
-        public void DecomposeFractionalUOM(string AFractionalUOM, out string ANumerator, out string ADenominator) {
+
+        protected void DecomposeFractionalUOM(string AFractionalUOM, out string ANumerator, out string ADenominator) {
             // 1. Search for first exponent
             int expIdx = AFractionalUOM.IndexOfAny(Digits);
             // 2. Divide string in two
@@ -140,7 +146,7 @@ namespace AeroGIS.Common {
         /// </summary>
         /// <param name="ANewUOM"></param>
         /// <returns></returns>
-        private UOM Compose(string ANewUOM) {
+        protected UOM Compose(string ANewUOM) {
             // 1. Normalise the UOM and enshure the master UOM exists
             SMUOM src = new SMUOM(ANewUOM);
             string master = "";
@@ -179,6 +185,13 @@ namespace AeroGIS.Common {
             return r;
         }
 
+        /// <summary>
+        /// Translate a value from one UOM to another. Source and destination UOMs should be compatible, i.e. they shall be of the same domain.
+        /// </summary>
+        /// <param name="x">Any value</param>
+        /// <param name="ASrcUOM">UOM in wich the value is represented</param>
+        /// <param name="ADstUOM">UOM in which return value wil be represented</param>
+        /// <returns>Source value translated into destination UOM</returns>
         public double Translate(double x, string ASrcUOM, string ADstUOM) {
             if (ASrcUOM == ADstUOM) return x;
             UOM srcu = UOMs[ASrcUOM] as UOM;
@@ -206,6 +219,9 @@ namespace AeroGIS.Common {
             return u.Master.Signature;
         }
 
+        /// <summary>
+        /// Get domain name of UOM
+        /// </summary>        
         public string DomainOf(string AnyUOM) {
             // Power one can be skipeed. Check it. 
             try {
@@ -222,6 +238,9 @@ namespace AeroGIS.Common {
             }
         }
 
+        /// <summary>
+        /// Get human readable label for UOM
+        /// </summary>        
         public string LabelOf(string AnyUOM) {
             if(UOMs.ContainsKey(AnyUOM)) return (UOMs[AnyUOM] as UOM).Label;
             return AnyUOM;
@@ -253,11 +272,14 @@ namespace AeroGIS.Common {
             return (string)Variables[s];
         }
 
-        public bool Contains(string AUnit) { return UOMs.ContainsKey(AUnit); }
+        /// <summary>
+        /// Check if an UOM supported.
+        /// </summary>        
+        public bool Contains(string AnUOM) { return UOMs.ContainsKey(AnUOM); }
 
         public double Farenheit2C(double FarTemp) { return (FarTemp - 32.0) / 1.8; }
         
-        private class UOM {
+        protected class UOM {
             public string Name;
             public string Signature;
             public string Plural;

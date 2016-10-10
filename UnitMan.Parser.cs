@@ -13,7 +13,9 @@ using System.Text.RegularExpressions;
 using System.Globalization;
 
 namespace AeroGIS.Common {
-    partial class UnitMan {        
+    partial class UnitMan {
+
+        protected string UOMChars;
 
         protected string MatchPrimaryUnit(string AUnit) {            
             string lcu = AUnit.ToLower(); // Good hope this will be standard unit signature
@@ -43,36 +45,34 @@ namespace AeroGIS.Common {
         }
 
         /// <summary>
-        /// Match UOM using its usual label like "m/s", "kg/m2" and so on
+        /// Match UOM using its human readable label like "m/s", "kg/m2" and so on. Simple and rational UOM labels are supported only.
         /// </summary>
-        /// <param name="ALabel"></param>
-        /// <returns></returns>
+        /// <param name="ALabel">A human readable label</param>
+        /// <returns>UOM standard signature like "m1s-1", kg1m-2 and so on. If UOM is not matched than empty string returns.</returns>
         public string MatchLabel(string ALabel) {
-            // Check if it could be matched
-            if (Regex.IsMatch(ALabel, "^([a-z]|[A-Z]){1,3}[23]?$")) {  // Simple UOM
-                //Match mgr = Regex.Match("cxc2", "(?<uom>^([a-z]|[A-Z]){1,3})(?<pow>[23]?$)");
+
+            if (Regex.IsMatch(ALabel, "^([a-z]|[A-Z]){1,3}[23]?$")) {  // Simple UOM                
                 return MatchPrimaryUnit(ALabel);
             }
 
             if (Regex.IsMatch(ALabel, "^([a-z]|[A-Z]){1,3}[23]?/([a-z]|[A-Z]){1,3}[23]?$")) { // Rational UOM
-
-
-            }
-
-            bool cnt = true;
-            while (cnt) {
-                
-
-                Match m2 = Regex.Match(ALabel, "^([a-z]|[A-Z]){1,3}[23]?/([a-z]|[A-Z]){1,3}[23]?$");
-
-                Match mgr2 = Regex.Match(ALabel, "^([a-z]|[A-Z]){1,3}[23]?/([a-z]|[A-Z]){1,3}[23]?$");
-
-                //if (AUnit.IndexOf("/") < 0) return MatchPrimaryUnit(AUnit);
-                //return MatchRationalUnit(AUnit);
-                cnt = true;
-            }
+                string[] sims = ALabel.Split('/');
+                Match numerator = Regex.Match(sims[0], "(?<uom>^([a-z]|[A-Z]){1,3})(?<pow>[23]?$)");
+                Match denom = Regex.Match(sims[1], "(?<uom>^([a-z]|[A-Z]){1,3})(?<pow>[23]?$)");
+                string rstr = MatchPrimaryUnit(numerator.Groups["uom"].Value);
+                if (rstr.Length > 0) {
+                    if (numerator.Groups["pow"].Length > 0) rstr += numerator.Groups["pow"].Value;
+                    else rstr += "1";
+                    string mden = MatchPrimaryUnit(denom.Groups["uom"].Value);
+                    if (mden.Length > 0) {
+                        rstr += mden;
+                        if (denom.Groups["pow"].Length > 0) rstr += "-" + denom.Groups["pow"].Value;
+                        else rstr += "-1";
+                        return rstr;
+                    }
+                }
+            }            
             return "";
-        }
-        
+        }        
     }
 }
