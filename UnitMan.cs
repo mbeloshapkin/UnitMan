@@ -24,19 +24,17 @@ namespace AeroGIS.Common {
 
     [DebuggerDisplay("UnitMan({_ISO639Code})")]
     partial class UnitMan {
-        protected string _ISO639Code = "";
-        public string ISO639Code { get { return _ISO639Code; } }
+        protected string _ISO639Code = "";        
+        public string ISO639Code { get { return _ISO639Code; } } // ISO 639-2 three letters languge code
         protected string _Description;
         public string Description { get { return _Description; } }
         protected string UOMRegex;
 
         private static char[] Digits = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
         private const string strDigits = "0123456789";
-        private Dictionary<string, UOM> UOMs;
-        private Dictionary<string, string> Variables;
-        private Dictionary<string, string[]> Lists;        
-        private string _Culture;
-        public string Culture { get { return _Culture; } }
+        protected Dictionary<string, UOM> UOMs;
+        protected Dictionary<string, string> Variables;
+        protected Dictionary<string, string[]> Lists;                
         
 
         /// <summary>
@@ -50,16 +48,18 @@ namespace AeroGIS.Common {
             _Description = root.Attributes["Description"].InnerText;
             UOMRegex = root.Attributes["UOMRegEx"].InnerText;
 
-
+            // TODO: Move to somewhere
             Lists = new Dictionary<string, string[]>();
             Variables = new Dictionary<string, string>();
-                                                                                  
+            ///////////////////
+                                                                      
             XmlNode xnUOMs = ADoc.SelectSingleNode("UnitsOfMeasure");
             string uomstr = "";            
-                XmlNode x = xnUOMs.SelectSingleNode("MasterUnits");
-                UOMs = new Dictionary<string, UOM>();
+
+            XmlNode x = xnUOMs.SelectSingleNode("MasterUnits");
+            UOMs = new Dictionary<string, UOM>();
                 // Load primary UOMs
-                foreach (XmlNode xu in x.ChildNodes) {
+            foreach (XmlNode xu in x.ChildNodes) {
                     uomstr = xu.InnerText;
                     if (xu.NodeType != XmlNodeType.Comment) {
                         UOM u = new UOM();
@@ -70,7 +70,7 @@ namespace AeroGIS.Common {
                         u.Domain = xu.SelectSingleNode("Domain").InnerText;
                         UOMs.Add(u.Signature, u);
                     }
-                }
+            }
                 // Load Inherited UOMs
                 x = xnUOMs.SelectSingleNode("InheritedUnits");
                 foreach (XmlNode xu in x.ChildNodes) {
