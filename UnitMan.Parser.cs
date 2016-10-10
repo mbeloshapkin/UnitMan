@@ -1,4 +1,12 @@
-﻿using System;
+﻿// Copyright © 2016 Mikhail Beloshapkin
+// All rights reserved.
+//
+// Author: Mikhail Beloshapkin mbeloshapkin@gmail.com
+//
+// Licensed under the Microsoft Public License (Ms-PL)
+//
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;

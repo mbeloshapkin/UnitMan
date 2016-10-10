@@ -1,0 +1,515 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<UnitSystem ISO639Code = "ENA" Description = "Australian Metric" UOMRegEx = "([A-Z]|[a-z])">	
+	<Variables>
+		<!-- Default variable representations -->
+		<Var Name = "Mass">
+			<DefaultUOM>kg</DefaultUOM>
+		</Var>
+		<Var Name = "Volume">
+			<DefaultUOM>m3</DefaultUOM>
+		</Var>
+		<Var Name="HarvestMass">
+			<DefaultUOM>t</DefaultUOM>
+		</Var>
+		<Var Name="Yield">
+			<DefaultUOM>t1ha-1</DefaultUOM>
+		</Var>
+		<Var Name="Density">
+			<DefaultUOM>kg1m-3</DefaultUOM>
+		</Var>
+		<Var Name="AppVolRate">
+			<DefaultUOM>l1ha-1</DefaultUOM>
+		</Var>
+		<Var Name="AppMassRate">
+			<DefaultUOM>kg1ha-1</DefaultUOM>
+		</Var>
+		<Var Name="HarvestRate">
+			<DefaultUOM>t1h-1</DefaultUOM>
+		</Var>	
+		<Var Name="PaddockArea">
+			<DefaultUOM>ha</DefaultUOM>
+		</Var>
+		<Var Name="DefaultPlantingRate">
+			<DefaultUOM>kg1ha-1</DefaultUOM>
+		</Var>
+	</Variables>
+	<UOMLists>
+		<UOMList Name="PurchasingUnits">
+			<Item>ml</Item>
+			<Item>l</Item>
+			<Item>m3</Item>
+			<Item>mg</Item>
+			<Item>g</Item>
+			<Item>kg</Item>
+			<Item>t</Item>
+		</UOMList>   
+		<UOMList Name="AppVolRate">
+			<Item>l1ha-1</Item>
+			<Item>ml1ha-1</Item>
+			<Item>kl1ha-1</Item>
+	    </UOMList>
+		<UOMList Name="AppMassRate">
+			<Item>mg1ha-1</Item>
+			<Item>g1ha-1</Item>
+			<Item>kg1ha-1</Item>
+			<Item>t1ha-1</Item>
+	    </UOMList>
+		<UOMList Name="Concentration">
+			<Item>g1l-1</Item>
+			<Item>mg1l-1</Item>
+			<Item>g1m-3</Item>
+			<Item>mglm-3</Item>
+			<Item>kg1m-3</Item>			
+	    </UOMList>
+	</UOMLists>
+
+	<UnitsOfMeasure>
+		<MasterUnits>
+			<!-- Here must be just one and the only master unit for each domain -->
+			<PrimaryUOM>
+				<Name>meter</Name>
+				<Signature>m</Signature>
+				<Plural>meters</Plural>
+				<Label>m</Label>
+				<Domain>Distance</Domain>
+			</PrimaryUOM>
+			<PrimaryUOM>
+				<Name>kilogram</Name>
+				<Signature>kg</Signature>
+				<Plural>kilograms</Plural>
+				<Label>kg</Label>
+				<Domain>Mass</Domain>
+			</PrimaryUOM>
+			<PrimaryUOM>
+				<Name>second</Name>
+				<Signature>s</Signature>
+				<Plural>seconds</Plural>
+				<Label>sec</Label>
+				<Domain>Time</Domain>
+			</PrimaryUOM>
+			<PrimaryUOM>
+				<Name>Pascal</Name>
+				<Signature>Pa</Signature>
+				<Plural>Pa</Plural>
+				<Label>Pa</Label>
+				<Domain>Pressure</Domain>
+			</PrimaryUOM>
+			<PrimaryUOM>
+				<Name>Percent</Name>
+				<Signature>prcnt</Signature>
+				<Plural>%</Plural>
+				<Label>%</Label>
+				<Domain>Ratio</Domain>
+			</PrimaryUOM>
+			<PrimaryUOM>
+				<Name>each</Name>
+				<Signature>ea</Signature>
+				<Plural>each</Plural>
+				<Label>ea</Label>
+				<Domain>Count</Domain>
+			</PrimaryUOM>
+			<!-- Composed master UOMs should be composed from primary UOMs -->
+			<ComposedUOM>
+				<Name>square meter</Name>
+				<Signature>m2</Signature>
+				<Plural>square meters</Plural>
+				<Label>sq. m</Label>
+				<Domain>Area</Domain>
+			</ComposedUOM>
+			<ComposedUOM>
+				<Name>cubic meter</Name>
+				<Signature>m3</Signature>
+				<Plural>cubic meters</Plural>
+				<Label>m3</Label>
+				<Domain>Volume</Domain>
+			</ComposedUOM>
+			<ComposedUOM>
+				<Name>m/s</Name>
+				<Signature>m1s-1</Signature>
+				<Plural>m/s</Plural>
+				<Label>m/sec</Label>
+				<Domain>Speed</Domain>
+			</ComposedUOM>
+			<ComposedUOM>
+				<Name>km/h</Name>
+				<Signature>km1h-1</Signature>
+				<Plural>km/h</Plural>
+				<Label>km/h</Label>
+				<Domain>Speed</Domain>
+			</ComposedUOM>
+			<ComposedUOM>
+				<Name>kg/m2</Name>
+				<Signature>kg1m-2</Signature>
+				<Plural>kg/m2</Plural>
+				<Label>kg/m2</Label>
+				<Domain>MassRate</Domain>
+			</ComposedUOM>
+			<ComposedUOM>
+				<Name>m3/m2</Name>
+				<Signature>m3m-2</Signature>
+				<Plural>m3/m2</Plural>
+				<Label>m3/m2</Label>
+				<Domain>VolumeRate</Domain>
+			</ComposedUOM>
+		</MasterUnits>
+
+		<InheritedUnits>
+			<!-- Count -->
+			<UOM>
+				<Name>1000 seeds</Name>
+				<Scale>1000</Scale>
+				<Signature>kSeed</Signature>
+				<Plural>1000 seeds</Plural>
+				<Master>ea</Master>
+				<Label>1000 seeds</Label>
+			</UOM>
+			<UOM>
+				<Name>head</Name>
+				<Scale>1</Scale>
+				<Signature>head</Signature>
+				<Plural>heads</Plural>
+				<Master>ea</Master>
+				<Label>head</Label>
+			</UOM>
+			<!-- Distance -->
+			<UOM>
+				<Name>kilometer</Name>
+				<Scale>1000.0</Scale>
+				<Signature>km</Signature>
+				<Plural>kilometers</Plural>
+				<Master>m</Master>
+				<Label>km</Label>
+			</UOM>
+			<UOM>
+				<Name>millimeter</Name>
+				<Scale>0.001</Scale>
+				<Signature>mm</Signature>
+				<Plural>millimeters</Plural>
+				<Master>m</Master>
+				<Label>mm</Label>
+			</UOM>
+			<UOM>
+				<Name>centimeter</Name>
+				<Scale>0.01</Scale>
+				<Signature>cm</Signature>
+				<Plural>centimeters</Plural>
+				<Master>m</Master>
+				<Label>cm</Label>
+			</UOM>
+			<UOM>
+				<Name>mile</Name>
+				<Scale>1609.344</Scale>
+				<Signature>mi</Signature>
+				<Plural>miles</Plural>
+				<Master>m</Master>
+				<Label>mi</Label>
+			</UOM>
+			<UOM>
+				<Name>inch</Name>
+				<Scale>0.0254</Scale>
+				<Signature>in</Signature>
+				<Plural>inches</Plural>
+				<Master>m</Master>
+				<Label>in</Label>
+			</UOM>
+			<UOM>
+				<Name>yard</Name>
+				<Scale>0.9144</Scale>
+				<Signature>yd</Signature>
+				<Plural>yards</Plural>
+				<Master>m</Master>
+				<Label>yd</Label>
+			</UOM>
+			<UOM>
+				<Name>foot</Name>
+				<Scale>0.3048</Scale>
+				<Signature>ft</Signature>
+				<Plural>feet</Plural>
+				<Master>m</Master>
+				<Label>ft</Label>
+			</UOM>
+			<!-- Mass -->
+			<UOM>
+				<Name>gram</Name>
+				<Scale>0.001</Scale>
+				<Signature>g</Signature>
+				<Plural>grams</Plural>
+				<Master>kg</Master>
+				<Label>g</Label>
+			</UOM>
+			<UOM>
+				<Name>tonne</Name>
+				<Scale>1000</Scale>
+				<Signature>t</Signature>
+				<Plural>tonnes</Plural>
+				<Master>kg</Master>
+				<Label>t</Label>
+			</UOM>
+			<UOM>
+				<Name>milligram</Name>
+				<Scale>1E-6</Scale>
+				<Signature>mg</Signature>
+				<Plural>milligrams</Plural>
+				<Master>kg</Master>
+				<Label>mg</Label>
+			</UOM>
+			<UOM>
+				<Name>ton (U.S.)</Name>
+				<Scale>907.18474</Scale>
+				<Signature>ton</Signature>
+				<Plural>tons (U.S.)</Plural>
+				<Master>kg</Master>
+				<Label>t</Label>
+			</UOM>
+			<UOM>
+				<Name>pound</Name>
+				<Scale>0.45359237</Scale>
+				<Signature>lb</Signature>
+				<Plural>pounds</Plural>
+				<Master>kg</Master>
+				<Label>lb</Label>
+			</UOM>
+			<UOM>
+				<Name>US bale</Name>
+				<Scale>217.72 </Scale>
+				<Signature>usbale</Signature>
+				<Plural>US bales</Plural>
+				<Master>kg</Master>
+				<Label>bale</Label>
+			</UOM>
+			<UOM>
+				<Name>Imperial bale</Name>
+				<Scale>326.59</Scale>
+				<Signature>ukbale</Signature>
+				<Plural>Imperial bales</Plural>
+				<Master>kg</Master>
+				<Label>bale</Label>
+			</UOM>
+			<!-- Volume -->
+			<UOM>
+				<Name>liter</Name>
+				<Scale>0.001</Scale>
+				<Signature>l</Signature>
+				<Plural>liters</Plural>
+				<Master>m3</Master>
+				<Label>l</Label>
+			</UOM>
+			<UOM>
+				<Name>milliliter</Name>
+				<Scale>1E-6</Scale>
+				<Signature>ml</Signature>
+				<Plural>milliliters</Plural>
+				<Master>m3</Master>
+				<Label>ml</Label>
+			</UOM>
+			<UOM>
+				<Name>kiloliter</Name>
+				<Scale>1.0</Scale>
+				<Signature>kl</Signature>
+				<Plural>kiloliters</Plural>
+				<Master>m3</Master>
+				<Label>kl</Label>
+			</UOM>
+			<UOM>
+				<Name>megaliter</Name>
+				<Scale>1000</Scale>
+				<Signature>Ml</Signature>
+				<Plural>megaliters</Plural>
+				<Master>m3</Master>
+				<Label>Ml</Label>
+			</UOM>
+			<UOM>
+				<Name>gallon</Name>
+				<Scale>0.0037854117839999990045608623145155</Scale>
+				<Signature>gal</Signature>
+				<Plural>gallons</Plural>
+				<Master>m3</Master>
+				<Label>gal</Label>
+			</UOM>
+			<UOM>
+				<Name>bushel</Name>
+				<Scale>0.035239070166879990733280387612036</Scale>
+				<Signature>bu</Signature>
+				<Plural>bushels</Plural>
+				<Master>m3</Master>
+				<Label>bu</Label>
+			</UOM>
+			<UOM>
+				<Name>pint</Name>
+				<Scale>0.00056826125</Scale>
+				<Signature>pt</Signature>
+				<Plural>pints</Plural>
+				<Master>m3</Master>
+				<Label>pt</Label>
+			</UOM>
+			<UOM>
+				<Name>quart</Name>
+				<Scale>0.000946352946</Scale>
+				<Signature>qt</Signature>
+				<Plural>quarts</Plural>
+				<Master>m3</Master>
+				<Label>qt</Label>
+			</UOM>
+			<UOM>
+				<Name>US fluid ounce</Name>
+				<Scale>0.0000295735295625</Scale>
+				<Signature>usfloz</Signature>
+				<Plural>US fluid ounces</Plural>
+				<Master>m3</Master>
+				<Label>fl oz</Label>
+			</UOM>
+			<UOM>
+				<Name>Imperial fluid ounce</Name>
+				<Scale>0.0000284130625</Scale>
+				<Signature>ukfloz</Signature>
+				<Plural>Imperial fluid ounces</Plural>
+				<Master>m3</Master>
+				<Label>fl oz</Label>
+			</UOM>
+
+			<!-- Area -->
+			<UOM>
+				<Name>hectare</Name>
+				<Scale>10000</Scale>
+				<Signature>ha</Signature>
+				<Plural>hectares</Plural>
+				<Master>m2</Master>
+				<Label>Ha</Label>
+			</UOM>
+			<UOM>
+				<Name>acre</Name>
+				<Scale>4046.8564224</Scale>
+				<Signature>ac</Signature>
+				<Plural>acres</Plural>
+				<Master>m2</Master>
+				<Label>Ac</Label>
+			</UOM>
+			<UOM>
+				<Name>sq. foot</Name>
+				<Scale>0.09290304</Scale>
+				<Signature>ft2</Signature>
+				<Plural>sq. feet</Plural>
+				<Master>m2</Master>
+				<Label>sq. ft</Label>
+			</UOM>
+			<UOM>
+				<Name>sq. yard</Name>
+				<Scale>0.09290304</Scale>
+				<Signature>yd2</Signature>
+				<Plural>sq. yards</Plural>
+				<Master>m2</Master>
+				<Label>sq. yd</Label>
+			</UOM>
+			<UOM>
+				<Name>sq. inch</Name>
+				<Scale>0.00064516</Scale>
+				<Signature>in2</Signature>
+				<Plural>sq. inches</Plural>
+				<Master>m2</Master>
+				<Label>sq. in</Label>
+			</UOM>
+			<!-- Time -->
+			<UOM>
+				<Name>minute</Name>
+				<Scale>60</Scale>
+				<Signature>min</Signature>
+				<Plural>minutes</Plural>
+				<Master>s</Master>
+				<Label>Min</Label>
+			</UOM>
+			<UOM>
+				<Name>hour</Name>
+				<Scale>3600</Scale>
+				<Signature>h</Signature>
+				<Plural>hours</Plural>
+				<Master>s</Master>
+				<Label>hour</Label>
+			</UOM>
+			<UOM>
+				<Name>hour</Name>
+				<Scale>3600</Scale>
+				<Signature>hr</Signature>
+				<Plural>hours</Plural>
+				<Master>s</Master>
+				<Label>hour</Label>
+			</UOM>
+			<!-- Pressure -->
+			<UOM>
+				<Name>kg/cm2</Name>
+				<Scale>98066.5</Scale>
+				<Signature>kg1cm-2</Signature>
+				<Plural>kg/cm2</Plural>
+				<Master>Pa</Master>
+				<Label>kg/cm2</Label>
+			</UOM>
+			<UOM>
+				<Name>psi</Name>
+				<Scale>6894.76</Scale>
+				<Signature>lb1in-2</Signature>
+				<Plural>psi</Plural>
+				<Master>Pa</Master>
+				<Label>psi</Label>
+			</UOM>
+			<!-- Yield -->
+			<UOM>
+				<Name>t/ha</Name>
+				<Scale>10</Scale>
+				<Signature>t1ha-1</Signature>
+				<Plural>t/ha</Plural>
+				<Master>kg1m-2</Master>
+				<Label>t/ha</Label>
+			</UOM>
+			<!-- Dry Application Rate -->
+			<UOM>
+				<Name>kg/ha</Name>
+				<Scale>0.0001</Scale>
+				<Signature>kg1ha-1</Signature>
+				<Plural>kg/ha</Plural>
+				<Master>kg1m-2</Master>
+				<Label>kg/ha</Label>
+			</UOM>
+			<UOM>
+				<Name>mg/ha</Name>
+				<Scale>0.0000000001</Scale>
+				<Signature>mg1ha-1</Signature>
+				<Plural>mg/ha</Plural>
+				<Master>kg1m-2</Master>
+				<Label>mg/ha</Label>
+			</UOM>
+			<UOM>
+				<Name>g/ha</Name>
+				<Scale>0.0000001</Scale>
+				<Signature>g1ha-1</Signature>
+				<Plural>g/ha</Plural>
+				<Master>kg1m-2</Master>
+				<Label>g/ha</Label>
+			</UOM>
+			<!-- Liquid Application Rate -->
+			<UOM>
+				<Name>ml/ha</Name>
+				<Scale>0.0000000000001</Scale>
+				<Signature>ml1ha-1</Signature>
+				<Plural>ml/ha</Plural>
+				<Master>m3m-2</Master>
+				<Label>ml/ha</Label>
+			</UOM>
+			<UOM>
+				<Name>l/ha</Name>
+				<Scale>0.00000001</Scale>
+				<Signature>l1ha-1</Signature>
+				<Plural>l/ha</Plural>
+				<Master>m3m-2</Master>
+				<Label>l/ha</Label>
+			</UOM>
+			<UOM>
+				<Name>m3/ha</Name>
+				<Scale>0.00001</Scale>
+				<Signature>m3ha-1</Signature>
+				<Plural>m3/ha</Plural>
+				<Master>m3m-2</Master>
+				<Label>m3/ha</Label>
+			</UOM>
+
+		</InheritedUnits>
+	</UnitsOfMeasure>
+</UnitSystem>
