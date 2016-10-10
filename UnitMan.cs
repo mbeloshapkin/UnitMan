@@ -40,74 +40,80 @@ namespace AeroGIS.Common {
         /// <summary>
         /// Load a unit system from XML document.
         /// </summary>        
-        public void Load(XmlDocument ADoc) {
+        public virtual void Load(XmlDocument ADoc) {
 
             // Process UnitsSystem node
             XmlNode root = ADoc.DocumentElement;
             _ISO639Code = root.Attributes["ISO639Code"].InnerText;
             _Description = root.Attributes["Description"].InnerText;
             UOMRegex = root.Attributes["UOMRegEx"].InnerText;
+            // Version attribute introduced in v2.0, so if the attribute exits then version is 2.0 or higher
+            if (root.Attributes["Version"] == null) throw new Exception("Wrong version of UOM definition XML " + root.Name + ". Version 2.0 or higher required.");
 
-            // TODO: Move to somewhere
+
+
+            XmlNode xnUOMs = root.SelectSingleNode("UnitsOfMeasure");
+
+            XmlNodeList xlist = xnUOMs.SelectNodes("MasterUnits/PrimaryUOM");
+            UOMs = new Dictionary<string, UOM>();
+
+            // Load primary master UOMs
+            foreach (XmlNode xu in xlist) {
+                UOM u = new UOM();
+                u.Load(xu);
+                u.Domain = xu.Attributes["Domain"].InnerText;
+                u.Scale = 1.0;
+                u.IsComposed = false;
+                u.IsMaster = true;
+                UOMs.Add(u.Signature, u);
+            }
+
+            // Load composed master UOMs
+            xlist = xnUOMs.SelectNodes("MasterUnits/ComposedUOM");
+            foreach (XmlNode xu in xlist) {
+                UOM u = new UOM();
+                u.Load(xu);
+                u.Domain = xu.Attributes["Domain"].InnerText;
+                u.IsMaster = true;
+                u.IsComposed = true;
+                u.Scale = 1.0;
+                UOMs.Add(u.Signature, u);
+            }
+
+            // Load Inherited UOMs
+            xlist = xnUOMs.SelectNodes("InheritedUnits/UOM");
+            foreach (XmlNode xu in xlist) {
+                UOM u = new UOM();
+                u.Load(xu);
+                u.Master = UOMs[xu.Attributes["Master"].InnerText] as UOM;
+                u.Domain = u.Master.Domain;
+                u.IsMaster = false;
+                u.IsComposed = true;
+                u.Scale = Convert.ToDouble(xu.Attributes["Scale"].InnerText, NumberFormatInfo.InvariantInfo);                
+                UOMs.Add(u.Signature, u);
+            }
+
+            //////////////// TODO: Move to somewhere
             Lists = new Dictionary<string, string[]>();
             Variables = new Dictionary<string, string>();
-            ///////////////////
-                                                                      
-            XmlNode xnUOMs = ADoc.SelectSingleNode("UnitsOfMeasure");
-            string uomstr = "";            
 
-            XmlNode x = xnUOMs.SelectSingleNode("MasterUnits");
-            UOMs = new Dictionary<string, UOM>();
-                // Load primary UOMs
-            foreach (XmlNode xu in x.ChildNodes) {
-                    uomstr = xu.InnerText;
-                    if (xu.NodeType != XmlNodeType.Comment) {
-                        UOM u = new UOM();
-                        u.Create(xu);
-                        u.IsPrimary = true;
-                        u.Scale = 1.0;
-                        if (xu.Name == "ComposedUOM") u.IsComposed = true;
-                        u.Domain = xu.SelectSingleNode("Domain").InnerText;
-                        UOMs.Add(u.Signature, u);
-                    }
-            }
-                // Load Inherited UOMs
-                x = xnUOMs.SelectSingleNode("InheritedUnits");
-                foreach (XmlNode xu in x.ChildNodes) {
-                    uomstr = xu.InnerText;
-                    if (xu.NodeType != XmlNodeType.Comment) {
-                        UOM u = new UOM();
-                        u.Create(xu);
-                        u.IsPrimary = false;
-                        u.IsComposed = false;
-                        u.Scale = Convert.ToDouble(xu.SelectSingleNode("Scale").InnerText, NumberFormatInfo.InvariantInfo);
-                        u.Master = UOMs[xu.SelectSingleNode("Master").InnerText] as UOM;
-                        u.Domain = u.Master.Domain;
-                        UOMs.Add(u.Signature, u);
-                    }
-                }            
             // Load standard precision variables
-            try {
-                XmlNode rxn = ADoc.SelectSingleNode("UnitSystem/Variables");
-                foreach (XmlNode vxn in rxn.ChildNodes) {                    
-                    if (vxn.NodeType != XmlNodeType.Comment) {
-                        string varName = vxn.Attributes["Name"].Value;
-                        XmlNode uxn = vxn.ChildNodes[0];
-                        Variables.Add(varName, uxn.InnerText);
-                    }
-                }                
-            }
-            catch (Exception e) {
-                Log.Err("Units manager failed to standard variables", e);                
-            }
 
-        }                
+            XmlNode rxn = ADoc.SelectSingleNode("UnitSystem/Variables");
+            foreach (XmlNode vxn in rxn.ChildNodes) {
+                if (vxn.NodeType != XmlNodeType.Comment) {
+                    string varName = vxn.Attributes["Name"].Value;
+                    XmlNode uxn = vxn.ChildNodes[0];
+                    Variables.Add(varName, uxn.InnerText);
+                }
+            }
+            ///////////////////
+        }             
 
         protected double Normalize(double x, string uom) {
             UOM u = UOMs[uom] as UOM;            
             return x * u.Scale;
         }
-
 
         protected void DecomposeFractionalUOM(string AFractionalUOM, out string ANumerator, out string ADenominator) {
             // 1. Search for first exponent
@@ -177,7 +183,7 @@ namespace AeroGIS.Common {
             r.Plural = ANewUOM;
             r.Label = ANewUOM;  // Need to compose labeles here
             r.IsComposed = true;
-            r.IsPrimary = false;
+            r.IsMaster = false;
             r.Domain = masterUOM.Domain;
             r.Scale = scale;
             r.Master = masterUOM; //.Signature;
@@ -205,7 +211,7 @@ namespace AeroGIS.Common {
                 //Log.Err("Unsupported UOM " + ADstUOM + "\r\nPlease, contact Fairport Support Service to add the support of this unit of measurement.");
             }
 
-            if(srcu.Compatible(dstu)) return x * srcu.Scale / dstu.Scale;
+            if(srcu.IsCompatible(dstu)) return x * srcu.Scale / dstu.Scale;
 
             Log.Err("UnitMan failed to convert incompatible units: " +
                 srcu.Name + " to " + dstu.Name);
@@ -278,31 +284,27 @@ namespace AeroGIS.Common {
         public bool Contains(string AnUOM) { return UOMs.ContainsKey(AnUOM); }
 
         public double Farenheit2C(double FarTemp) { return (FarTemp - 32.0) / 1.8; }
-        
+        // Add debug attribute
         protected class UOM {
             public string Name;
             public string Signature;
             public string Plural;
             public string Label;
             public string Domain;
-            public bool IsPrimary;
+            public bool IsMaster;
             public bool IsComposed;
+            public bool IsPrimary { get { return IsMaster && !IsComposed; } }
             public double Scale;
             public UOM Master;
 
-            public void Create(XmlNode xn) {
-                try {
-                    Name = xn.SelectSingleNode("Name").InnerText;
-                    Signature = xn.SelectSingleNode("Signature").InnerText;
-                    Plural = xn.SelectSingleNode("Plural").InnerText;
-                    Label = xn.SelectSingleNode("Label").InnerText;
-                }
-                catch (Exception ex) {
-                    Log.Err("Invalid UOM Definition: " + xn.InnerXml, ex);
-                }
-            }
+            public void Load(XmlNode xn) {
+                Name = xn.Attributes["Name"].InnerText;
+                Signature = xn.Attributes["Signature"].InnerText;
+                Plural = xn.Attributes["Plural"].InnerText;
+                Label = xn.Attributes["Label"].InnerText;                
+            }            
 
-            public bool Compatible(UOM u) {
+            public bool IsCompatible(UOM u) {
                 if (IsPrimary) {
                     if (u.IsPrimary) return false;
                     return u.Master.Signature == Signature;
@@ -312,7 +314,6 @@ namespace AeroGIS.Common {
                     return u.Master.Signature == Master.Signature;
                 }
             }
-        }
-            
+        }            
     }
 }

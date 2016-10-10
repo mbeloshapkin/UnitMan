@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<UnitSystem Version="2.0" ISO639Code = "ENA" Description = "Australian Metric" UOMRegEx = "([A-Z]|[a-z])">	
+<UnitSystem Version="2.0" ISO639Code = "ENA" Description = "Precision Farming Australia" UOMRegEx = "([A-Z]|[a-z])">	
 	<Variables>
 		<!-- Default variable representations -->
 		<Var Name = "Mass">
@@ -73,7 +73,7 @@
 			<PrimaryUOM Name = "second" Signature ="s" Plural = "seconds" Label = "sec" Domain="Time" />
 			<PrimaryUOM Name = "Pascal" Signature ="Pa" Plural = "Pa" Label = "Pa" Domain="Pressure" />
 			<PrimaryUOM Name = "Percent" Signature ="prcnt" Plural = "%" Label = "%" Domain="Ratio" />
-			<PrimaryUOM Name = "each" Signature ="ea" Plural = "each" Label = "Pa" Domain="Count" />			
+			<PrimaryUOM Name = "each" Signature ="ea" Plural = "each" Label = "ea" Domain="Count" />			
 			<!-- Composed master UOMs should be composed from primary UOMs -->
 			<ComposedUOM Name="square meter" Signature="m2" Plural="square meters" Label="sq. m" Domain="Area" />
 			<ComposedUOM Name="cubic mete" Signature="m3" Plural="cubic meters" Label="m3" Domain="Volume" />
