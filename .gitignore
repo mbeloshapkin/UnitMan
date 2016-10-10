@@ -1,0 +1,14 @@
+# C# obj and bin folders content
+*.force
+*.dll
+*.cache
+*FileListAbsolute.txt
+*.dll
+*.pdb
+*.resources
+*.exe
+# Other shit
+_UpgradeReport_Files
+/bin/
+/obj/
+/SolutionBackup/
