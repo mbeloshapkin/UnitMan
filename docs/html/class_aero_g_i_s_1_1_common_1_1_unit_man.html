@@ -12,7 +12,7 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
-<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="customdoxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -76,6 +76,8 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_atom.html">Atom</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html">UOM</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -93,21 +95,21 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>MasterOf</b> (strin
 <tr class="memitem:ad00274cfbb28eacb71c88c7e0319cbe0"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man.html#ad00274cfbb28eacb71c88c7e0319cbe0">DomainOf</a> (string AnyUOM)</td></tr>
 <tr class="memdesc:ad00274cfbb28eacb71c88c7e0319cbe0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get domain name of <a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html">UOM</a>  <a href="#ad00274cfbb28eacb71c88c7e0319cbe0">More...</a><br /></td></tr>
 <tr class="separator:ad00274cfbb28eacb71c88c7e0319cbe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b27658224a26a869b601a1adddb2c9a"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man.html#a2b27658224a26a869b601a1adddb2c9a">LabelOf</a> (string AnyUOM)</td></tr>
-<tr class="memdesc:a2b27658224a26a869b601a1adddb2c9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get human readable label for <a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html">UOM</a>  <a href="#a2b27658224a26a869b601a1adddb2c9a">More...</a><br /></td></tr>
-<tr class="separator:a2b27658224a26a869b601a1adddb2c9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae88aa495198cc3bc0481b2d2eb25d55a"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man.html#ae88aa495198cc3bc0481b2d2eb25d55a">LabelOf</a> (string AnUOMSignature)</td></tr>
+<tr class="memdesc:ae88aa495198cc3bc0481b2d2eb25d55a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get human readable label for <a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html">UOM</a>. If <a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html">UOM</a> signature not found in the dictionry then the signature will be returned instead label.  <a href="#ae88aa495198cc3bc0481b2d2eb25d55a">More...</a><br /></td></tr>
+<tr class="separator:ae88aa495198cc3bc0481b2d2eb25d55a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8458dffb7f7eecbb16e323e41763685"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man.html#ad8458dffb7f7eecbb16e323e41763685">Contains</a> (string AnUOMSignature)</td></tr>
+<tr class="memdesc:ad8458dffb7f7eecbb16e323e41763685"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if an <a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html">UOM</a> supported.  <a href="#ad8458dffb7f7eecbb16e323e41763685">More...</a><br /></td></tr>
+<tr class="separator:ad8458dffb7f7eecbb16e323e41763685"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57788deb2a53383d0e616ef421608a41"><td class="memItemLeft" align="right" valign="top"><a id="a57788deb2a53383d0e616ef421608a41"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>LabelOf</b> (StdVar AVariable)</td></tr>
 <tr class="separator:a57788deb2a53383d0e616ef421608a41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a474cf20675c244ee638d8ea2cc810288"><td class="memItemLeft" align="right" valign="top"><a id="a474cf20675c244ee638d8ea2cc810288"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>GetStdUOM</b> (StdVar APrecVariable)</td></tr>
-<tr class="separator:a474cf20675c244ee638d8ea2cc810288"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f405c87057e937d1fcb641511496127"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man.html#a2f405c87057e937d1fcb641511496127">Contains</a> (string AnUOM)</td></tr>
-<tr class="memdesc:a2f405c87057e937d1fcb641511496127"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if an <a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html">UOM</a> supported.  <a href="#a2f405c87057e937d1fcb641511496127">More...</a><br /></td></tr>
-<tr class="separator:a2f405c87057e937d1fcb641511496127"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a3fe2f08817c5a6f711a7b9c782960f"><td class="memItemLeft" align="right" valign="top"><a id="a0a3fe2f08817c5a6f711a7b9c782960f"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>Farenheit2C</b> (double FarTemp)</td></tr>
 <tr class="separator:a0a3fe2f08817c5a6f711a7b9c782960f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a474cf20675c244ee638d8ea2cc810288"><td class="memItemLeft" align="right" valign="top"><a id="a474cf20675c244ee638d8ea2cc810288"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>GetStdUOM</b> (StdVar APrecVariable)</td></tr>
+<tr class="separator:a474cf20675c244ee638d8ea2cc810288"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a344335d471ef7112b359f52e2df3c8bf"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man.html#a344335d471ef7112b359f52e2df3c8bf">MatchLabel</a> (string ALabel)</td></tr>
 <tr class="memdesc:a344335d471ef7112b359f52e2df3c8bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Match <a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html">UOM</a> using its human readable label like "m/s", "kg/m2" and so on. Simple and rational <a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html">UOM</a> labels are supported only.  <a href="#a344335d471ef7112b359f52e2df3c8bf">More...</a><br /></td></tr>
 <tr class="separator:a344335d471ef7112b359f52e2df3c8bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -117,12 +119,15 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a343132ecfb9b212d32e542b99d21f5a2"><td class="memItemLeft" align="right" valign="top"><a id="a343132ecfb9b212d32e542b99d21f5a2"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>Normalize</b> (double x, string uom)</td></tr>
 <tr class="separator:a343132ecfb9b212d32e542b99d21f5a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba893a74ab5a958d06bf044281815936"><td class="memItemLeft" align="right" valign="top"><a id="aba893a74ab5a958d06bf044281815936"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>DecomposeFractionalUOM</b> (string AFractionalUOM, out string ANumerator, out string ADenominator)</td></tr>
-<tr class="separator:aba893a74ab5a958d06bf044281815936"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87a43d49011d5fe9e47cc8d76416f882"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html">UOM</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man.html#a87a43d49011d5fe9e47cc8d76416f882">Compose</a> (string ANewUOM)</td></tr>
-<tr class="memdesc:a87a43d49011d5fe9e47cc8d76416f882"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compose not existing <a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html">UOM</a> and add to the table to avoid composing next time  <a href="#a87a43d49011d5fe9e47cc8d76416f882">More...</a><br /></td></tr>
-<tr class="separator:a87a43d49011d5fe9e47cc8d76416f882"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52f441a9cae606858c586037cb5b7580"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_atom.html">Atom</a> []&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man.html#a52f441a9cae606858c586037cb5b7580">Atomize</a> (string AComplexUOMSignature)</td></tr>
+<tr class="memdesc:a52f441a9cae606858c586037cb5b7580"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drcompose a complex <a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html">UOM</a> into atomic UOMs  <a href="#a52f441a9cae606858c586037cb5b7580">More...</a><br /></td></tr>
+<tr class="separator:a52f441a9cae606858c586037cb5b7580"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b0b34451713c8f1016d8724f3c6b3c3"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man.html#a0b0b34451713c8f1016d8724f3c6b3c3">Recombine</a> (<a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_atom.html">Atom</a>[] AnAtoms)</td></tr>
+<tr class="memdesc:a0b0b34451713c8f1016d8724f3c6b3c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make <a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html">UOM</a> signature of atoms  <a href="#a0b0b34451713c8f1016d8724f3c6b3c3">More...</a><br /></td></tr>
+<tr class="separator:a0b0b34451713c8f1016d8724f3c6b3c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a530f24344dae245417dde34e9997c2f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html">UOM</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man.html#a530f24344dae245417dde34e9997c2f0">Compose</a> (string ANewSignature)</td></tr>
+<tr class="memdesc:a530f24344dae245417dde34e9997c2f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compose <a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html">UOM</a> from pure signature which is not defined in list/ Find master UOMs, calculate scale, generate label. The signature could be of any complexity.  <a href="#a530f24344dae245417dde34e9997c2f0">More...</a><br /></td></tr>
+<tr class="separator:a530f24344dae245417dde34e9997c2f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5df9c5bd4a5d2e9f1c04df150b765c5"><td class="memItemLeft" align="right" valign="top"><a id="ac5df9c5bd4a5d2e9f1c04df150b765c5"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>MatchPrimaryUnit</b> (string AUnit)</td></tr>
 <tr class="separator:ac5df9c5bd4a5d2e9f1c04df150b765c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -161,8 +166,42 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>Description</b><cod
 <tr class="separator:ac6c1b54c3586336feb9332e4c4603762"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a87a43d49011d5fe9e47cc8d76416f882"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a87a43d49011d5fe9e47cc8d76416f882">&sect;&nbsp;</a></span>Compose()</h2>
+<a id="a52f441a9cae606858c586037cb5b7580"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52f441a9cae606858c586037cb5b7580">&sect;&nbsp;</a></span>Atomize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_atom.html">Atom</a> [] AeroGIS.Common.UnitMan.Atomize </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>AComplexUOMSignature</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Drcompose a complex <a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html">UOM</a> into atomic UOMs </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">AComplexUOMSignature</td><td><a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html">UOM</a> signature of any complexity</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a530f24344dae245417dde34e9997c2f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a530f24344dae245417dde34e9997c2f0">&sect;&nbsp;</a></span>Compose()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -174,7 +213,7 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>Description</b><cod
           <td class="memname"><a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html">UOM</a> AeroGIS.Common.UnitMan.Compose </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>ANewUOM</em></td><td>)</td>
+          <td class="paramname"><em>ANewSignature</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -185,19 +224,19 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>Description</b><cod
 </table>
 </div><div class="memdoc">
 
-<p>Compose not existing <a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html">UOM</a> and add to the table to avoid composing next time </p>
+<p>Compose <a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html">UOM</a> from pure signature which is not defined in list/ Find master UOMs, calculate scale, generate label. The signature could be of any complexity. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ANewUOM</td><td></td></tr>
+    <tr><td class="paramname">ANewSignature</td><td>A new signature</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Newly composed <a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html">UOM</a>. Please, note, the new <a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html">UOM</a> signature could differ on source signature.</dd></dl>
 
 </div>
 </div>
-<a id="a2f405c87057e937d1fcb641511496127"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2f405c87057e937d1fcb641511496127">&sect;&nbsp;</a></span>Contains()</h2>
+<a id="ad8458dffb7f7eecbb16e323e41763685"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8458dffb7f7eecbb16e323e41763685">&sect;&nbsp;</a></span>Contains()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -209,7 +248,7 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>Description</b><cod
           <td class="memname">bool AeroGIS.Common.UnitMan.Contains </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>AnUOM</em></td><td>)</td>
+          <td class="paramname"><em>AnUOMSignature</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -252,8 +291,8 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>Description</b><cod
 
 </div>
 </div>
-<a id="a2b27658224a26a869b601a1adddb2c9a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2b27658224a26a869b601a1adddb2c9a">&sect;&nbsp;</a></span>LabelOf()</h2>
+<a id="ae88aa495198cc3bc0481b2d2eb25d55a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae88aa495198cc3bc0481b2d2eb25d55a">&sect;&nbsp;</a></span>LabelOf()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -265,7 +304,7 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>Description</b><cod
           <td class="memname">string AeroGIS.Common.UnitMan.LabelOf </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>AnyUOM</em></td><td>)</td>
+          <td class="paramname"><em>AnUOMSignature</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -276,7 +315,7 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>Description</b><cod
 </table>
 </div><div class="memdoc">
 
-<p>Get human readable label for <a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html">UOM</a> </p>
+<p>Get human readable label for <a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html">UOM</a>. If <a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html">UOM</a> signature not found in the dictionry then the signature will be returned instead label. </p>
 
 </div>
 </div>
@@ -340,6 +379,34 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>Description</b><cod
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html">UOM</a> standard signature like "m1s-1", kg1m-2 and so on. If <a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html">UOM</a> is not matched than empty string returns.</dd></dl>
+
+</div>
+</div>
+<a id="a0b0b34451713c8f1016d8724f3c6b3c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b0b34451713c8f1016d8724f3c6b3c3">&sect;&nbsp;</a></span>Recombine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string AeroGIS.Common.UnitMan.Recombine </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_atom.html">Atom</a> []&#160;</td>
+          <td class="paramname"><em>AnAtoms</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Make <a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html">UOM</a> signature of atoms </p>
 
 </div>
 </div>

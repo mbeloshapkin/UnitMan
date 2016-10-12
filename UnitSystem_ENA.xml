@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<UnitSystem Version="2.0" ISO639Code = "ENA" Description = "Precision Farming Australia" UOMRegEx = "([A-Z]|[a-z])">	
+<UnitSystem Version="2.0" ISO639Code = "ENA" Description = "Precision Farming Australia" UOMRegEx = "[A-Z,a-z]">	
 	<Variables>
 		<!-- Default variable representations -->
 		<Var Name = "Mass">
@@ -68,20 +68,20 @@
 	<UnitsOfMeasure>
 		<MasterUnits>
 			<!-- Here must be just one and the only master unit for each domain -->
-			<PrimaryUOM Name = "meter" Signature ="m" Plural = "meters" Label = "m" Domain="Distance" />
-			<PrimaryUOM Name = "kilogram" Signature ="kg" Plural = "kilograms" Label = "kg" Domain="Mass" />
-			<PrimaryUOM Name = "second" Signature ="s" Plural = "seconds" Label = "sec" Domain="Time" />
-			<PrimaryUOM Name = "Pascal" Signature ="Pa" Plural = "Pa" Label = "Pa" Domain="Pressure" />
-			<PrimaryUOM Name = "Percent" Signature ="prcnt" Plural = "%" Label = "%" Domain="Ratio" />
-			<PrimaryUOM Name = "each" Signature ="ea" Plural = "each" Label = "ea" Domain="Count" />			
+			<UOM Name = "meter" Signature ="m" Plural = "meters" Label = "m" Domain="Distance" />
+			<UOM Name = "kilogram" Signature ="kg" Plural = "kilograms" Label = "kg" Domain="Mass" />
+			<UOM Name = "second" Signature ="s" Plural = "seconds" Label = "sec" Domain="Time" />
+			<UOM Name = "Pascal" Signature ="Pa" Plural = "Pa" Label = "Pa" Domain="Pressure" />
+			<UOM Name = "Percent" Signature ="prcnt" Plural = "%" Label = "%" Domain="Ratio" />
+			<UOM Name = "each" Signature ="ea" Plural = "each" Label = "ea" Domain="Count" />			
 			<!-- Composed master UOMs should be composed from primary UOMs -->
-			<ComposedUOM Name="square meter" Signature="m2" Plural="square meters" Label="sq. m" Domain="Area" />
-			<ComposedUOM Name="cubic mete" Signature="m3" Plural="cubic meters" Label="m3" Domain="Volume" />
-			<ComposedUOM Name="m/s" Signature="m1s-1" Plural="m/s" Label="m/sec" Domain="Speed" />
-			<ComposedUOM Name="kg/m2" Signature="kg1m-2" Plural="kg/m2" Label="kg/m2" Domain="MassRate" />
-			<ComposedUOM Name="m3/m2" Signature="m3m-2" Plural="m3/m2" Label="kg/m2" Domain="VolumeRate" />			
+			<UOM Name="square meter" Signature="m2" Plural="square meters" Label="sq. m" Domain="Area" />
+			<UOM Name="cubic meter" Signature="m3" Plural="cubic meters" Label="m3" Domain="Volume" />
+			<UOM Name="m/s" Signature="m1s-1" Plural="m/s" Label="m/sec" Domain="Speed" />
+			<UOM Name="kg/m2" Signature="kg1m-2" Plural="kg/m2" Label="kg/m2" Domain="MassRate" />
+			<UOM Name="m3/m2" Signature="m3m-2" Plural="m3/m2" Label="kg/m2" Domain="VolumeRate" />			
 		</MasterUnits>
-		<InheritedUnits>
+		<ScaledUnits>
 			<!-- Count -->
 			<UOM Name="1000 seeds" Scale="1000" Signature="kSeed" Plural="1000 seeds" Master="ea" Label="1000 seeds"/>
 			<UOM Name="heads" Scale="1" Signature="head" Plural="heads" Master="ea" Label="head"/>			
@@ -119,7 +119,7 @@
 			<UOM Name="sq. yard" Scale="0.83612736" Signature="yd2" Plural="sq. yards" Master="m2" Label="sq. yd"/>
 			<UOM Name="sq. inch" Scale="0.00064516" Signature="in2" Plural="sq. yards" Master="m2" Label="sq. in"/>			
 			<!-- Time -->
-			<UOM Name="minute" Scale="60" Signature="min" Plural="minutes" Master="s" Label="Min"/>
+			<UOM Name="minute" Scale="60" Signature="min" Plural="minutes" Master="s" Label="min"/>
 			<UOM Name="hour" Scale="3600" Signature="h" Plural="hours" Master="s" Label="hour"/>						
 			<!-- Pressure -->
 			<UOM Name="kg/cm2" Scale="98066.5" Signature="kg1cm-2" Plural="kg/cm2" Master="Pa" Label="kg/cm2"/>
@@ -134,6 +134,6 @@
 			<UOM Name="ml/ha" Scale="0.0000000000001" Signature="ml1ha-1" Plural="ml/ha" Master="m3m-2" Label="ml/ha"/>
 			<UOM Name="l/ha" Scale="0.00000001" Signature="l1ha-1" Plural="l/ha" Master="m3m-2" Label="l/ha"/>
 			<UOM Name="m3/ha" Scale="0.00001" Signature="m3ha-1" Plural="m3/ha" Master="m3m-2" Label="m3/ha"/>			
-		</InheritedUnits>
+		</ScaledUnits>
 	</UnitsOfMeasure>
 </UnitSystem>

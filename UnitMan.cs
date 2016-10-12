@@ -15,6 +15,7 @@ using System.Xml;
 using System.IO;
 using System.Globalization;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace AeroGIS.Common {
     // The names should be exactly as inside XML and must me always synchronized
@@ -32,10 +33,7 @@ namespace AeroGIS.Common {
 
         private static char[] Digits = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
         private const string strDigits = "0123456789";
-        protected Dictionary<string, UOM> UOMs;
-        protected Dictionary<string, string> Variables;
-        protected Dictionary<string, string[]> Lists;                
-        
+        protected Dictionary<string, UOM> UOMs;                
 
         /// <summary>
         /// Load a unit system from XML document.
@@ -50,54 +48,34 @@ namespace AeroGIS.Common {
             // Version attribute introduced in v2.0, so if the attribute exits then version is 2.0 or higher
             if (root.Attributes["Version"] == null) throw new Exception("Wrong version of UOM definition XML " + root.Name + ". Version 2.0 or higher required.");
 
-
-
             XmlNode xnUOMs = root.SelectSingleNode("UnitsOfMeasure");
 
-            XmlNodeList xlist = xnUOMs.SelectNodes("MasterUnits/PrimaryUOM");
+            XmlNodeList xlist = xnUOMs.SelectNodes("MasterUnits/UOM");
             UOMs = new Dictionary<string, UOM>();
 
-            // Load primary master UOMs
+            // Load master UOMs
             foreach (XmlNode xu in xlist) {
                 UOM u = new UOM();
-                u.Load(xu);
-                u.Domain = xu.Attributes["Domain"].InnerText;
-                u.Scale = 1.0;
-                u.IsComposed = false;
-                u.IsMaster = true;
+                u.Load(xu, true);                
+                UOMs.Add(u.Signature, u);
+            }
+            
+            // Load Scaled UOMs
+            xlist = xnUOMs.SelectNodes("ScaledUnits/UOM");
+            foreach (XmlNode xu in xlist) {
+                UOM u = new UOM();
+                u.Load(xu, false);                                                                                
                 UOMs.Add(u.Signature, u);
             }
 
-            // Load composed master UOMs
-            xlist = xnUOMs.SelectNodes("MasterUnits/ComposedUOM");
-            foreach (XmlNode xu in xlist) {
-                UOM u = new UOM();
-                u.Load(xu);
-                u.Domain = xu.Attributes["Domain"].InnerText;
-                u.IsMaster = true;
-                u.IsComposed = true;
-                u.Scale = 1.0;
-                UOMs.Add(u.Signature, u);
-            }
-
-            // Load Inherited UOMs
-            xlist = xnUOMs.SelectNodes("InheritedUnits/UOM");
-            foreach (XmlNode xu in xlist) {
-                UOM u = new UOM();
-                u.Load(xu);
-                u.Master = UOMs[xu.Attributes["Master"].InnerText] as UOM;
-                u.Domain = u.Master.Domain;
-                u.IsMaster = false;
-                u.IsComposed = true;
-                u.Scale = Convert.ToDouble(xu.Attributes["Scale"].InnerText, NumberFormatInfo.InvariantInfo);                
-                UOMs.Add(u.Signature, u);
-            }
-
+#if DEBUG
+            foreach(string s in UOMs.Keys) CheckSignature(s); // That thows exception if invalid signature in XML doc
+#endif
             //////////////// TODO: Move to somewhere
             Lists = new Dictionary<string, string[]>();
             Variables = new Dictionary<string, string>();
 
-            // Load standard precision variables
+            // Load standard variables
 
             XmlNode rxn = ADoc.SelectSingleNode("UnitSystem/Variables");
             foreach (XmlNode vxn in rxn.ChildNodes) {
@@ -113,48 +91,52 @@ namespace AeroGIS.Common {
         protected double Normalize(double x, string uom) {
             UOM u = UOMs[uom] as UOM;            
             return x * u.Scale;
-        }
-
-        protected void DecomposeFractionalUOM(string AFractionalUOM, out string ANumerator, out string ADenominator) {
-            // 1. Search for first exponent
-            int expIdx = AFractionalUOM.IndexOfAny(Digits);
-            // 2. Divide string in two
-            string num = AFractionalUOM.Substring(0, expIdx + 1);
-            string den = AFractionalUOM.Substring(expIdx + 1);
-            // 3. Remove unity exponent if any from numerator
-            if (num[expIdx] == '1') num = AFractionalUOM.Substring(0, expIdx);
-            // 4. Inverse sign of denominator
-            den = den.Replace("-", "");
-            // 5. Remove unity exponent from denominator
-            int lstDen = den.Length - 1;
-            if (den[lstDen] == '1') den = den.Substring(0, lstDen);
-            ANumerator = num; ADenominator = den;
         }        
 
-        /*public static SMValue Normalize(SMValue x) { // This normalizes even not listed UOMs!
-            SMUOM srcU = new SMUOM(x.UOM);
-            string masterU = ""; // This will compose it now!
-            double masterScale = 1.0;
-            for (int ct = 0; ct < srcU.Order; ct++) {
-                string src = srcU.GetUnit(ct);
-                UOM suom = UOMs[src] as UOM;
-                masterU += suom.Signature + srcU.GetPower().ToString();
-                if (suom.Scale != 1.0) {
-                    double scale = Math.Pow(suom.Scale, srcU.GetPower(ct));
-                    masterScale *= scale;
-                }
-            }
-            SMValue val = new SMValue(masterU, x * masterScale);
-            return val;
-        }*/
         /// <summary>
-        /// Compose not existing UOM and add to the table to avoid composing next time
+        /// Drcompose a complex UOM into atomic UOMs  
         /// </summary>
-        /// <param name="ANewUOM"></param>
-        /// <returns></returns>
-        protected UOM Compose(string ANewUOM) {
+        /// <param name="AComplexUOMSignature">UOM signature of any complexity</param>        
+        protected Atom[] Atomize(string AComplexUOMSignature) {
+            string[] uoms = Regex.Split(AComplexUOMSignature, @"[-,1-3]+"); // Extract uoms
+            string[] pows = Regex.Split(AComplexUOMSignature, UOMRegex + "+"); // Extract powers
+            Atom[] ret = new Atom[uoms.Length - 1];
+            for (int ct = 0; ct < ret.Length; ct++) {
+                ret[ct] = new Atom(uoms[ct], int.Parse(pows[ct + 1]));
+            }
+            return ret;
+        }
+
+        /// <summary>
+        /// Make UOM signature of atoms
+        /// </summary>        
+        protected string Recombine(Atom[] AnAtoms){
+            string rstr = AnAtoms[0].Signature;
+            for (int ct = 1; ct < AnAtoms.Length; ct++) rstr += AnAtoms[ct];
+            return rstr;
+        }        
+        
+        /// <summary>
+        /// Compose UOM from pure signature which is not defined in list/ Find master UOMs, calculate scale, generate label. The signature could be of any complexity.
+        /// </summary>
+        /// <param name="ANewSignature">A new signature</param>
+        /// <returns>Newly composed UOM. Please, note, the new UOM signature could differ on source signature.</returns>
+        protected UOM Compose(string ANewSignature) {
+#if DEBUG
+            CheckSignature(ANewSignature);
+#endif
+            Atom[] atoms = Atomize(ANewSignature);                        
+            
+            // Search for master UOMs
+            UOM[] srcu = new UOM[atoms.Length];
+            for (int ct = 0; ct < atoms.Length; ct++) {
+                string au = atoms[ct].AtomicUOM;
+                if (!UOMs.ContainsKey(au)) throw new Exception("UnitMan failed to compose new UOM for signature " +
+                     ANewSignature + ". Atomic UOM " + au + " not found.");
+                srcu[ct] = UOMs[au];
+            }                           
             // 1. Normalise the UOM and enshure the master UOM exists
-            SMUOM src = new SMUOM(ANewUOM);
+            SMUOM src = new SMUOM(ANewSignature);
             string master = "";
             double scale = 1.0;
             for (int ct = 0; ct < src.Order; ct++) {
@@ -176,14 +158,14 @@ namespace AeroGIS.Common {
                 }
             }
             UOM masterUOM = UOMs[master] as UOM;
-            if(masterUOM == null) Log.Err("Master UOM is not found for Unit of Measurement: " + ANewUOM);
+            if(masterUOM == null) Log.Err("Master UOM is not found for Unit of Measurement: " + ANewSignature);
             UOM r = new UOM();
-            r.Name = ANewUOM;
-            r.Signature = ANewUOM;
-            r.Plural = ANewUOM;
-            r.Label = ANewUOM;  // Need to compose labeles here
+            r.Name = ANewSignature;
+            r.Signature = ANewSignature;
+            r.Plural = ANewSignature;
+            r.Label = ANewSignature;  // Need to compose labeles here
             r.IsComposed = true;
-            r.IsMaster = false;
+            //r.IsMaster = false;
             r.Domain = masterUOM.Domain;
             r.Scale = scale;
             r.Master = masterUOM; //.Signature;
@@ -245,23 +227,13 @@ namespace AeroGIS.Common {
         }
 
         /// <summary>
-        /// Get human readable label for UOM
+        /// Get human readable label for UOM. If UOM signature not found in the dictionry then the signature will be returned instead label.
         /// </summary>        
-        public string LabelOf(string AnyUOM) {
-            if(UOMs.ContainsKey(AnyUOM)) return (UOMs[AnyUOM] as UOM).Label;
-            return AnyUOM;
+        public string LabelOf(string AnUOMSignature) {
+            if(UOMs.ContainsKey(AnUOMSignature)) return (UOMs[AnUOMSignature] as UOM).Label;
+            return AnUOMSignature;
         }
-
-        public string LabelOf(StdVar AVariable) {
-            string key = AVariable.ToString();
-            if (!Variables.ContainsKey(key)) {
-                Log.Err("Precision Variable: " + key + " is undefined. " +
-                    "Please, update the definition file UnitSystem.xml");
-                return "";
-            }
-            return LabelOf((string)Variables[key]);
-        }
-
+        
         private void LoadList(string AListName, XmlDocument ADoc) {
             XmlNode xn = ADoc.SelectSingleNode("UnitSystem/UOMLists");
             XmlNode lxn = xn.SelectSingleNode("UOMList[@Name='" + AListName + "']");
@@ -273,47 +245,94 @@ namespace AeroGIS.Common {
             Lists.Add(AListName, units);
         }
         
-        public string GetStdUOM(StdVar APrecVariable) {
-            string s = APrecVariable.ToString();
-            return (string)Variables[s];
-        }
-
+        #region Protected classes
         /// <summary>
         /// Check if an UOM supported.
         /// </summary>        
-        public bool Contains(string AnUOM) { return UOMs.ContainsKey(AnUOM); }
+        public bool Contains(string AnUOMSignature) { return UOMs.ContainsKey(AnUOMSignature); }
 
-        public double Farenheit2C(double FarTemp) { return (FarTemp - 32.0) / 1.8; }
-        // Add debug attribute
+        [DebuggerDisplay("{Name} {Signature} {Master}")]
         protected class UOM {
             public string Name;
             public string Signature;
             public string Plural;
             public string Label;
             public string Domain;
-            public bool IsMaster;
+            private bool _IsMaster;
+            public bool IsMaster { get { return _IsMaster; } }
             public bool IsComposed;
-            public bool IsPrimary { get { return IsMaster && !IsComposed; } }
+            private double _Scale;
             public double Scale;
-            public UOM Master;
+            public UOM Master = null;
+            public string MasterSignature { get { if (IsMaster) return Signature; else return Master.Signature; } }
 
-            public void Load(XmlNode xn) {
+            public void Load(XmlNode xn, bool ItsMaster) {
                 Name = xn.Attributes["Name"].InnerText;
                 Signature = xn.Attributes["Signature"].InnerText;
                 Plural = xn.Attributes["Plural"].InnerText;
-                Label = xn.Attributes["Label"].InnerText;                
-            }            
-
-            public bool IsCompatible(UOM u) {
-                if (IsPrimary) {
-                    if (u.IsPrimary) return false;
-                    return u.Master.Signature == Signature;
-                }
-                else {
-                    if (u.IsPrimary) return u.Signature == this.Master.Signature;
-                    return u.Master.Signature == Master.Signature;
-                }
+                Label = xn.Attributes["Label"].InnerText;
+                _IsMaster = ItsMaster;
+                if (_IsMaster) { _Scale = 1.0; Domain = xn.Attributes["Domain"].InnerText; }
+                else _Scale = LoadVal(xn, "Scale");
             }
-        }            
+
+            public static double LoadVal(XmlNode xn, string attr) {
+                return Convert.ToDouble(xn.Attributes["Label"].InnerText, NumberFormatInfo.InvariantInfo);
+            }
+
+            public bool IsCompatible(UOM u) { return MasterSignature == u.MasterSignature; }
+        }
+
+
+        [DebuggerDisplay("Atom {Signature}")]
+        protected class Atom : IComparable<Atom> {
+            public string AtomicUOM;
+            public int Exponent;
+            public string Signature { get { return AtomicUOM + Exponent; } }
+
+            public Atom(string AnAtomicUOM, int APower) { AtomicUOM = AnAtomicUOM; Exponent = APower; }
+            /// <summary>
+            /// Sort order for atoms is: positive powers sorted by alphabet, negative powers sorted by alphabet.
+            /// That provides the strong signatures for automatically composed UOMs.
+            /// </summary>            
+            public int CompareTo(Atom other) {
+                if (Exponent > 0 && other.Exponent < 0) return -1;
+                if (Exponent < 0 && other.Exponent > 0) return 1;
+                return AtomicUOM.CompareTo(other.AtomicUOM);
+            }
+        }
+        #endregion
+
+        #region Debug only
+#if DEBUG
+        protected void CheckSignature(string ASignature) {
+            Atom[] atoms = Atomize(ASignature);
+            Array.Sort(atoms);
+            if(Recombine(atoms) != ASignature) throw new Exception("Wrong sequence of atoms in UOM Signature " + ASignature);            
+        }
+#endif
+        #endregion
+
+        #region Code to move into inherited class
+        protected Dictionary<string, string> Variables;
+        protected Dictionary<string, string[]> Lists;
+
+        public string LabelOf(StdVar AVariable) {
+            string key = AVariable.ToString();
+            if (!Variables.ContainsKey(key)) {
+                Log.Err("Precision Variable: " + key + " is undefined. " +
+                    "Please, update the definition file UnitSystem.xml");
+                return "";
+            }
+            return LabelOf((string)Variables[key]);
+        }
+
+        public double Farenheit2C(double FarTemp) { return (FarTemp - 32.0) / 1.8; }
+
+        public string GetStdUOM(StdVar APrecVariable) {
+            string s = APrecVariable.ToString();
+            return (string)Variables[s];
+        }
+        #endregion        
     }
 }
