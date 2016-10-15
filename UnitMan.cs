@@ -1,3 +1,4 @@
+#region License Information (Ms-PL)
 // Copyright © 2016 Mikhail Beloshapkin
 // All rights reserved.
 //
@@ -5,6 +6,7 @@
 //
 // Licensed under the Microsoft Public License (Ms-PL)
 //
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -25,14 +27,13 @@ namespace AeroGIS.Common {
 
     [DebuggerDisplay("UnitMan({_ISO639Code})")]
     partial class UnitMan {
+
         protected string _ISO639Code = "";        
         public string ISO639Code { get { return _ISO639Code; } } // ISO 639-2 three letters languge code
         protected string _Description;
         public string Description { get { return _Description; } }
-        protected string UOMRegex;
-
-        private static char[] Digits = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-        private const string strDigits = "0123456789";
+        protected string UOMRegex; // Regex for letters that can appears in UOM signature. For examle [A-Z,a-z] for neutral settings, [A-Z,a-z,À-ß,à-ÿ] for Russian.
+                
         protected Dictionary<string, UOM> UOMs;                
 
         /// <summary>
@@ -86,20 +87,106 @@ namespace AeroGIS.Common {
                 }
             }
             ///////////////////
-        }             
+        }
 
-        protected double Normalize(double x, string uom) {
-            UOM u = UOMs[uom] as UOM;            
-            return x * u.Scale;
-        }        
+        /// <summary>
+        /// Check if an UOM is loaded.
+        /// </summary>        
+        public bool Contains(string ASignature) { return UOMs.ContainsKey(ASignature); }
 
+        /// <summary>
+        /// Translate a value from one UOM to another. Source and destination UOMs should be compatible, i.e. they shall be of the same domain.
+        /// </summary>
+        /// <param name="x">Any value</param>
+        /// <param name="ASrcSignature">UOM in wich the value is represented</param>
+        /// <param name="ADstSignature">UOM in which return value wil be represented</param>
+        /// <returns>Source value translated into destination UOM</returns>
+        public double Convert(double x, string ASrcSignature, string ADstSignature) {
+            if (ASrcSignature == ADstSignature) return x;
+#if DEBUG
+            CheckSignature(ASrcSignature); CheckSignature(ADstSignature);
+#endif
+            UOM srcu = UOMs[ASrcSignature] as UOM;
+            UOM dstu = UOMs[ADstSignature] as UOM;            
+
+            if (srcu.IsCompatible(dstu)) return x * srcu.Scale / dstu.Scale;
+
+            throw new Exception("UnitMan failed to convert incompatible units: " +
+                srcu.Signature + " to " + dstu.Signature);
+        }
+
+        /// <summary>
+        /// Crete new UOMs if these UOMs are not defined and translate
+        /// </summary>
+        /// <param name="x">Any value</param>
+        /// <param name="ASrcSignature">UOM in wich the value is represented</param>
+        /// <param name="ADstSignature">UOM in which return value wil be represented</param>
+        /// <returns>Source value translated into destination UOM</returns>
+        public virtual double ForceConvert(double x, string ASrcSignature, string ADstSignature) {
+            if (!UOMs.ContainsKey(ASrcSignature)) Compose(ASrcSignature);
+            if (!UOMs.ContainsKey(ADstSignature)) Compose(ADstSignature);
+            return Convert(x, ASrcSignature, ADstSignature);
+        }
+
+        /// <summary>
+        /// Get domain name of UOM
+        /// </summary>        
+        public string DomainOf(string ASignature) {
+#if DEBUG
+            CheckSignature(ASignature);
+#endif
+            return UOMs[ASignature].Domain;
+        }
+
+        /// <summary>
+        /// Get human readable label for UOM. If UOM signature not found in the dictionry then the signature will be returned instead label.
+        /// </summary>        
+        public string LabelOf(string ASignature) {
+#if DEBUG
+            CheckSignature(ASignature);
+#endif
+            if (UOMs.ContainsKey(ASignature)) return (UOMs[ASignature] as UOM).Label;
+            return ASignature;
+        }
+
+        /// <summary>
+        /// Match UOM signature using its human readable label like "m/s", "kg/m2" and so on. Simple and rational UOM labels are supported only.
+        /// </summary>
+        /// <param name="ALabel">A human readable label</param>
+        /// <returns>UOM standard signature like "m1s-1", kg1m-2 and so on. If UOM is not matched than empty string returns.</returns>
+        public string MatchLabel(string ALabel) {
+            if (Regex.IsMatch(ALabel, "^" + UOMRegex + "{1,3}[23]?$")) {  // Simple UOM                
+                return MatchPrimaryLabel(ALabel);
+            }
+
+            if (Regex.IsMatch(ALabel, "^" + UOMRegex + "{1,3}[23]?/" + UOMRegex + "{1,3}[23]?$")) { // Rational UOM
+                string[] sims = ALabel.Split('/');
+                Match numerator = Regex.Match(sims[0], "(?<uom>^" + UOMRegex + "{1,3})(?<pow>[23]?$)");
+                Match denom = Regex.Match(sims[1], "(?<uom>^" + UOMRegex + "{1,3})(?<pow>[23]?$)");
+                string rstr = MatchPrimaryLabel(numerator.Groups["uom"].Value);
+                if (rstr.Length > 0) {
+                    if (numerator.Groups["pow"].Length > 0) rstr += numerator.Groups["pow"].Value;
+                    else rstr += "1";
+                    string mden = MatchPrimaryLabel(denom.Groups["uom"].Value);
+                    if (mden.Length > 0) {
+                        rstr += mden;
+                        if (denom.Groups["pow"].Length > 0) rstr += "-" + denom.Groups["pow"].Value;
+                        else rstr += "-1";
+                        return rstr;
+                    }
+                }
+            }
+            return "";
+        }
+
+        #region Protected functions
         /// <summary>
         /// Drcompose a complex UOM into atomic UOMs  
         /// </summary>
-        /// <param name="AComplexUOMSignature">UOM signature of any complexity</param>        
-        protected Atom[] Atomize(string AComplexUOMSignature) {
-            string[] uoms = Regex.Split(AComplexUOMSignature, @"[-,1-3]+"); // Extract uoms
-            string[] pows = Regex.Split(AComplexUOMSignature, UOMRegex + "+"); // Extract powers
+        /// <param name="AComplexSignature">UOM signature of any complexity</param>        
+        protected Atom[] Atomize(string AComplexSignature) {
+            string[] uoms = Regex.Split(AComplexSignature, @"[-,1-3]+"); // Extract uoms
+            string[] pows = Regex.Split(AComplexSignature, UOMRegex + "+"); // Extract powers
             Atom[] ret = new Atom[uoms.Length - 1];
             for (int ct = 0; ct < ret.Length; ct++) {
                 ret[ct] = new Atom(uoms[ct], int.Parse(pows[ct + 1]));
@@ -114,7 +201,16 @@ namespace AeroGIS.Common {
             string rstr = AnAtoms[0].Signature;
             for (int ct = 1; ct < AnAtoms.Length; ct++) rstr += AnAtoms[ct];
             return rstr;
-        }        
+        }
+
+        /// <summary>
+        /// Sort a signature following rules
+        /// </summary>        
+        protected string NormalizeSignature(string ASignature) {
+            Atom[] atoms = Atomize(ASignature);
+            Array.Sort<Atom>(atoms);
+            return Recombine(atoms);
+        }
         
         /// <summary>
         /// Compose UOM from pure signature which is not defined in list/ Find master UOMs, calculate scale, generate label. The signature could be of any complexity.
@@ -128,158 +224,90 @@ namespace AeroGIS.Common {
             Atom[] atoms = Atomize(ANewSignature);                        
             
             // Search for master UOMs
-            UOM[] srcu = new UOM[atoms.Length];
+            UOM[] masters = new UOM[atoms.Length];
+            UOM newUOM = new UOM(); newUOM.Scale = 1.0; newUOM.Signature = ANewSignature;
             for (int ct = 0; ct < atoms.Length; ct++) {
-                string au = atoms[ct].AtomicUOM;
-                if (!UOMs.ContainsKey(au)) throw new Exception("UnitMan failed to compose new UOM for signature " +
-                     ANewSignature + ". Atomic UOM " + au + " not found.");
-                srcu[ct] = UOMs[au];
-            }                           
-            // 1. Normalise the UOM and enshure the master UOM exists
-            SMUOM src = new SMUOM(ANewSignature);
-            string master = "";
-            double scale = 1.0;
-            for (int ct = 0; ct < src.Order; ct++) {
-                string unit = src.GetUnit(ct);
-                int power = src.GetPower(ct);
-                UOM suom = UOMs[unit + ((int)Math.Abs(power)).ToString()] as UOM;
-                if (suom == null) suom = UOMs[unit] as UOM; 
-                if (suom.IsPrimary) master += unit + power.ToString();
+                Atom atom = atoms[ct];
+                if (!UOMs.ContainsKey(atom.AtomicUOM)) throw new Exception("UnitMan failed to compose new UOM for signature " +
+                     ANewSignature + ". Atomic UOM " + atom.AtomicUOM + " not found.");
+                // Atomic UOM found in list. Check if it is master and update scale of new UOM if not.
+                UOM src = UOMs[atom.AtomicUOM];
+                if (src.IsMaster) masters[ct] = src;
                 else {
-                    SMUOM sm_master = new SMUOM(suom.Master.Signature);
-                    master += sm_master.GetUnit(0);
-                    if(power < 0) master += "-" + sm_master.GetPower(0).ToString();
-                    else master += sm_master.GetPower(0).ToString();
+                    UOM master = src.Master;
+                    // Update scale of new UOM
+                    for (int cte = 0; cte < atom.Exponent; cte++) newUOM.Scale *= atom.Exponent > 0 ? 1 / src.Scale : src.Scale;
+                    masters[ct] = master;
+                }                
+            }
+
+            // Create the master signature
+            string masterSignature = masters[0].Signature;
+            for (int ct = 1; ct < masters.Length; ct++) masterSignature += masters[ct].Signature;
+            masterSignature = NormalizeSignature(masterSignature);
+
+            // Check the master and domain exists
+            if(!UOMs.ContainsKey(masterSignature)) throw new Exception("Domain for UOM " + ANewSignature + " not found");
+            UOM masterUOM = UOMs[masterSignature];            
+            
+            // Generate label
+            bool slash = false; newUOM.Label = "";           
+            for (int ct = 0; ct < atoms.Length; ct++) {
+                // check the slash shall be inserted
+                if (!slash && atoms[ct].Exponent < 0) {
+                    if (ct == 0) newUOM.Label = "1/"; else newUOM.Label += "/";
+                    slash = true;
                 }
-                if (suom.Scale != 1.0) {
-                    //double scl = Math.Pow(suom.Scale, (double)src.GetPower(ct));
-                    if (power > 0) scale *= suom.Scale;
-                    else scale /= suom.Scale;
-                }
-            }
-            UOM masterUOM = UOMs[master] as UOM;
-            if(masterUOM == null) Log.Err("Master UOM is not found for Unit of Measurement: " + ANewSignature);
-            UOM r = new UOM();
-            r.Name = ANewSignature;
-            r.Signature = ANewSignature;
-            r.Plural = ANewSignature;
-            r.Label = ANewSignature;  // Need to compose labeles here
-            r.IsComposed = true;
-            //r.IsMaster = false;
-            r.Domain = masterUOM.Domain;
-            r.Scale = scale;
-            r.Master = masterUOM; //.Signature;
-            UOMs.Add(r.Signature, r);
-            return r;
-        }
-
-        /// <summary>
-        /// Translate a value from one UOM to another. Source and destination UOMs should be compatible, i.e. they shall be of the same domain.
-        /// </summary>
-        /// <param name="x">Any value</param>
-        /// <param name="ASrcUOM">UOM in wich the value is represented</param>
-        /// <param name="ADstUOM">UOM in which return value wil be represented</param>
-        /// <returns>Source value translated into destination UOM</returns>
-        public double Translate(double x, string ASrcUOM, string ADstUOM) {
-            if (ASrcUOM == ADstUOM) return x;
-            UOM srcu = UOMs[ASrcUOM] as UOM;
-            UOM dstu = UOMs[ADstUOM] as UOM;
-            if (srcu == null) {
-                srcu = Compose(ASrcUOM);
-                //Log.Err("Unsupported UOM " + ASrcUOM + "\r\nPlease, contact Fairport Support Service to add the support of this unit of measurement.");
-            }
-            if (dstu == null) {
-                dstu = Compose(ADstUOM);
-                //Log.Err("Unsupported UOM " + ADstUOM + "\r\nPlease, contact Fairport Support Service to add the support of this unit of measurement.");
+                newUOM.Label += atoms[ct].AtomicUOM + (int)Math.Abs(atoms[ct].Exponent);
             }
 
-            if(srcu.IsCompatible(dstu)) return x * srcu.Scale / dstu.Scale;
-
-            Log.Err("UnitMan failed to convert incompatible units: " +
-                srcu.Name + " to " + dstu.Name);
-            return x;
+            newUOM.Name = newUOM.Label;
+            newUOM.Plural = newUOM.Label;                                    
+            newUOM.Domain = masterUOM.Domain;            
+            newUOM.Master = masterUOM; 
+            UOMs.Add(newUOM.Signature, newUOM);
+            return newUOM;
         }
 
-        public string MasterOf(string ASimpleUOM) {
-            if(!UOMs.ContainsKey(ASimpleUOM)) return "";
-            UOM u = UOMs[ASimpleUOM] as UOM;
-            if (!u.IsPrimary) return "";
-            return u.Master.Signature;
+        protected string MatchPrimaryLabel(string ALabel) {
+            string lcu = ALabel.ToLower(); // Good hope this will be standard unit signature
+            if (Contains(lcu)) return lcu;
+            // Ok, try to use it with first capitall letter            
+            string cap = ALabel.Substring(0, 1).ToUpper();
+            if (lcu.Length > 1) cap += lcu.Substring(1, lcu.Length - 1);
+            if (Contains(cap)) return cap;
+            return "";
         }
+        #endregion
 
-        /// <summary>
-        /// Get domain name of UOM
-        /// </summary>        
-        public string DomainOf(string AnyUOM) {
-            // Power one can be skipeed. Check it. 
-            try {
-                string sgn = AnyUOM;
-                // WARNING: This code is not applicable to String Theory. The maximum amount of space dimentions is 10!!!
-                if (sgn[sgn.Length - 1] == '1' && sgn[sgn.Length - 2] != '-') sgn = AnyUOM.Substring(0, AnyUOM.Length - 1);
-                if (!UOMs.ContainsKey(sgn)) return "";
-                UOM u = UOMs[sgn] as UOM;
-                return u.Domain;
-            }
-            catch (Exception ex) {
-                Log.Err("Wrong UOM Domain Requested", ex);
-                return "";
-            }
-        }
-
-        /// <summary>
-        /// Get human readable label for UOM. If UOM signature not found in the dictionry then the signature will be returned instead label.
-        /// </summary>        
-        public string LabelOf(string AnUOMSignature) {
-            if(UOMs.ContainsKey(AnUOMSignature)) return (UOMs[AnUOMSignature] as UOM).Label;
-            return AnUOMSignature;
-        }
-        
-        private void LoadList(string AListName, XmlDocument ADoc) {
-            XmlNode xn = ADoc.SelectSingleNode("UnitSystem/UOMLists");
-            XmlNode lxn = xn.SelectSingleNode("UOMList[@Name='" + AListName + "']");
-            string[] units = new string[lxn.ChildNodes.Count];
-            int ct = 0;
-            foreach (XmlNode xc in lxn.ChildNodes) {
-                units[ct++] = xc.InnerText;
-            }
-            Lists.Add(AListName, units);
-        }
-        
         #region Protected classes
-        /// <summary>
-        /// Check if an UOM supported.
-        /// </summary>        
-        public bool Contains(string AnUOMSignature) { return UOMs.ContainsKey(AnUOMSignature); }
 
         [DebuggerDisplay("{Name} {Signature} {Master}")]
         protected class UOM {
-            public string Name;
+
             public string Signature;
-            public string Plural;
-            public string Label;
-            public string Domain;
+            public string Label;    /// Human readable label
+            public string Name;     /// Human readable name
+            public string Plural;   /// The name in plural form            
+            public string Domain;   /// Domain name. Units of same domain could be converted one into another           
+            public double Scale;    /// Scale for conversion into master unit. It shall be 1.0 for all masters
+
             private bool _IsMaster;
             public bool IsMaster { get { return _IsMaster; } }
-            public bool IsComposed;
-            private double _Scale;
-            public double Scale;
-            public UOM Master = null;
+            private UOM _Master = null;
+            public UOM Master { get { return _Master ?? this; } set { _Master = value; } }
             public string MasterSignature { get { if (IsMaster) return Signature; else return Master.Signature; } }
 
-            public void Load(XmlNode xn, bool ItsMaster) {
-                Name = xn.Attributes["Name"].InnerText;
+            public void Load(XmlNode xn, bool ItsMaster) {                
                 Signature = xn.Attributes["Signature"].InnerText;
-                Plural = xn.Attributes["Plural"].InnerText;
                 Label = xn.Attributes["Label"].InnerText;
+                Name = xn.Attributes["Name"].InnerText;
+                Plural = xn.Attributes["Plural"].InnerText;                
                 _IsMaster = ItsMaster;
-                if (_IsMaster) { _Scale = 1.0; Domain = xn.Attributes["Domain"].InnerText; }
-                else _Scale = LoadVal(xn, "Scale");
+                if (_IsMaster) { Scale = 1.0; Domain = xn.Attributes["Domain"].InnerText; }
+                else Scale = System.Convert.ToDouble(xn.Attributes["Label"].InnerText, NumberFormatInfo.InvariantInfo);
             }
-
-            public static double LoadVal(XmlNode xn, string attr) {
-                return Convert.ToDouble(xn.Attributes["Label"].InnerText, NumberFormatInfo.InvariantInfo);
-            }
-
+            
             public bool IsCompatible(UOM u) { return MasterSignature == u.MasterSignature; }
         }
 
@@ -305,10 +333,8 @@ namespace AeroGIS.Common {
 
         #region Debug only
 #if DEBUG
-        protected void CheckSignature(string ASignature) {
-            Atom[] atoms = Atomize(ASignature);
-            Array.Sort(atoms);
-            if(Recombine(atoms) != ASignature) throw new Exception("Wrong sequence of atoms in UOM Signature " + ASignature);            
+        protected void CheckSignature(string ASignature) {            
+            if(NormalizeSignature(ASignature) != ASignature) throw new Exception("Wrong sequence of atoms in UOM Signature " + ASignature);            
         }
 #endif
         #endregion
@@ -333,6 +359,17 @@ namespace AeroGIS.Common {
             string s = APrecVariable.ToString();
             return (string)Variables[s];
         }
+
+        private void LoadList(string AListName, XmlDocument ADoc) {
+            XmlNode xn = ADoc.SelectSingleNode("UnitSystem/UOMLists");
+            XmlNode lxn = xn.SelectSingleNode("UOMList[@Name='" + AListName + "']");
+            string[] units = new string[lxn.ChildNodes.Count];
+            int ct = 0;
+            foreach (XmlNode xc in lxn.ChildNodes) {
+                units[ct++] = xc.InnerText;
+            }
+            Lists.Add(AListName, units);
+        }        
         #endregion        
     }
 }

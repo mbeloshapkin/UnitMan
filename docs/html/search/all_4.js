@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['matchlabel',['MatchLabel',['../class_aero_g_i_s_1_1_common_1_1_unit_man.html#a344335d471ef7112b359f52e2df3c8bf',1,'AeroGIS::Common::UnitMan']]]
+  ['labelof',['LabelOf',['../class_aero_g_i_s_1_1_common_1_1_unit_man.html#a44cf3e5bd59bc62404f654dd82e50133',1,'AeroGIS::Common::UnitMan']]],
+  ['load',['Load',['../class_aero_g_i_s_1_1_common_1_1_unit_man.html#a8ef793e254bd5103d2b1376989483646',1,'AeroGIS::Common::UnitMan']]]
 ];
