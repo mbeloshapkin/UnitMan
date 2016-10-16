@@ -10,11 +10,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Collections;
-using System.Text;
 using System.Xml;
-using System.IO;
 using System.Globalization;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
@@ -26,7 +22,7 @@ namespace AeroGIS.Common {
     enum StdList { PurchasingUnits, AppVolRate, AppMassRate, Concentration }
 
     [DebuggerDisplay("UnitMan({_ISO639Code})")]
-    partial class UnitMan {
+    class UnitMan {
 
         protected string _ISO639Code = "";        
         public string ISO639Code { get { return _ISO639Code; } } // ISO 639-2 three letters languge code
@@ -65,7 +61,8 @@ namespace AeroGIS.Common {
             xlist = xnUOMs.SelectNodes("ScaledUnits/UOM");
             foreach (XmlNode xu in xlist) {
                 UOM u = new UOM();
-                u.Load(xu, false);                                                                                
+                u.Load(xu, false);
+                u.Master = UOMs[xu.Attributes["Master"].InnerText];
                 UOMs.Add(u.Signature, u);
             }
 
@@ -199,7 +196,7 @@ namespace AeroGIS.Common {
         /// </summary>        
         protected string Recombine(Atom[] AnAtoms){
             string rstr = AnAtoms[0].Signature;
-            for (int ct = 1; ct < AnAtoms.Length; ct++) rstr += AnAtoms[ct];
+            for (int ct = 1; ct < AnAtoms.Length; ct++) rstr += AnAtoms[ct].Signature;
             return rstr;
         }
 
@@ -228,23 +225,31 @@ namespace AeroGIS.Common {
             UOM newUOM = new UOM(); newUOM.Scale = 1.0; newUOM.Signature = ANewSignature;
             for (int ct = 0; ct < atoms.Length; ct++) {
                 Atom atom = atoms[ct];
-                if (!UOMs.ContainsKey(atom.AtomicUOM)) throw new Exception("UnitMan failed to compose new UOM for signature " +
+                if (!UOMs.ContainsKey(atom.AtomicUOM + "1")) throw new Exception("UnitMan failed to compose new UOM for signature " +
                      ANewSignature + ". Atomic UOM " + atom.AtomicUOM + " not found.");
                 // Atomic UOM found in list. Check if it is master and update scale of new UOM if not.
-                UOM src = UOMs[atom.AtomicUOM];
+                UOM src = UOMs[atom.AtomicUOM + "1"].Clone();
                 if (src.IsMaster) masters[ct] = src;
                 else {
                     UOM master = src.Master;
                     // Update scale of new UOM
-                    for (int cte = 0; cte < atom.Exponent; cte++) newUOM.Scale *= atom.Exponent > 0 ? 1 / src.Scale : src.Scale;
-                    masters[ct] = master;
+                    for (int cte = 0; cte < Atom.Abs(atom.Exponent); cte++) newUOM.Scale *= atom.Exponent > 0 ? src.Scale : 1.0 / src.Scale;
+                    masters[ct] = master.Clone();
                 }                
             }
+
+            // Masters are of positive exponents here. The exponents could be large than 1.
+
+            for (int ct = 0; ct < masters.Length; ct++) masters[ct].Signature = masters[ct].Signature.Replace("1", Atom.Abs(atoms[ct].Exponent).ToString()); // That's why I need clone master UOM's
 
             // Create the master signature
             string masterSignature = masters[0].Signature;
             for (int ct = 1; ct < masters.Length; ct++) masterSignature += masters[ct].Signature;
-            masterSignature = NormalizeSignature(masterSignature);
+            Atom[] masterAtoms = Atomize(masterSignature);
+
+            for (int ct = 0; ct < masterAtoms.Length; ct++) if (atoms[ct].Exponent < 0) masterAtoms[ct].Neg(); // Restore signs
+            Array.Sort(masterAtoms);
+            masterSignature = Recombine(masterAtoms);
 
             // Check the master and domain exists
             if(!UOMs.ContainsKey(masterSignature)) throw new Exception("Domain for UOM " + ANewSignature + " not found");
@@ -258,14 +263,15 @@ namespace AeroGIS.Common {
                     if (ct == 0) newUOM.Label = "1/"; else newUOM.Label += "/";
                     slash = true;
                 }
-                newUOM.Label += atoms[ct].AtomicUOM + (int)Math.Abs(atoms[ct].Exponent);
+                newUOM.Label += atoms[ct].AtomicUOM;
+                if (Math.Abs(atoms[ct].Exponent) > 1) newUOM.Label += (int)Math.Abs(atoms[ct].Exponent);
             }
 
             newUOM.Name = newUOM.Label;
             newUOM.Plural = newUOM.Label;                                    
             newUOM.Domain = masterUOM.Domain;            
             newUOM.Master = masterUOM; 
-            UOMs.Add(newUOM.Signature, newUOM);
+            UOMs.Add(newUOM.Signature, newUOM); 
             return newUOM;
         }
 
@@ -295,7 +301,7 @@ namespace AeroGIS.Common {
             private bool _IsMaster;
             public bool IsMaster { get { return _IsMaster; } }
             private UOM _Master = null;
-            public UOM Master { get { return _Master ?? this; } set { _Master = value; } }
+            public UOM Master { get { return _Master ?? this; } set { _Master = value; } }            
             public string MasterSignature { get { if (IsMaster) return Signature; else return Master.Signature; } }
 
             public void Load(XmlNode xn, bool ItsMaster) {                
@@ -305,18 +311,24 @@ namespace AeroGIS.Common {
                 Plural = xn.Attributes["Plural"].InnerText;                
                 _IsMaster = ItsMaster;
                 if (_IsMaster) { Scale = 1.0; Domain = xn.Attributes["Domain"].InnerText; }
-                else Scale = System.Convert.ToDouble(xn.Attributes["Label"].InnerText, NumberFormatInfo.InvariantInfo);
+                else Scale = System.Convert.ToDouble(xn.Attributes["Scale"].InnerText, NumberFormatInfo.InvariantInfo);
             }
             
             public bool IsCompatible(UOM u) { return MasterSignature == u.MasterSignature; }
+
+            public UOM Clone() {
+                UOM uom = new UOM(); uom.Signature = Signature; uom.Label = Label; uom.Name = Name;
+                uom.Plural = Plural; uom.Scale = Scale; uom._IsMaster = _IsMaster; uom._Master = _Master;
+                return uom;
+            }
         }
 
 
         [DebuggerDisplay("Atom {Signature}")]
         protected class Atom : IComparable<Atom> {
             public string AtomicUOM;
-            public int Exponent;
-            public string Signature { get { return AtomicUOM + Exponent; } }
+            public int Exponent;            
+            public string Signature { get { return AtomicUOM + Exponent; } }            
 
             public Atom(string AnAtomicUOM, int APower) { AtomicUOM = AnAtomicUOM; Exponent = APower; }
             /// <summary>
@@ -328,6 +340,11 @@ namespace AeroGIS.Common {
                 if (Exponent < 0 && other.Exponent > 0) return 1;
                 return AtomicUOM.CompareTo(other.AtomicUOM);
             }
+
+            public void Neg() { Exponent = -Exponent; }
+
+            public static int Abs(int AnExponent) { return AnExponent > 0 ? AnExponent : -AnExponent; }
+            public static string Abs(string ASignature) { return ASignature.Replace("-", ""); }
         }
         #endregion
 
