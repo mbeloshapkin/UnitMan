@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<UnitSystem Version="2.0" ISO639Code = "ENA" Description = "Farming Australia" UOMRegEx = "[A-Z,a-z]">	
+	<Variables>
+		<!-- Default variable representations -->
+		<Var Name = "Mass">
+			<DefaultUOM>kg</DefaultUOM>
+		</Var>
+		<Var Name = "Volume">
+			<DefaultUOM>m3</DefaultUOM>
+		</Var>
+		<Var Name="HarvestMass">
+			<DefaultUOM>t</DefaultUOM>
+		</Var>
+		<Var Name="Yield">
+			<DefaultUOM>t1ha-1</DefaultUOM>
+		</Var>
+		<Var Name="Density">
+			<DefaultUOM>kg1m-3</DefaultUOM>
+		</Var>
+		<Var Name="AppVolRate">
+			<DefaultUOM>l1ha-1</DefaultUOM>
+		</Var>
+		<Var Name="AppMassRate">
+			<DefaultUOM>kg1ha-1</DefaultUOM>
+		</Var>
+		<Var Name="HarvestRate">
+			<DefaultUOM>t1h-1</DefaultUOM>
+		</Var>	
+		<Var Name="PaddockArea">
+			<DefaultUOM>ha</DefaultUOM>
+		</Var>
+		<Var Name="DefaultPlantingRate">
+			<DefaultUOM>kg1ha-1</DefaultUOM>
+		</Var>
+	</Variables>
+	<UOMLists>
+		<UOMList Name="PurchasingUnits">
+			<Item>ml</Item>
+			<Item>l</Item>
+			<Item>m3</Item>
+			<Item>mg</Item>
+			<Item>g</Item>
+			<Item>kg</Item>
+			<Item>t</Item>
+		</UOMList>   
+		<UOMList Name="AppVolRate">
+			<Item>l1ha-1</Item>
+			<Item>ml1ha-1</Item>
+			<Item>kl1ha-1</Item>
+	    </UOMList>
+		<UOMList Name="AppMassRate">
+			<Item>mg1ha-1</Item>
+			<Item>g1ha-1</Item>
+			<Item>kg1ha-1</Item>
+			<Item>t1ha-1</Item>
+	    </UOMList>
+		<UOMList Name="Concentration">
+			<Item>g1l-1</Item>
+			<Item>mg1l-1</Item>
+			<Item>g1m-3</Item>
+			<Item>mglm-3</Item>
+			<Item>kg1m-3</Item>			
+	    </UOMList>
+	</UOMLists>
+	<!--	How to translate the units of measurement system to another language  -->
+	<!--    1. Translete next attributes: Name, Plural, Label.						  -->
+	<!--	2. DO NOT translate attributes: Signature, Domain, Master.			  -->
+	<UnitsOfMeasure>
+		<MasterUnits>
+			<!-- Here must be just one and the only master unit for each domain -->
+			<UOM Name = "meter" Signature ="m1" Plural = "meters" Label = "m" Domain="Distance" />
+			<UOM Name = "kilogram" Signature ="kg1" Plural = "kilograms" Label = "kg" Domain="Mass" />
+			<UOM Name = "second" Signature ="s1" Plural = "seconds" Label = "sec" Domain="Time" />
+			<UOM Name = "Pascal" Signature ="Pa1" Plural = "Pa" Label = "Pa" Domain="Pressure" />
+			<UOM Name = "Percent" Signature ="prcnt1" Plural = "%" Label = "%" Domain="Ratio" />
+			<UOM Name = "each" Signature ="ea1" Plural = "each" Label = "ea" Domain="Count" />			
+			<!-- Composed master UOMs should be composed from primary UOMs -->
+			<UOM Name="square meter" Signature="m2" Plural="square meters" Label="sq. m" Domain="Area" />
+			<UOM Name="cubic meter" Signature="m3" Plural="cubic meters" Label="m3" Domain="Volume" />
+			<UOM Name="m/s" Signature="m1s-1" Plural="m/s" Label="m/s" Domain="Speed" />
+			<UOM Name="kg/m2" Signature="kg1m-2" Plural="kg/m2" Label="kg/m2" Domain="MassRate" />
+			<UOM Name="m3/m2" Signature="m3m-2" Plural="m3/m2" Label="kg/m2" Domain="VolumeRate" />			
+		</MasterUnits>
+		<ScaledUnits>
+			<!-- Count -->
+			<UOM Name="1000 seeds" Scale="1000" Signature="kSeed1" Plural="1000 seeds" Master="ea1" Label="1000 seeds"/>
+			<UOM Name="heads" Scale="1" Signature="head1" Plural="heads" Master="ea1" Label="head"/>			
+			<!-- Distance -->
+			<UOM Name="kilometer" Scale="1000.0" Signature="km1" Plural="kilometers" Master="m1" Label="km"/>
+			<UOM Name="millimeter" Scale="0.001" Signature="mm1" Plural="millimeters" Master="m1" Label="mm"/>
+			<UOM Name="centimeter" Scale="0.01" Signature="cm1" Plural="centimeters" Master="m1" Label="cm"/>
+			<UOM Name="mile" Scale="1609.34" Signature="mi1" Plural="miles" Master="m1" Label="mi"/>
+			<UOM Name="inch" Scale="0.0254" Signature="in1" Plural="inches" Master="m1" Label="in"/>
+			<UOM Name="yard" Scale="0.9144" Signature="yd1" Plural="yards" Master="m1" Label="yd"/>
+			<UOM Name="foot" Scale="0.3048" Signature="ft1" Plural="feet" Master="m1" Label="ft"/>			
+			<!-- Mass -->
+			<UOM Name="gram" Scale="0.001" Signature="g1" Plural="grams" Master="kg1" Label="g"/>
+			<UOM Name="tonne" Scale="1000" Signature="t1" Plural="tonnes" Master="kg1" Label="t"/>
+			<UOM Name="milligram" Scale="1E-6" Signature="mg1" Plural="milligrams" Master="kg1" Label="mg"/>
+			<UOM Name="ton (U.S.)" Scale="907.18474" Signature="ton1" Plural="tons (U.S.)" Master="kg1" Label="t"/>
+			<UOM Name="pound" Scale="0.45359237" Signature="lb1" Plural="pounds" Master="kg1" Label="lb"/>
+			<UOM Name="US bale" Scale="217.72" Signature="usbale1" Plural="US bales" Master="kg1" Label="bale"/>
+			<UOM Name="Imperial bale" Scale="326.59" Signature="ukbale1" Plural="Imperial bales" Master="kg1" Label="bale"/>			
+			<!-- Volume -->
+			<UOM Name="liter" Scale="0.001" Signature="l1" Plural="liters" Master="m3" Label="l"/>
+			<UOM Name="milliliter" Scale="1E-6" Signature="ml1" Plural="milliliters" Master="m3" Label="ml"/>
+			<UOM Name="kiloliter" Scale="1.0" Signature="kl1" Plural="kiloliters" Master="m3" Label="kl"/>
+			<UOM Name="megaliter" Scale="1000" Signature="Ml1" Plural="megaliters" Master="m3" Label="Ml"/>
+			<UOM Name="gallon" Scale="0.0037854117839999990045608623145155" Signature="gal1" Plural="gallons" Master="m3" Label="gal"/>
+			<UOM Name="bushel" Scale="0.035239070166879990733280387612036" Signature="bu1" Plural="bushels" Master="m3" Label="bu"/>
+			<UOM Name="pint" Scale="0.00056826125" Signature="pt1" Plural="pints" Master="m3" Label="pt"/>
+			<UOM Name="quart" Scale="0.000946352946" Signature="qt1" Plural="quarts" Master="m3" Label="qt"/>
+			<UOM Name="US fluid ounce" Scale="0.0000295735295625" Signature="usfloz1" Plural="US fluid ounces" Master="m3" Label="fl oz"/>
+			<UOM Name="Imperial fluid ounce" Scale="0.0000284130625" Signature="ukfloz1" Plural="Imperial fluid ounces" Master="m3" Label="fl oz"/>			
+			<!-- Area -->
+			<UOM Name="hectare" Scale="10000" Signature="ha1" Plural="hectares" Master="m2" Label="Ha"/>
+			<UOM Name="acre" Scale="4046.8564224" Signature="ac1" Plural="acres" Master="m2" Label="Ac"/>
+			<UOM Name="sq. foot" Scale="0.09290304" Signature="ft2" Plural="sq. feet" Master="m2" Label="sq. ft"/>
+			<UOM Name="sq. yard" Scale="0.83612736" Signature="yd2" Plural="sq. yards" Master="m2" Label="sq. yd"/>
+			<UOM Name="sq. inch" Scale="0.00064516" Signature="in2" Plural="sq. yards" Master="m2" Label="sq. in"/>			
+			<!-- Time -->
+			<UOM Name="minute" Scale="60" Signature="min1" Plural="minutes" Master="s1" Label="min"/>
+			<UOM Name="hour" Scale="3600" Signature="h1" Plural="hours" Master="s1" Label="h"/>						
+			<!-- Pressure -->
+			<UOM Name="kg/cm2" Scale="98066.5" Signature="kg1cm-2" Plural="kg/cm2" Master="Pa1" Label="kg/cm2"/>
+			<UOM Name="psi" Scale="6894.76" Signature="lb1in-2" Plural="psi" Master="Pa1" Label="psi"/>			
+			<!-- Yield -->
+			<UOM Name="t/ha" Scale="10" Signature="t1ha-1" Plural="t/ha" Master="kg1m-2" Label="t/ha"/>			
+			<!-- Dry Application Rate -->
+			<UOM Name="kg/ha" Scale="0.0001" Signature="kg1ha-1" Plural="kg/ha" Master="kg1m-2" Label="kg/ha"/>
+			<UOM Name="mg/ha" Scale="0.0000000001" Signature="mg1ha-1" Plural="mg/ha" Master="kg1m-2" Label="mg/ha"/>
+			<UOM Name="g/ha" Scale="0.0000001" Signature="g1ha-1" Plural="mg/ha" Master="kg1m-2" Label="g/ha"/>			
+			<!-- Liquid Application Rate -->
+			<UOM Name="ml/ha" Scale="0.0000000000001" Signature="ml1ha-1" Plural="ml/ha" Master="m3m-2" Label="ml/ha"/>
+			<UOM Name="l/ha" Scale="0.00000001" Signature="l1ha-1" Plural="l/ha" Master="m3m-2" Label="l/ha"/>
+			<UOM Name="m3/ha" Scale="0.00001" Signature="m3ha-1" Plural="m3/ha" Master="m3m-2" Label="m3/ha"/>			
+		</ScaledUnits>
+	</UnitsOfMeasure>
+</UnitSystem>

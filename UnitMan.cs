@@ -11,6 +11,7 @@
 using System;
 using System.Collections.Generic;
 using System.Xml;
+using System.Linq;
 using System.Globalization;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
@@ -30,13 +31,14 @@ namespace AeroGIS.Common {
         public string Description { get { return _Description; } }
         protected string UOMRegex; // Regex for letters that can appears in UOM signature. For examle [A-Z,a-z] for neutral settings, [A-Z,a-z,À-ß,à-ÿ] for Russian.
                 
-        protected Dictionary<string, UOM> UOMs;                
+        protected Dictionary<string, UOM> UOMs;
+
+        public List<string> Domains { get { return UOMs.Values.GroupBy(d => d.Domain).Select(g => g.Key).ToList<string>(); } }
 
         /// <summary>
         /// Load a unit system from XML document.
         /// </summary>        
         public virtual void Load(XmlDocument ADoc) {
-
             // Process UnitsSystem node
             XmlNode root = ADoc.DocumentElement;
             _ISO639Code = root.Attributes["ISO639Code"].InnerText;
@@ -62,7 +64,7 @@ namespace AeroGIS.Common {
             foreach (XmlNode xu in xlist) {
                 UOM u = new UOM();
                 u.Load(xu, false);
-                u.Master = UOMs[xu.Attributes["Master"].InnerText];
+                u.Master = UOMs[xu.Attributes["Master"].InnerText];                
                 UOMs.Add(u.Signature, u);
             }
 
@@ -103,8 +105,8 @@ namespace AeroGIS.Common {
 #if DEBUG
             CheckSignature(ASrcSignature); CheckSignature(ADstSignature);
 #endif
-            UOM srcu = UOMs[ASrcSignature] as UOM;
-            UOM dstu = UOMs[ADstSignature] as UOM;            
+            UOM srcu = UOMs[ASrcSignature];
+            UOM dstu = UOMs[ADstSignature];            
 
             if (srcu.IsCompatible(dstu)) return x * srcu.Scale / dstu.Scale;
 
@@ -142,8 +144,25 @@ namespace AeroGIS.Common {
 #if DEBUG
             CheckSignature(ASignature);
 #endif
-            if (UOMs.ContainsKey(ASignature)) return (UOMs[ASignature] as UOM).Label;
-            return ASignature;
+            return UOMs[ASignature].Label;            
+        }
+
+        public string NameOf(string ASignature) {
+#if DEBUG
+            CheckSignature(ASignature);
+#endif
+            return UOMs[ASignature].Name;
+        }
+
+        public string PluralOf(string ASignature) {
+#if DEBUG
+            CheckSignature(ASignature);
+#endif
+            return UOMs[ASignature].Plural;
+        }
+
+        public IEnumerable<string> UOMsOf(string ADomain) {
+            return UOMs.Keys.Where(uom => UOMs[uom].Domain == ADomain);            
         }
 
         /// <summary>
@@ -268,8 +287,7 @@ namespace AeroGIS.Common {
             }
 
             newUOM.Name = newUOM.Label;
-            newUOM.Plural = newUOM.Label;                                    
-            newUOM.Domain = masterUOM.Domain;            
+            newUOM.Plural = newUOM.Label;                                                
             newUOM.Master = masterUOM; 
             UOMs.Add(newUOM.Signature, newUOM); 
             return newUOM;
@@ -294,24 +312,28 @@ namespace AeroGIS.Common {
             public string Signature;
             public string Label;    /// Human readable label
             public string Name;     /// Human readable name
-            public string Plural;   /// The name in plural form            
-            public string Domain;   /// Domain name. Units of same domain could be converted one into another           
+            public string Plural;   /// The name in plural form                        
             public double Scale;    /// Scale for conversion into master unit. It shall be 1.0 for all masters
 
             private bool _IsMaster;
             public bool IsMaster { get { return _IsMaster; } }
+
             private UOM _Master = null;
             public UOM Master { get { return _Master ?? this; } set { _Master = value; } }            
-            public string MasterSignature { get { if (IsMaster) return Signature; else return Master.Signature; } }
 
-            public void Load(XmlNode xn, bool ItsMaster) {                
+            private string _Domain;
+            public string Domain { get { return IsMaster ? _Domain : _Master.Domain; } }   /// Domain name. Units of same domain could be converted one into another           
+            
+            public string MasterSignature { get { return IsMaster? Signature : Master.Signature; } }
+
+            public void Load(XmlNode xn, bool IsMaster) {                
                 Signature = xn.Attributes["Signature"].InnerText;
                 Label = xn.Attributes["Label"].InnerText;
                 Name = xn.Attributes["Name"].InnerText;
                 Plural = xn.Attributes["Plural"].InnerText;                
-                _IsMaster = ItsMaster;
-                if (_IsMaster) { Scale = 1.0; Domain = xn.Attributes["Domain"].InnerText; }
-                else Scale = System.Convert.ToDouble(xn.Attributes["Scale"].InnerText, NumberFormatInfo.InvariantInfo);
+                _IsMaster = IsMaster;
+                if (_IsMaster) { Scale = 1.0; _Domain = xn.Attributes["Domain"].InnerText; }
+                else Scale = System.Convert.ToDouble(xn.Attributes["Scale"].InnerText, NumberFormatInfo.InvariantInfo);                    
             }
             
             public bool IsCompatible(UOM u) { return MasterSignature == u.MasterSignature; }
@@ -362,11 +384,8 @@ namespace AeroGIS.Common {
 
         public string LabelOf(StdVar AVariable) {
             string key = AVariable.ToString();
-            if (!Variables.ContainsKey(key)) {
-                Log.Err("Precision Variable: " + key + " is undefined. " +
-                    "Please, update the definition file UnitSystem.xml");
-                return "";
-            }
+            if (!Variables.ContainsKey(key)) throw new Exception("Variable: " + key + " is undefined. " +
+                    "Please, check the XML definition file");                            
             return LabelOf((string)Variables[key]);
         }
 
