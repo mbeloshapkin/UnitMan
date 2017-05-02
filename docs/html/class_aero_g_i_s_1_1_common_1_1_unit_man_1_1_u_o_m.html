@@ -74,9 +74,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a19b549668c6a0c7cec9d2cbc4a6aede0"><td class="memItemLeft" align="right" valign="top"><a id="a19b549668c6a0c7cec9d2cbc4a6aede0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Load</b> (XmlNode xn, bool ItsMaster)</td></tr>
-<tr class="separator:a19b549668c6a0c7cec9d2cbc4a6aede0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a28b8d035d51d7ede217da0c2aec23e"><td class="memItemLeft" align="right" valign="top"><a id="a5a28b8d035d51d7ede217da0c2aec23e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Load</b> (XmlNode xn, bool IsMaster)</td></tr>
+<tr class="separator:a5a28b8d035d51d7ede217da0c2aec23e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa7f4ded3a3b2ab47a046cb2af8c14693"><td class="memItemLeft" align="right" valign="top"><a id="aa7f4ded3a3b2ab47a046cb2af8c14693"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsCompatible</b> (<a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html">UOM</a> u)</td></tr>
 <tr class="separator:aa7f4ded3a3b2ab47a046cb2af8c14693"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -100,13 +100,9 @@ string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html#a7c9a07c7cb8ea3299e40a5444f471d3b">Plural</a></td></tr>
 <tr class="memdesc:a7c9a07c7cb8ea3299e40a5444f471d3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Human readable name. <br /></td></tr>
 <tr class="separator:a7c9a07c7cb8ea3299e40a5444f471d3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a435dd3065176adfe7d195f5ef51eecce"><td class="memItemLeft" align="right" valign="top"><a id="a435dd3065176adfe7d195f5ef51eecce"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html#a435dd3065176adfe7d195f5ef51eecce">Domain</a></td></tr>
-<tr class="memdesc:a435dd3065176adfe7d195f5ef51eecce"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name in plural form. <br /></td></tr>
-<tr class="separator:a435dd3065176adfe7d195f5ef51eecce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0da47aa4a0e0a67bb081bf8c049abacf"><td class="memItemLeft" align="right" valign="top"><a id="a0da47aa4a0e0a67bb081bf8c049abacf"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html#a0da47aa4a0e0a67bb081bf8c049abacf">Scale</a></td></tr>
-<tr class="memdesc:a0da47aa4a0e0a67bb081bf8c049abacf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Domain name. Units of same domain could be converted one into another. <br /></td></tr>
+<tr class="memdesc:a0da47aa4a0e0a67bb081bf8c049abacf"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name in plural form. <br /></td></tr>
 <tr class="separator:a0da47aa4a0e0a67bb081bf8c049abacf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
@@ -117,8 +113,12 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsMaster</b><code> [g
 <tr class="memitem:a19ac0c81ea68f329e9808a0c10c857db"><td class="memItemLeft" align="right" valign="top"><a id="a19ac0c81ea68f329e9808a0c10c857db"></a>
 <a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html">UOM</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Master</b><code> [get, set]</code></td></tr>
 <tr class="separator:a19ac0c81ea68f329e9808a0c10c857db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a435dd3065176adfe7d195f5ef51eecce"><td class="memItemLeft" align="right" valign="top"><a id="a435dd3065176adfe7d195f5ef51eecce"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>Domain</b><code> [get]</code></td></tr>
+<tr class="separator:a435dd3065176adfe7d195f5ef51eecce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a798097f1c4bea64e0dcdf1eab89e28c1"><td class="memItemLeft" align="right" valign="top"><a id="a798097f1c4bea64e0dcdf1eab89e28c1"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>MasterSignature</b><code> [get]</code></td></tr>
+string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aero_g_i_s_1_1_common_1_1_unit_man_1_1_u_o_m.html#a798097f1c4bea64e0dcdf1eab89e28c1">MasterSignature</a><code> [get]</code></td></tr>
+<tr class="memdesc:a798097f1c4bea64e0dcdf1eab89e28c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Domain name. Units of same domain could be converted one into another. <br /></td></tr>
 <tr class="separator:a798097f1c4bea64e0dcdf1eab89e28c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>

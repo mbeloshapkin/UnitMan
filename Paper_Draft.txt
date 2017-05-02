@@ -1,0 +1,80 @@
+﻿Мой конвертер единиц измерения
+
+Килолитры == кубометры. Масштаб 1.0, однако килолитр не может быть мастером, а кубометр - может
+
+Какие признаки мастера? Да никакие.
+
+Что, если нам не нужны красивые текстовые обозначения для названий и меток? А нужна только процедура пересчёта. В UI локализованной версии не должно быть иностранных единиц измерения, а входные данные вполне могут в них выражаться. 
+
+Сортировка сигнатуры. Сначала положительные степени, отсортированнве по алфавиту, затем отрицательные. В Debug сборке надо проверять сортировку
+
+расход краски - бак. литр/м2 == миллиметр. литр = 0.001 m3, тогда расход (0.001 m3)/m2 = mm. Хотя и не все. Некоторые так и делают.
+
+Руд (англ. rood) — единица площади в английской системе мер. Длина одной стороны прямоугольной площади в 1 руд составляет 1 фурлонг (201,168 м), а вторая сторона имеет длину в 1 род (5,0292 м).
+1 руд = 1/4 акра = 40 квадратных родов = 1011,7141056 м2.
+
+1 род равен 25 линкам или 5 ½ ярдам или 1⁄40 фурлонгам или 5,0292 метрам.
+
+In 1620, the clergyman Edmund Gunter developed a method of surveying land accurately with low technology equipment, 
+using what became known as Gunter's chain; this was 66 feet long and from the practice of using his chain, 
+the word transferred to the actual measured unit. His chain had 100 links, 
+and the link is used as a subdivision of the chain as a unit of length.
+
+A furlong is a measure of distance in imperial units and U.S. customary units equal to one-eighth of a mile, equivalent to 660 feet, 220 yards, 40 rods, or 10 chains. Using the international definition of the inch as exactly 25.4 millimetres, one furlong is 201.168 metres. However, the United States does not uniformly use this conversion ratio. Older ratios are in use for surveying purposes in some states, leading to variations in the length of the furlong of about two parts per million, or 0.4 millimetres ( 1⁄64 inch). This variation is too small to have many practical consequences. Five furlongs are about 1.0 kilometre (1.00584 km is the exact value, according to the international conversion).
+
+http://www.penryfamily.com/surveying/chainmaking.html
+http://www.penryfamily.com/surveying/images/surveychain.pdf
+
+https://en.wikipedia.org/wiki/English_units
+
+https://upload.wikimedia.org/wikipedia/commons/c/c8/English_length_units_graph.png - картинка английская система мер
+
+Scottish inch[edit]
+The now obsolete Scottish inch (Scottish Gaelic: òirleach), 
+1
+/
+12
+ of a Scottish foot, was about 1.0016 imperial inches (about 2.5441 cm).[18] It was used in the popular expression Gie 'im an inch, an he'll tak an ell, in English "Give him an inch and he'll take an ell", first published as "For when I gave you an inch, you tooke an ell" by John Heywood in 1546.[19] (The ell, equal to 37 inches (about 94 cm), was in use in England until 1685.)[20] The modern version of the saying is "Give him an inch and he'll take a mile".
+
+Continental inches[edit]
+Before the adoption of the metric system, several European countries had customary units whose name translates into "inch". The French pouce measured 2.70 cm, at least when applied to describe the calibre of artillery pieces (see also: Units of measurement in France). The Amsterdam foot (voet) consisted of 11 Amsterdam inches (duim) (see Dutch units of measurement). The Amsterdam foot is about 8% shorter than an English foot.[citation needed]
+
+https://en.wikipedia.org/wiki/Barleycorn_(unit)
+
+In practice, various weights and measures acts of the English kings were standardized with reference to some particular yard-length iron, brass, or bronze bar held by the king or the Royal Exchequer. The formal barleycorn was 1/108 of its length.[2]
+
+Король Генрих I (1100—1135) узаконил в 1101 г. постоянный ярд и приказал изготовить из вяза эталон. Этим ярдом в Англии пользуются до сих пор (длина его равна 0,9144 м). Ярд делился на 2, 4, 8 и 16 частей, называемых соответственно полу-ярд, пядь, палец и ноготь.
+
+Система СИ https://ru.wikipedia.org/wiki/%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D1%8B%D0%B5_%D0%B5%D0%B4%D0%B8%D0%BD%D0%B8%D1%86%D1%8B_%D0%A1%D0%98
+
+дюйм-унция <-> килограммометр W*h, Вт * ч
+
+Один стандартный кубический фут природного газа в качестве грубого приближения приравнивается 1000 BTU
+
+BTU определяется как количество тепла, необходимое для того, чтобы поднять температуру 1 фунта воды на 1 градус Фаренгейта
+
+Фунт (от лат. pondus — вес, гиря[1]) — единица измерения массы. Исторически использовался в некоторых европейских странах, причём в эпоху феодальной раздробленности в некоторых странах (например, во Франции) его значение имел право устанавливать каждый феодал
+Это просто гиря.
+
+--------------------------
+Ячменные зёрна, как и короли, бывают разные. Поэтому в обороте оказалось множество дюймов: английские, шотландские, французские, амстердамские, и даже русские и, конечно, отдельно - московские, которые были гораздо больше остальных.
+https://en.wikipedia.org/wiki/Inch#/media/File:Inch_converter.jpg
+--------------------------
+
+
+
+Безобразия с единицами измерения приводили к тому, что и без того непонятные формулы в физике обрастали трёхэтажными коэффициентами. А считать-то надо было раньше вручную.
+
+Это очень злило Макса Планка и он придумал прекрасную систему, в которй скорость света, а так же гравитационная, магнитная и электрическая постоянные равны единице. Формулы стали заметно короче и понятнее. 
+При этом единицей измерения массы оказалась минимально возможная масса чёрной дыры. В отличие от Планка, обыватели не собирались разделывать колбасу на чёрные дыры и продолжали покупать её фунтами.
+Зоопарк единиц пополнился ещё.  
+
+Меня это тоже злило. Одна только английская система единиц для объёма жидкостей может вызверить любого программиста. При этом объёмы сыпучих субстанций измеряются в других единицах. А если в Америке, то в третьих.
+
+Давным давно я написал код, который умеет вычислять некоторые коэффициенты для пересчёта единиц измерения, если они неизвестны даже мне, даже Гуглю. 
+В самом деле, если известно, сколько футов в метре, то нетрудно вычислить, сколько будет кубических футов в кубометре. Подобное возможно и с более сложными составными единицами измерения.
+От проекта к проекту я понемногу совершенствовал конвертер. В итоге он достиг совершенства, а я решил поделиться кодом с общественностью. Под катом небольшой рассказ о том, что пулучилось, и ссылка на Git.
+
+https://en.wikipedia.org/wiki/Unit_of_length#/media/File:Determination_of_the_rute_and_the_feet_in_Frankfurt.png
+
+но трубы-то у нас дюймовые. да и мониторы тоже. И ещё много чего.

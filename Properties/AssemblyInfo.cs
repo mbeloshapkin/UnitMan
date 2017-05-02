@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Free UOM Converter")]
+[assembly: AssemblyTitle("Free Flexible UOM Converter")]
 [assembly: AssemblyDescription("Free and flexible opensource UOM converter")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Converter", "Converter.csproj", "{8C6AB04F-601B-400C-88F3-A1C9539F6BE8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FF Converter", "FF Converter.csproj", "{8C6AB04F-601B-400C-88F3-A1C9539F6BE8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

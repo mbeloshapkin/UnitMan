@@ -99,11 +99,7 @@ namespace Converter {
         private void cbxDomains_SelectedIndexChanged(object sender, EventArgs e) {
             if (IsInitializing) return;
             SelectDomain();
-        }
-
-        private void tbxVal_TextChanged(object sender, EventArgs e) {
-            ComposeResult();
-        }
+        }        
 
         private struct TagUOM {
             public string Description, UOM;
@@ -112,7 +108,7 @@ namespace Converter {
 
 
         private void ComposeResult() {
-            if (tbxVal.Text.Length == 0) tbxVal.Text = "1";
+            if (tbxVal.Text.Length == 0) { tbxVal.Text = "1"; return; }
             TagUOM from = (TagUOM)lbxFrom.SelectedItem; TagUOM to = (TagUOM)lbxTo.SelectedItem;
             double src = double.Parse(tbxVal.Text);
             double dst = UM.Convert(src, from.UOM, to.UOM);
@@ -126,6 +122,10 @@ namespace Converter {
         }
 
         private void lbxTo_SelectedIndexChanged(object sender, EventArgs e) {
+            ComposeResult();
+        }
+
+        private void tbxVal_TextChanged(object sender, EventArgs e) {
             ComposeResult();
         }
 
