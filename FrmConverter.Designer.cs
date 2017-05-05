@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.tbxUnitSystem = new System.Windows.Forms.TextBox();
             this.btLoad = new System.Windows.Forms.Button();
@@ -39,6 +40,9 @@
             this.tbxVal = new System.Windows.Forms.TextBox();
             this.lbResult = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.tbxFrom = new System.Windows.Forms.TextBox();
+            this.tbxTo = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,6 +71,7 @@
             this.btLoad.Size = new System.Drawing.Size(67, 23);
             this.btLoad.TabIndex = 1;
             this.btLoad.Text = "Load";
+            this.toolTip1.SetToolTip(this.btLoad, "Load units system from XML file");
             this.btLoad.UseVisualStyleBackColor = true;
             this.btLoad.Click += new System.EventHandler(this.btLoad_Click);
             // 
@@ -111,7 +116,7 @@
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.loadToolStripMenuItem.Text = "Load";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
@@ -166,6 +171,7 @@
             this.tbxVal.Name = "tbxVal";
             this.tbxVal.Size = new System.Drawing.Size(63, 20);
             this.tbxVal.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.tbxVal, "Value to be converted");
             this.tbxVal.TextChanged += new System.EventHandler(this.tbxVal_TextChanged);
             // 
             // lbResult
@@ -187,11 +193,29 @@
             this.label5.TabIndex = 12;
             this.label5.Text = "Value:";
             // 
+            // tbxFrom
+            // 
+            this.tbxFrom.Location = new System.Drawing.Point(51, 111);
+            this.tbxFrom.Name = "tbxFrom";
+            this.tbxFrom.Size = new System.Drawing.Size(164, 20);
+            this.tbxFrom.TabIndex = 13;
+            this.tbxFrom.TextChanged += new System.EventHandler(this.tbxFrom_TextChanged);
+            // 
+            // tbxTo
+            // 
+            this.tbxTo.Location = new System.Drawing.Point(277, 111);
+            this.tbxTo.Name = "tbxTo";
+            this.tbxTo.Size = new System.Drawing.Size(174, 20);
+            this.tbxTo.TabIndex = 14;
+            this.tbxTo.TextChanged += new System.EventHandler(this.tbxTo_TextChanged);
+            // 
             // FrmConverter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(463, 461);
+            this.Controls.Add(this.tbxTo);
+            this.Controls.Add(this.tbxFrom);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lbResult);
             this.Controls.Add(this.tbxVal);
@@ -234,6 +258,9 @@
         private System.Windows.Forms.TextBox tbxVal;
         private System.Windows.Forms.Label lbResult;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.TextBox tbxFrom;
+        private System.Windows.Forms.TextBox tbxTo;
     }
 }
 

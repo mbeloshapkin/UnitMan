@@ -12,7 +12,6 @@ using System;
 using System.Collections.Generic;
 using System.Xml;
 using System.Linq;
-using System.Globalization;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 
@@ -22,22 +21,42 @@ namespace AeroGIS.Common {
                     DefaultPlantingRate }
     enum StdList { PurchasingUnits, AppVolRate, AppMassRate, Concentration }
 
+
+    /// <summary>
+    /// Single C# class SDK for units of measurements conversion. The entire system of UOMs could be defined as single XML file.
+    /// Redundant conversion coefficients effectively eliminated, UnitMan is able to caltulate conversion coefficients in many cases even these coefficients are not pre-defined.
+    /// </summary>
     [DebuggerDisplay("UnitMan({_ISO639Code})")]
     class UnitMan {
 
-        protected string _ISO639Code = "";        
-        public string ISO639Code { get { return _ISO639Code; } } // ISO 639-2 three letters languge code
+        protected string _ISO639Code = "";
+        /// <summary>
+        /// ISO 639-2 three letters languge code. The vslue should be defined in XML definition file.
+        /// </summary>
+        public string ISO639Code { get { return _ISO639Code; } } 
+
         protected string _Description;
+        /// <summary>
+        /// User defined description of units system. The vslue should be defined in XML definition file.
+        /// </summary>
         public string Description { get { return _Description; } }
-        protected string UOMRegex; // Regex for letters that can appears in UOM signature. For examle [A-Z,a-z] for neutral settings, [A-Z,a-z,À-ß,à-ÿ] for Russian.
+
+        /// <summary>
+        /// The regex shall define letters which are valid for UOM lsbels.
+        /// For example "[A-Z,a-z]" for English, [A-Z,a-z,À-ß,à-ÿ] for Russian.
+        /// </summary>
+        protected string UOMRegex;
                 
         protected Dictionary<string, UOM> UOMs;
 
+        /// <summary>
+        /// The list of UOM domains.
+        /// </summary>
         public List<string> Domains { get { return UOMs.Values.GroupBy(d => d.Domain).Select(g => g.Key).ToList<string>(); } }
 
         /// <summary>
-        /// Load a unit system from XML document.
-        /// </summary>        
+        /// Load an user defined unit system from XML document.
+        /// </summary>                
         public virtual void Load(XmlDocument ADoc) {
             // Process UnitsSystem node
             XmlNode root = ADoc.DocumentElement;
@@ -89,9 +108,11 @@ namespace AeroGIS.Common {
         }
 
         /// <summary>
-        /// Check if an UOM is loaded.
+        /// Check if an UOM is defined in source XML. If UOM is not defined and loaded, 
+        /// then that does not mean it could not be converted. The conversion coefficients
+        /// for undefined UOMs will be calculated if it is possible to find master UOMs
         /// </summary>        
-        public bool Contains(string ASignature) { return UOMs.ContainsKey(ASignature); }
+        public bool IsDefined(string ASignature) { return UOMs.ContainsKey(ASignature); }
 
         /// <summary>
         /// Translate a value from one UOM to another. Source and destination UOMs should be compatible, i.e. they shall be of the same domain.
@@ -127,6 +148,7 @@ namespace AeroGIS.Common {
             return Convert(x, ASrcSignature, ADstSignature);
         }
 
+        #region UOM attributes by signature
         /// <summary>
         /// Get domain name of UOM
         /// </summary>        
@@ -138,15 +160,19 @@ namespace AeroGIS.Common {
         }
 
         /// <summary>
-        /// Get human readable label for UOM. If UOM signature not found in the dictionry then the signature will be returned instead label.
+        /// Human readable label for UOM. If UOM signature not found in the dictionry then the signature will be returned instead label.
         /// </summary>        
         public string LabelOf(string ASignature) {
 #if DEBUG
             CheckSignature(ASignature);
 #endif
-            return UOMs[ASignature].Label;            
+            return UOMs[ASignature].Label;           
+ 
         }
 
+        /// <summary>
+        /// Human readable name of UOM, such as "meter" 
+        /// </summary>        
         public string NameOf(string ASignature) {
 #if DEBUG
             CheckSignature(ASignature);
@@ -154,23 +180,31 @@ namespace AeroGIS.Common {
             return UOMs[ASignature].Name;
         }
 
+        /// <summary>
+        /// Human readable name of UOM in plural form, such as "meters" 
+        /// </summary>        
         public string PluralOf(string ASignature) {
 #if DEBUG
             CheckSignature(ASignature);
 #endif
             return UOMs[ASignature].Plural;
         }
+        #endregion
 
+        /// <summary>
+        /// List of UOM signatures of domain.
+        /// </summary>        
         public IEnumerable<string> UOMsOf(string ADomain) {
             return UOMs.Keys.Where(uom => UOMs[uom].Domain == ADomain);            
         }
 
         /// <summary>
-        /// Match UOM signature using its human readable label like "m/s", "kg/m2" and so on. Simple and rational UOM labels are supported only.
+        /// Parse UOM signature using its human readable label like "m/s", "kg/m2" and so on. 
+        /// Simple and rational UOM labels are supported only. 
         /// </summary>
         /// <param name="ALabel">A human readable label</param>
         /// <returns>UOM standard signature like "m1s-1", kg1m-2 and so on. If UOM is not matched than empty string returns.</returns>
-        public string MatchLabel(string ALabel) {
+        public string ParseLabel(string ALabel) {
             if (Regex.IsMatch(ALabel, "^" + UOMRegex + "{1,3}[23]?$")) {  // Simple UOM                
                 return MatchPrimaryLabel(ALabel);
             }
@@ -220,8 +254,12 @@ namespace AeroGIS.Common {
         }
 
         /// <summary>
-        /// Sort a signature following rules
-        /// </summary>        
+        /// Sort signature atoms by next rules: 
+        /// 1. Positive powers are going first
+        /// 2. Atoms of same exponent sign are sorted in alphabet order
+        /// 
+        /// </summary> 
+        /// <returns>The signature, sorted as above</returns>
         protected string NormalizeSignature(string ASignature) {
             Atom[] atoms = Atomize(ASignature);
             Array.Sort<Atom>(atoms);
@@ -295,11 +333,11 @@ namespace AeroGIS.Common {
 
         protected string MatchPrimaryLabel(string ALabel) {
             string lcu = ALabel.ToLower(); // Good hope this will be standard unit signature
-            if (Contains(lcu)) return lcu;
+            if (IsDefined(lcu)) return lcu;
             // Ok, try to use it with first capitall letter            
             string cap = ALabel.Substring(0, 1).ToUpper();
             if (lcu.Length > 1) cap += lcu.Substring(1, lcu.Length - 1);
-            if (Contains(cap)) return cap;
+            if (IsDefined(cap)) return cap;
             return "";
         }
         #endregion
@@ -333,7 +371,7 @@ namespace AeroGIS.Common {
                 Plural = xn.Attributes["Plural"].InnerText;                
                 _IsMaster = IsMaster;
                 if (_IsMaster) { Scale = 1.0; _Domain = xn.Attributes["Domain"].InnerText; }
-                else Scale = System.Convert.ToDouble(xn.Attributes["Scale"].InnerText, NumberFormatInfo.InvariantInfo);                    
+                else Scale = double.Parse(xn.Attributes["Scale"].InnerText);
             }
             
             public bool IsCompatible(UOM u) { return MasterSignature == u.MasterSignature; }

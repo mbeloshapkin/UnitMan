@@ -32,11 +32,11 @@ namespace Converter {
         public FrmConverter() {
             InitializeComponent();
             UM = new UnitMan();
-            if (Settings.Default.LastFile.Length > 0) Load(Settings.Default.LastFile);
+            if (Settings.Default.LastFile.Length > 0) LoadFromFile(Settings.Default.LastFile);
             btLoad.Focus();
         }
 
-        private void Load(string AFileName) {
+        private void LoadFromFile(string AFileName) {
             IsInitializing = true;
             try {
                 XmlDocument xDoc = new XmlDocument();
@@ -69,18 +69,19 @@ namespace Converter {
             if (ofd.ShowDialog() == DialogResult.OK) {
                 Settings.Default.LastFile = ofd.FileName;
                 Settings.Default.Save();
-                Load(ofd.FileName);
+                LoadFromFile(ofd.FileName);
             }
         }
-
-        
-
-        
-
-        private string GetUOMDesc(string ASignature) {
+             
+        private string MakeUOMDesc(string ASignature) {
             string desc = UM.NameOf(ASignature);
             string lb = UM.LabelOf(ASignature);
             return desc == lb? desc : desc + " (" + lb + ")"; /// Automatically generated UOMs could be of same name and label
+        }
+
+        private struct TagUOM {
+            public string Description, UOM;
+            public override string ToString() { return Description; }
         }
 
         private void SelectDomain() {
@@ -90,7 +91,7 @@ namespace Converter {
             lbxFrom.Items.Clear(); lbxTo.Items.Clear();
             foreach (string uom in uoms) {
                 TagUOM tagUOM = new TagUOM();
-                tagUOM.Description = GetUOMDesc(uom);
+                tagUOM.Description = MakeUOMDesc(uom);
                 tagUOM.UOM = uom;
                 lbxFrom.Items.Add(tagUOM); lbxTo.Items.Add(tagUOM);
             }
@@ -100,13 +101,7 @@ namespace Converter {
             if (IsInitializing) return;
             SelectDomain();
         }        
-
-        private struct TagUOM {
-            public string Description, UOM;
-            public override string ToString() { return Description; }
-        }
-
-
+     
         private void ComposeResult() {
             if (tbxVal.Text.Length == 0) { tbxVal.Text = "1"; return; }
             TagUOM from = (TagUOM)lbxFrom.SelectedItem; TagUOM to = (TagUOM)lbxTo.SelectedItem;
@@ -125,9 +120,27 @@ namespace Converter {
             ComposeResult();
         }
 
-        private void tbxVal_TextChanged(object sender, EventArgs e) {
-            ComposeResult();
+        #region Text input processing an validation
+        // Simple undo buffers. It is wrong code, I know. I'm just lazy oneliner.
+        private string txt_Val = "", txt_FromUOM = "", txt_ToUOM = "";
+
+        private void ValidateBox(ref string UndoBuf, TextBox ABox, Func<string, bool> ACheckFunc) {
+            if (ACheckFunc(ABox.Text)) { UndoBuf = ABox.Text; ComposeResult(); }
+            else { ABox.Text = UndoBuf; ABox.SelectionStart = tbxVal.Text.Length; }
         }
+
+        private void tbxVal_TextChanged(object sender, EventArgs e) {            
+            ValidateBox(ref txt_Val, tbxVal, (str) => { double x; return double.TryParse(str, out x); }); 
+        }
+
+        private void tbxFrom_TextChanged(object sender, EventArgs e) {
+            ValidateBox(ref txt_FromUOM, tbxFrom, (str) => UM.IsDefined(UM.ParseLabel(str)));
+        }
+
+        private void tbxTo_TextChanged(object sender, EventArgs e) {
+            ValidateBox(ref txt_ToUOM, tbxTo, (str) => UM.IsDefined(UM.ParseLabel(str)));
+        }
+        #endregion
 
         #region Menu strip
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -139,5 +152,7 @@ namespace Converter {
             btLoad_Click(sender, e);
         }
         #endregion
+
+        
     }
 }
