@@ -1,0 +1,1496 @@
+### YamlMime:ManagedReference
+items:
+- uid: AeroGIS.Common.UnitMan
+  commentId: T:AeroGIS.Common.UnitMan
+  id: UnitMan
+  parent: AeroGIS.Common
+  children:
+  - AeroGIS.Common.UnitMan.Atomize(System.String)
+  - AeroGIS.Common.UnitMan.Compose(System.String)
+  - AeroGIS.Common.UnitMan.Convert(System.Double,System.String,System.String)
+  - AeroGIS.Common.UnitMan.Description
+  - AeroGIS.Common.UnitMan.DomainOf(System.String)
+  - AeroGIS.Common.UnitMan.Domains
+  - AeroGIS.Common.UnitMan.Farenheit2C(System.Double)
+  - AeroGIS.Common.UnitMan.ForceConvert(System.Double,System.String,System.String)
+  - AeroGIS.Common.UnitMan.GetStdUOM(AeroGIS.Common.StdVar)
+  - AeroGIS.Common.UnitMan.IsDefined(System.String)
+  - AeroGIS.Common.UnitMan.ISO639Code
+  - AeroGIS.Common.UnitMan.LabelOf(AeroGIS.Common.StdVar)
+  - AeroGIS.Common.UnitMan.LabelOf(System.String)
+  - AeroGIS.Common.UnitMan.Lists
+  - AeroGIS.Common.UnitMan.Load(XmlDocument)
+  - AeroGIS.Common.UnitMan.MatchPrimaryLabel(System.String)
+  - AeroGIS.Common.UnitMan.NameOf(System.String)
+  - AeroGIS.Common.UnitMan.NormalizeSignature(System.String)
+  - AeroGIS.Common.UnitMan.ParseLabel(System.String)
+  - AeroGIS.Common.UnitMan.PluralOf(System.String)
+  - AeroGIS.Common.UnitMan.Recombine(AeroGIS.Common.UnitMan.Atom[])
+  - AeroGIS.Common.UnitMan.UOMRegex
+  langs:
+  - csharp
+  - vb
+  name: UnitMan
+  nameWithType: UnitMan
+  fullName: AeroGIS.Common.UnitMan
+  type: Class
+  source:
+    id: UnitMan
+    path: ''
+    startLine: 28
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  summary: "\nSingle class API for units of measurement conversion. The entire system of UOMs could be defined as single XML file.\nRedundant conversion coefficients effectively eliminated, UnitMan is able to caltulate conversion coefficients in many cases even these coefficients are not pre-defined.\n"
+  example: []
+  syntax:
+    content: public class UnitMan
+    content.vb: Public Class UnitMan
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: AeroGIS.Common.UnitMan.ISO639Code
+  commentId: P:AeroGIS.Common.UnitMan.ISO639Code
+  id: ISO639Code
+  parent: AeroGIS.Common.UnitMan
+  langs:
+  - csharp
+  - vb
+  name: ISO639Code
+  nameWithType: UnitMan.ISO639Code
+  fullName: AeroGIS.Common.UnitMan.ISO639Code
+  type: Property
+  source:
+    id: ISO639Code
+    path: ''
+    startLine: 35
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  summary: "\nISO 639-2 three letters languge code. The vslue should be defined in XML definition file.\n"
+  example: []
+  syntax:
+    content: public string ISO639Code { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property ISO639Code As String
+  overload: AeroGIS.Common.UnitMan.ISO639Code*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AeroGIS.Common.UnitMan.Description
+  commentId: P:AeroGIS.Common.UnitMan.Description
+  id: Description
+  parent: AeroGIS.Common.UnitMan
+  langs:
+  - csharp
+  - vb
+  name: Description
+  nameWithType: UnitMan.Description
+  fullName: AeroGIS.Common.UnitMan.Description
+  type: Property
+  source:
+    id: Description
+    path: ''
+    startLine: 41
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  summary: "\nUser defined description of units system.\n"
+  example: []
+  syntax:
+    content: public string Description { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property Description As String
+  overload: AeroGIS.Common.UnitMan.Description*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AeroGIS.Common.UnitMan.UOMRegex
+  commentId: F:AeroGIS.Common.UnitMan.UOMRegex
+  id: UOMRegex
+  parent: AeroGIS.Common.UnitMan
+  langs:
+  - csharp
+  - vb
+  name: UOMRegex
+  nameWithType: UnitMan.UOMRegex
+  fullName: AeroGIS.Common.UnitMan.UOMRegex
+  type: Field
+  source:
+    id: UOMRegex
+    path: ''
+    startLine: 47
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  summary: "\nThe regex defines chars which are valid for UOM labels.\nFor example \"[A-Z,a-z]\".\n"
+  example: []
+  syntax:
+    content: protected string UOMRegex
+    return:
+      type: System.String
+    content.vb: Protected UOMRegex As String
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: AeroGIS.Common.UnitMan.Domains
+  commentId: P:AeroGIS.Common.UnitMan.Domains
+  id: Domains
+  parent: AeroGIS.Common.UnitMan
+  langs:
+  - csharp
+  - vb
+  name: Domains
+  nameWithType: UnitMan.Domains
+  fullName: AeroGIS.Common.UnitMan.Domains
+  type: Property
+  source:
+    id: Domains
+    path: ''
+    startLine: 54
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  summary: "\nThe list of UOM domains.\n"
+  example: []
+  syntax:
+    content: public List<string> Domains { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{System.String}
+    content.vb: Public ReadOnly Property Domains As List(Of String)
+  overload: AeroGIS.Common.UnitMan.Domains*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AeroGIS.Common.UnitMan.Load(XmlDocument)
+  commentId: M:AeroGIS.Common.UnitMan.Load(XmlDocument)
+  id: Load(XmlDocument)
+  parent: AeroGIS.Common.UnitMan
+  langs:
+  - csharp
+  - vb
+  name: Load(XmlDocument)
+  nameWithType: UnitMan.Load(XmlDocument)
+  fullName: AeroGIS.Common.UnitMan.Load(XmlDocument)
+  type: Method
+  source:
+    id: Load
+    path: ''
+    startLine: 59
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  summary: "\nLoad an user defined unit system from XML document.\n"
+  example: []
+  syntax:
+    content: public virtual void Load(XmlDocument ADoc)
+    parameters:
+    - id: ADoc
+      type: XmlDocument
+    content.vb: Public Overridable Sub Load(ADoc As XmlDocument)
+  overload: AeroGIS.Common.UnitMan.Load*
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: AeroGIS.Common.UnitMan.IsDefined(System.String)
+  commentId: M:AeroGIS.Common.UnitMan.IsDefined(System.String)
+  id: IsDefined(System.String)
+  parent: AeroGIS.Common.UnitMan
+  langs:
+  - csharp
+  - vb
+  name: IsDefined(String)
+  nameWithType: UnitMan.IsDefined(String)
+  fullName: AeroGIS.Common.UnitMan.IsDefined(System.String)
+  type: Method
+  source:
+    id: IsDefined
+    path: ''
+    startLine: 116
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  summary: "\nCheck if an UOM is defined in source XML. If UOM is not defined and loaded, \nthen that does not mean it could not be converted. The conversion coefficients\nfor undefined UOMs will be calculated if it is possible to find master UOMs\n"
+  example: []
+  syntax:
+    content: public bool IsDefined(string ASignature)
+    parameters:
+    - id: ASignature
+      type: System.String
+      description: UOM signature
+    return:
+      type: System.Boolean
+      description: True is the signature is pre-defined in source XML
+    content.vb: Public Function IsDefined(ASignature As String) As Boolean
+  overload: AeroGIS.Common.UnitMan.IsDefined*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AeroGIS.Common.UnitMan.Convert(System.Double,System.String,System.String)
+  commentId: M:AeroGIS.Common.UnitMan.Convert(System.Double,System.String,System.String)
+  id: Convert(System.Double,System.String,System.String)
+  parent: AeroGIS.Common.UnitMan
+  langs:
+  - csharp
+  - vb
+  name: Convert(Double, String, String)
+  nameWithType: UnitMan.Convert(Double, String, String)
+  fullName: AeroGIS.Common.UnitMan.Convert(System.Double, System.String, System.String)
+  type: Method
+  source:
+    id: Convert
+    path: ''
+    startLine: 125
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  summary: "\nTranslate a value from one UOM to another. Source and destination UOMs should be compatible, i.e. they shall be of the same domain.\n"
+  example: []
+  syntax:
+    content: public double Convert(double x, string ASrcSignature, string ADstSignature)
+    parameters:
+    - id: x
+      type: System.Double
+      description: Any value
+    - id: ASrcSignature
+      type: System.String
+      description: UOM in wich the value is represented
+    - id: ADstSignature
+      type: System.String
+      description: UOM in which return value wil be represented
+    return:
+      type: System.Double
+      description: Source value translated into destination UOM
+    content.vb: Public Function Convert(x As Double, ASrcSignature As String, ADstSignature As String) As Double
+  overload: AeroGIS.Common.UnitMan.Convert*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AeroGIS.Common.UnitMan.ForceConvert(System.Double,System.String,System.String)
+  commentId: M:AeroGIS.Common.UnitMan.ForceConvert(System.Double,System.String,System.String)
+  id: ForceConvert(System.Double,System.String,System.String)
+  parent: AeroGIS.Common.UnitMan
+  langs:
+  - csharp
+  - vb
+  name: ForceConvert(Double, String, String)
+  nameWithType: UnitMan.ForceConvert(Double, String, String)
+  fullName: AeroGIS.Common.UnitMan.ForceConvert(System.Double, System.String, System.String)
+  type: Method
+  source:
+    id: ForceConvert
+    path: ''
+    startLine: 146
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  summary: "\nCrete new UOMs if these UOMs are not defined and translate\n"
+  example: []
+  syntax:
+    content: public virtual double ForceConvert(double x, string ASrcSignature, string ADstSignature)
+    parameters:
+    - id: x
+      type: System.Double
+      description: Any value
+    - id: ASrcSignature
+      type: System.String
+      description: UOM in wich the value is represented
+    - id: ADstSignature
+      type: System.String
+      description: UOM in which return value wil be represented
+    return:
+      type: System.Double
+      description: Source value translated into destination UOM
+    content.vb: Public Overridable Function ForceConvert(x As Double, ASrcSignature As String, ADstSignature As String) As Double
+  overload: AeroGIS.Common.UnitMan.ForceConvert*
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: AeroGIS.Common.UnitMan.DomainOf(System.String)
+  commentId: M:AeroGIS.Common.UnitMan.DomainOf(System.String)
+  id: DomainOf(System.String)
+  parent: AeroGIS.Common.UnitMan
+  langs:
+  - csharp
+  - vb
+  name: DomainOf(String)
+  nameWithType: UnitMan.DomainOf(String)
+  fullName: AeroGIS.Common.UnitMan.DomainOf(System.String)
+  type: Method
+  source:
+    id: DomainOf
+    path: ''
+    startLine: 156
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  summary: "\nGet domain name of UOM\n"
+  example: []
+  syntax:
+    content: public string DomainOf(string ASignature)
+    parameters:
+    - id: ASignature
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Function DomainOf(ASignature As String) As String
+  overload: AeroGIS.Common.UnitMan.DomainOf*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AeroGIS.Common.UnitMan.LabelOf(System.String)
+  commentId: M:AeroGIS.Common.UnitMan.LabelOf(System.String)
+  id: LabelOf(System.String)
+  parent: AeroGIS.Common.UnitMan
+  langs:
+  - csharp
+  - vb
+  name: LabelOf(String)
+  nameWithType: UnitMan.LabelOf(String)
+  fullName: AeroGIS.Common.UnitMan.LabelOf(System.String)
+  type: Method
+  source:
+    id: LabelOf
+    path: ''
+    startLine: 166
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  summary: "\nHuman readable label for UOM. If UOM signature not found in the dictionry then the signature will be returned instead label.\n"
+  example: []
+  syntax:
+    content: public string LabelOf(string ASignature)
+    parameters:
+    - id: ASignature
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Function LabelOf(ASignature As String) As String
+  overload: AeroGIS.Common.UnitMan.LabelOf*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AeroGIS.Common.UnitMan.NameOf(System.String)
+  commentId: M:AeroGIS.Common.UnitMan.NameOf(System.String)
+  id: NameOf(System.String)
+  parent: AeroGIS.Common.UnitMan
+  langs:
+  - csharp
+  - vb
+  name: NameOf(String)
+  nameWithType: UnitMan.NameOf(String)
+  fullName: AeroGIS.Common.UnitMan.NameOf(System.String)
+  type: Method
+  source:
+    id: NameOf
+    path: ''
+    startLine: 177
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  summary: "\nHuman readable name of UOM, such as \"meter\" \n"
+  example: []
+  syntax:
+    content: public string NameOf(string ASignature)
+    parameters:
+    - id: ASignature
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Function NameOf(ASignature As String) As String
+  overload: AeroGIS.Common.UnitMan.NameOf*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AeroGIS.Common.UnitMan.PluralOf(System.String)
+  commentId: M:AeroGIS.Common.UnitMan.PluralOf(System.String)
+  id: PluralOf(System.String)
+  parent: AeroGIS.Common.UnitMan
+  langs:
+  - csharp
+  - vb
+  name: PluralOf(String)
+  nameWithType: UnitMan.PluralOf(String)
+  fullName: AeroGIS.Common.UnitMan.PluralOf(System.String)
+  type: Method
+  source:
+    id: PluralOf
+    path: ''
+    startLine: 187
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  summary: "\nHuman readable name of UOM in plural form, such as \"meters\" \n"
+  example: []
+  syntax:
+    content: public string PluralOf(string ASignature)
+    parameters:
+    - id: ASignature
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Function PluralOf(ASignature As String) As String
+  overload: AeroGIS.Common.UnitMan.PluralOf*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AeroGIS.Common.UnitMan.ParseLabel(System.String)
+  commentId: M:AeroGIS.Common.UnitMan.ParseLabel(System.String)
+  id: ParseLabel(System.String)
+  parent: AeroGIS.Common.UnitMan
+  langs:
+  - csharp
+  - vb
+  name: ParseLabel(String)
+  nameWithType: UnitMan.ParseLabel(String)
+  fullName: AeroGIS.Common.UnitMan.ParseLabel(System.String)
+  type: Method
+  source:
+    id: ParseLabel
+    path: ''
+    startLine: 208
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  summary: "\nParse UOM signature using its human readable label like \"m/s\", \"kg/m2\" and so on. \nSimple and rational UOM labels are supported only. \n"
+  example: []
+  syntax:
+    content: public string ParseLabel(string ALabel)
+    parameters:
+    - id: ALabel
+      type: System.String
+      description: A human readable label
+    return:
+      type: System.String
+      description: UOM standard signature like "m1s-1", kg1m-2 and so on. If UOM is not matched than empty string returns.
+    content.vb: Public Function ParseLabel(ALabel As String) As String
+  overload: AeroGIS.Common.UnitMan.ParseLabel*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AeroGIS.Common.UnitMan.Atomize(System.String)
+  commentId: M:AeroGIS.Common.UnitMan.Atomize(System.String)
+  id: Atomize(System.String)
+  parent: AeroGIS.Common.UnitMan
+  langs:
+  - csharp
+  - vb
+  name: Atomize(String)
+  nameWithType: UnitMan.Atomize(String)
+  fullName: AeroGIS.Common.UnitMan.Atomize(System.String)
+  type: Method
+  source:
+    id: Atomize
+    path: ''
+    startLine: 240
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  summary: "\nDecompose a complex UOM into atomic UOMs  \n"
+  example: []
+  syntax:
+    content: protected UnitMan.Atom[] Atomize(string AComplexSignature)
+    parameters:
+    - id: AComplexSignature
+      type: System.String
+      description: UOM signature of any complexity
+    return:
+      type: AeroGIS.Common.UnitMan.Atom[]
+      description: Array of atomic UOMs
+    content.vb: Protected Function Atomize(AComplexSignature As String) As UnitMan.Atom()
+  overload: AeroGIS.Common.UnitMan.Atomize*
+  seealso:
+  - linkId: AeroGIS.Common.UnitMan.Recombine(AeroGIS.Common.UnitMan.Atom[])
+    commentId: M:AeroGIS.Common.UnitMan.Recombine(AeroGIS.Common.UnitMan.Atom[])
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: AeroGIS.Common.UnitMan.Recombine(AeroGIS.Common.UnitMan.Atom[])
+  commentId: M:AeroGIS.Common.UnitMan.Recombine(AeroGIS.Common.UnitMan.Atom[])
+  id: Recombine(AeroGIS.Common.UnitMan.Atom[])
+  parent: AeroGIS.Common.UnitMan
+  langs:
+  - csharp
+  - vb
+  name: Recombine(UnitMan.Atom[])
+  nameWithType: UnitMan.Recombine(UnitMan.Atom[])
+  fullName: AeroGIS.Common.UnitMan.Recombine(AeroGIS.Common.UnitMan.Atom[])
+  type: Method
+  source:
+    id: Recombine
+    path: ''
+    startLine: 255
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  summary: "\nCompose UOM signature from array of atomic UOMs\n"
+  example: []
+  syntax:
+    content: protected string Recombine(UnitMan.Atom[] AnAtoms)
+    parameters:
+    - id: AnAtoms
+      type: AeroGIS.Common.UnitMan.Atom[]
+      description: Array of atomic UOMs
+    return:
+      type: System.String
+      description: UOM signature
+    content.vb: Protected Function Recombine(AnAtoms As UnitMan.Atom()) As String
+  overload: AeroGIS.Common.UnitMan.Recombine*
+  nameWithType.vb: UnitMan.Recombine(UnitMan.Atom())
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+  fullName.vb: AeroGIS.Common.UnitMan.Recombine(AeroGIS.Common.UnitMan.Atom())
+  name.vb: Recombine(UnitMan.Atom())
+- uid: AeroGIS.Common.UnitMan.NormalizeSignature(System.String)
+  commentId: M:AeroGIS.Common.UnitMan.NormalizeSignature(System.String)
+  id: NormalizeSignature(System.String)
+  parent: AeroGIS.Common.UnitMan
+  langs:
+  - csharp
+  - vb
+  name: NormalizeSignature(String)
+  nameWithType: UnitMan.NormalizeSignature(String)
+  fullName: AeroGIS.Common.UnitMan.NormalizeSignature(System.String)
+  type: Method
+  source:
+    id: NormalizeSignature
+    path: ''
+    startLine: 268
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  summary: "\nSort signature atoms by next rules: \n1. Positive powers are going first\n2. Atoms of same exponent sign are sorted in alphabet order\n\n"
+  example: []
+  syntax:
+    content: protected string NormalizeSignature(string ASignature)
+    parameters:
+    - id: ASignature
+      type: System.String
+    return:
+      type: System.String
+      description: The signature, sorted as above
+    content.vb: Protected Function NormalizeSignature(ASignature As String) As String
+  overload: AeroGIS.Common.UnitMan.NormalizeSignature*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: AeroGIS.Common.UnitMan.Compose(System.String)
+  commentId: M:AeroGIS.Common.UnitMan.Compose(System.String)
+  id: Compose(System.String)
+  parent: AeroGIS.Common.UnitMan
+  langs:
+  - csharp
+  - vb
+  name: Compose(String)
+  nameWithType: UnitMan.Compose(String)
+  fullName: AeroGIS.Common.UnitMan.Compose(System.String)
+  type: Method
+  source:
+    id: Compose
+    path: ''
+    startLine: 279
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  summary: "\nCompose UOM from pure signature which is not defined in list/ Find master UOMs, calculate scale, generate label. The signature could be of any complexity.\n"
+  example: []
+  syntax:
+    content: protected UnitMan.UOM Compose(string ANewSignature)
+    parameters:
+    - id: ANewSignature
+      type: System.String
+      description: A new signature
+    return:
+      type: AeroGIS.Common.UnitMan.UOM
+      description: Newly composed UOM. Please, note, the new UOM signature could differ on source signature.
+    content.vb: Protected Function Compose(ANewSignature As String) As UnitMan.UOM
+  overload: AeroGIS.Common.UnitMan.Compose*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: AeroGIS.Common.UnitMan.MatchPrimaryLabel(System.String)
+  commentId: M:AeroGIS.Common.UnitMan.MatchPrimaryLabel(System.String)
+  id: MatchPrimaryLabel(System.String)
+  parent: AeroGIS.Common.UnitMan
+  langs:
+  - csharp
+  - vb
+  name: MatchPrimaryLabel(String)
+  nameWithType: UnitMan.MatchPrimaryLabel(String)
+  fullName: AeroGIS.Common.UnitMan.MatchPrimaryLabel(System.String)
+  type: Method
+  source:
+    id: MatchPrimaryLabel
+    path: ''
+    startLine: 339
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  syntax:
+    content: protected string MatchPrimaryLabel(string ALabel)
+    parameters:
+    - id: ALabel
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Protected Function MatchPrimaryLabel(ALabel As String) As String
+  overload: AeroGIS.Common.UnitMan.MatchPrimaryLabel*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: AeroGIS.Common.UnitMan.Lists
+  commentId: F:AeroGIS.Common.UnitMan.Lists
+  id: Lists
+  parent: AeroGIS.Common.UnitMan
+  langs:
+  - csharp
+  - vb
+  name: Lists
+  nameWithType: UnitMan.Lists
+  fullName: AeroGIS.Common.UnitMan.Lists
+  type: Field
+  source:
+    id: Lists
+    path: ''
+    startLine: 438
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  syntax:
+    content: protected Dictionary<string, string[]> Lists
+    return:
+      type: System.Collections.Generic.Dictionary{System.String,System.String[]}
+    content.vb: Protected Lists As Dictionary(Of String, String())
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: AeroGIS.Common.UnitMan.LabelOf(AeroGIS.Common.StdVar)
+  commentId: M:AeroGIS.Common.UnitMan.LabelOf(AeroGIS.Common.StdVar)
+  id: LabelOf(AeroGIS.Common.StdVar)
+  parent: AeroGIS.Common.UnitMan
+  langs:
+  - csharp
+  - vb
+  name: LabelOf(StdVar)
+  nameWithType: UnitMan.LabelOf(StdVar)
+  fullName: AeroGIS.Common.UnitMan.LabelOf(AeroGIS.Common.StdVar)
+  type: Method
+  source:
+    id: LabelOf
+    path: ''
+    startLine: 440
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  syntax:
+    content: public string LabelOf(StdVar AVariable)
+    parameters:
+    - id: AVariable
+      type: AeroGIS.Common.StdVar
+    return:
+      type: System.String
+    content.vb: Public Function LabelOf(AVariable As StdVar) As String
+  overload: AeroGIS.Common.UnitMan.LabelOf*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AeroGIS.Common.UnitMan.Farenheit2C(System.Double)
+  commentId: M:AeroGIS.Common.UnitMan.Farenheit2C(System.Double)
+  id: Farenheit2C(System.Double)
+  parent: AeroGIS.Common.UnitMan
+  langs:
+  - csharp
+  - vb
+  name: Farenheit2C(Double)
+  nameWithType: UnitMan.Farenheit2C(Double)
+  fullName: AeroGIS.Common.UnitMan.Farenheit2C(System.Double)
+  type: Method
+  source:
+    id: Farenheit2C
+    path: ''
+    startLine: 452
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  summary: "\nUnusual UOM Farenheit could not be converted like others\n"
+  example: []
+  syntax:
+    content: public double Farenheit2C(double FarTemp)
+    parameters:
+    - id: FarTemp
+      type: System.Double
+      description: Temperature in Farenheit degrees
+    return:
+      type: System.Double
+      description: Temperature in Celsius degrees
+    content.vb: Public Function Farenheit2C(FarTemp As Double) As Double
+  overload: AeroGIS.Common.UnitMan.Farenheit2C*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AeroGIS.Common.UnitMan.GetStdUOM(AeroGIS.Common.StdVar)
+  commentId: M:AeroGIS.Common.UnitMan.GetStdUOM(AeroGIS.Common.StdVar)
+  id: GetStdUOM(AeroGIS.Common.StdVar)
+  parent: AeroGIS.Common.UnitMan
+  langs:
+  - csharp
+  - vb
+  name: GetStdUOM(StdVar)
+  nameWithType: UnitMan.GetStdUOM(StdVar)
+  fullName: AeroGIS.Common.UnitMan.GetStdUOM(AeroGIS.Common.StdVar)
+  type: Method
+  source:
+    id: GetStdUOM
+    path: ''
+    startLine: 454
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  syntax:
+    content: public string GetStdUOM(StdVar APrecVariable)
+    parameters:
+    - id: APrecVariable
+      type: AeroGIS.Common.StdVar
+    return:
+      type: System.String
+    content.vb: Public Function GetStdUOM(APrecVariable As StdVar) As String
+  overload: AeroGIS.Common.UnitMan.GetStdUOM*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: AeroGIS.Common
+  commentId: N:AeroGIS.Common
+  isExternal: false
+  name: AeroGIS.Common
+  nameWithType: AeroGIS.Common
+  fullName: AeroGIS.Common
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: AeroGIS.Common.UnitMan.ISO639Code*
+  commentId: Overload:AeroGIS.Common.UnitMan.ISO639Code
+  isExternal: false
+  name: ISO639Code
+  nameWithType: UnitMan.ISO639Code
+  fullName: AeroGIS.Common.UnitMan.ISO639Code
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: AeroGIS.Common.UnitMan.Description*
+  commentId: Overload:AeroGIS.Common.UnitMan.Description
+  isExternal: false
+  name: Description
+  nameWithType: UnitMan.Description
+  fullName: AeroGIS.Common.UnitMan.Description
+- uid: AeroGIS.Common.UnitMan.Domains*
+  commentId: Overload:AeroGIS.Common.UnitMan.Domains
+  isExternal: false
+  name: Domains
+  nameWithType: UnitMan.Domains
+  fullName: AeroGIS.Common.UnitMan.Domains
+- uid: System.Collections.Generic.List{System.String}
+  commentId: T:System.Collections.Generic.List{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<String>
+  nameWithType: List<String>
+  fullName: System.Collections.Generic.List<System.String>
+  nameWithType.vb: List(Of String)
+  fullName.vb: System.Collections.Generic.List(Of System.String)
+  name.vb: List(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: false
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: AeroGIS.Common.UnitMan.Load*
+  commentId: Overload:AeroGIS.Common.UnitMan.Load
+  isExternal: false
+  name: Load
+  nameWithType: UnitMan.Load
+  fullName: AeroGIS.Common.UnitMan.Load
+- uid: XmlDocument
+  commentId: '!:XmlDocument'
+  isExternal: true
+  name: XmlDocument
+  nameWithType: XmlDocument
+  fullName: XmlDocument
+- uid: AeroGIS.Common.UnitMan.IsDefined*
+  commentId: Overload:AeroGIS.Common.UnitMan.IsDefined
+  isExternal: false
+  name: IsDefined
+  nameWithType: UnitMan.IsDefined
+  fullName: AeroGIS.Common.UnitMan.IsDefined
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: AeroGIS.Common.UnitMan.Convert*
+  commentId: Overload:AeroGIS.Common.UnitMan.Convert
+  isExternal: false
+  name: Convert
+  nameWithType: UnitMan.Convert
+  fullName: AeroGIS.Common.UnitMan.Convert
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  name: Double
+  nameWithType: Double
+  fullName: System.Double
+- uid: AeroGIS.Common.UnitMan.ForceConvert*
+  commentId: Overload:AeroGIS.Common.UnitMan.ForceConvert
+  isExternal: false
+  name: ForceConvert
+  nameWithType: UnitMan.ForceConvert
+  fullName: AeroGIS.Common.UnitMan.ForceConvert
+- uid: AeroGIS.Common.UnitMan.DomainOf*
+  commentId: Overload:AeroGIS.Common.UnitMan.DomainOf
+  isExternal: false
+  name: DomainOf
+  nameWithType: UnitMan.DomainOf
+  fullName: AeroGIS.Common.UnitMan.DomainOf
+- uid: AeroGIS.Common.UnitMan.LabelOf*
+  commentId: Overload:AeroGIS.Common.UnitMan.LabelOf
+  isExternal: false
+  name: LabelOf
+  nameWithType: UnitMan.LabelOf
+  fullName: AeroGIS.Common.UnitMan.LabelOf
+- uid: AeroGIS.Common.UnitMan.NameOf*
+  commentId: Overload:AeroGIS.Common.UnitMan.NameOf
+  isExternal: false
+  name: NameOf
+  nameWithType: UnitMan.NameOf
+  fullName: AeroGIS.Common.UnitMan.NameOf
+- uid: AeroGIS.Common.UnitMan.PluralOf*
+  commentId: Overload:AeroGIS.Common.UnitMan.PluralOf
+  isExternal: false
+  name: PluralOf
+  nameWithType: UnitMan.PluralOf
+  fullName: AeroGIS.Common.UnitMan.PluralOf
+- uid: AeroGIS.Common.UnitMan.ParseLabel*
+  commentId: Overload:AeroGIS.Common.UnitMan.ParseLabel
+  isExternal: false
+  name: ParseLabel
+  nameWithType: UnitMan.ParseLabel
+  fullName: AeroGIS.Common.UnitMan.ParseLabel
+- uid: AeroGIS.Common.UnitMan.Recombine(AeroGIS.Common.UnitMan.Atom[])
+  commentId: M:AeroGIS.Common.UnitMan.Recombine(AeroGIS.Common.UnitMan.Atom[])
+- uid: AeroGIS.Common.UnitMan.Atomize*
+  commentId: Overload:AeroGIS.Common.UnitMan.Atomize
+  isExternal: false
+  name: Atomize
+  nameWithType: UnitMan.Atomize
+  fullName: AeroGIS.Common.UnitMan.Atomize
+- uid: AeroGIS.Common.UnitMan.Atom[]
+  name: UnitMan.Atom[]
+  nameWithType: UnitMan.Atom[]
+  fullName: AeroGIS.Common.UnitMan.Atom[]
+  nameWithType.vb: UnitMan.Atom()
+  fullName.vb: AeroGIS.Common.UnitMan.Atom()
+  name.vb: UnitMan.Atom()
+  spec.csharp:
+  - uid: AeroGIS.Common.UnitMan.Atom
+    name: UnitMan.Atom
+    nameWithType: UnitMan.Atom
+    fullName: AeroGIS.Common.UnitMan.Atom
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: AeroGIS.Common.UnitMan.Atom
+    name: UnitMan.Atom
+    nameWithType: UnitMan.Atom
+    fullName: AeroGIS.Common.UnitMan.Atom
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: AeroGIS.Common.UnitMan.Recombine*
+  commentId: Overload:AeroGIS.Common.UnitMan.Recombine
+  isExternal: false
+  name: Recombine
+  nameWithType: UnitMan.Recombine
+  fullName: AeroGIS.Common.UnitMan.Recombine
+- uid: AeroGIS.Common.UnitMan.NormalizeSignature*
+  commentId: Overload:AeroGIS.Common.UnitMan.NormalizeSignature
+  isExternal: false
+  name: NormalizeSignature
+  nameWithType: UnitMan.NormalizeSignature
+  fullName: AeroGIS.Common.UnitMan.NormalizeSignature
+- uid: AeroGIS.Common.UnitMan.Compose*
+  commentId: Overload:AeroGIS.Common.UnitMan.Compose
+  isExternal: false
+  name: Compose
+  nameWithType: UnitMan.Compose
+  fullName: AeroGIS.Common.UnitMan.Compose
+- uid: AeroGIS.Common.UnitMan.UOM
+  commentId: T:AeroGIS.Common.UnitMan.UOM
+  parent: AeroGIS.Common
+  isExternal: false
+  name: UnitMan.UOM
+  nameWithType: UnitMan.UOM
+  fullName: AeroGIS.Common.UnitMan.UOM
+- uid: AeroGIS.Common.UnitMan.MatchPrimaryLabel*
+  commentId: Overload:AeroGIS.Common.UnitMan.MatchPrimaryLabel
+  isExternal: false
+  name: MatchPrimaryLabel
+  nameWithType: UnitMan.MatchPrimaryLabel
+  fullName: AeroGIS.Common.UnitMan.MatchPrimaryLabel
+- uid: System.Collections.Generic.Dictionary{System.String,System.String[]}
+  commentId: T:System.Collections.Generic.Dictionary{System.String,System.String[]}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  name: Dictionary<String, String[]>
+  nameWithType: Dictionary<String, String[]>
+  fullName: System.Collections.Generic.Dictionary<System.String, System.String[]>
+  nameWithType.vb: Dictionary(Of String, String())
+  fullName.vb: System.Collections.Generic.Dictionary(Of System.String, System.String())
+  name.vb: Dictionary(Of String, String())
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AeroGIS.Common.StdVar
+  commentId: T:AeroGIS.Common.StdVar
+  parent: AeroGIS.Common
+  isExternal: false
+  name: StdVar
+  nameWithType: StdVar
+  fullName: AeroGIS.Common.StdVar
+- uid: AeroGIS.Common.UnitMan.Farenheit2C*
+  commentId: Overload:AeroGIS.Common.UnitMan.Farenheit2C
+  isExternal: false
+  name: Farenheit2C
+  nameWithType: UnitMan.Farenheit2C
+  fullName: AeroGIS.Common.UnitMan.Farenheit2C
+- uid: AeroGIS.Common.UnitMan.GetStdUOM*
+  commentId: Overload:AeroGIS.Common.UnitMan.GetStdUOM
+  isExternal: false
+  name: GetStdUOM
+  nameWithType: UnitMan.GetStdUOM
+  fullName: AeroGIS.Common.UnitMan.GetStdUOM

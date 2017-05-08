@@ -1,0 +1,160 @@
+### YamlMime:ManagedReference
+items:
+- uid: AeroGIS.Common.StdList
+  commentId: T:AeroGIS.Common.StdList
+  id: StdList
+  parent: AeroGIS.Common
+  children:
+  - AeroGIS.Common.StdList.AppMassRate
+  - AeroGIS.Common.StdList.AppVolRate
+  - AeroGIS.Common.StdList.Concentration
+  - AeroGIS.Common.StdList.PurchasingUnits
+  langs:
+  - csharp
+  - vb
+  name: StdList
+  nameWithType: StdList
+  fullName: AeroGIS.Common.StdList
+  type: Enum
+  source:
+    id: StdList
+    path: ''
+    startLine: 21
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  syntax:
+    content: public enum StdList
+    content.vb: Public Enum StdList
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: AeroGIS.Common.StdList.PurchasingUnits
+  commentId: F:AeroGIS.Common.StdList.PurchasingUnits
+  id: PurchasingUnits
+  parent: AeroGIS.Common.StdList
+  langs:
+  - csharp
+  - vb
+  name: PurchasingUnits
+  nameWithType: StdList.PurchasingUnits
+  fullName: AeroGIS.Common.StdList.PurchasingUnits
+  type: Field
+  source:
+    id: PurchasingUnits
+    path: ''
+    startLine: 21
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  syntax:
+    content: PurchasingUnits = 0
+    return:
+      type: AeroGIS.Common.StdList
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AeroGIS.Common.StdList.AppVolRate
+  commentId: F:AeroGIS.Common.StdList.AppVolRate
+  id: AppVolRate
+  parent: AeroGIS.Common.StdList
+  langs:
+  - csharp
+  - vb
+  name: AppVolRate
+  nameWithType: StdList.AppVolRate
+  fullName: AeroGIS.Common.StdList.AppVolRate
+  type: Field
+  source:
+    id: AppVolRate
+    path: ''
+    startLine: 21
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  syntax:
+    content: AppVolRate = 1
+    return:
+      type: AeroGIS.Common.StdList
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AeroGIS.Common.StdList.AppMassRate
+  commentId: F:AeroGIS.Common.StdList.AppMassRate
+  id: AppMassRate
+  parent: AeroGIS.Common.StdList
+  langs:
+  - csharp
+  - vb
+  name: AppMassRate
+  nameWithType: StdList.AppMassRate
+  fullName: AeroGIS.Common.StdList.AppMassRate
+  type: Field
+  source:
+    id: AppMassRate
+    path: ''
+    startLine: 21
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  syntax:
+    content: AppMassRate = 2
+    return:
+      type: AeroGIS.Common.StdList
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AeroGIS.Common.StdList.Concentration
+  commentId: F:AeroGIS.Common.StdList.Concentration
+  id: Concentration
+  parent: AeroGIS.Common.StdList
+  langs:
+  - csharp
+  - vb
+  name: Concentration
+  nameWithType: StdList.Concentration
+  fullName: AeroGIS.Common.StdList.Concentration
+  type: Field
+  source:
+    id: Concentration
+    path: ''
+    startLine: 21
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  syntax:
+    content: Concentration = 3
+    return:
+      type: AeroGIS.Common.StdList
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: AeroGIS.Common
+  commentId: N:AeroGIS.Common
+  isExternal: false
+  name: AeroGIS.Common
+  nameWithType: AeroGIS.Common
+  fullName: AeroGIS.Common
+- uid: AeroGIS.Common.StdList
+  commentId: T:AeroGIS.Common.StdList
+  parent: AeroGIS.Common
+  isExternal: false
+  name: StdList
+  nameWithType: StdList
+  fullName: AeroGIS.Common.StdList

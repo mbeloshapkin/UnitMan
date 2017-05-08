@@ -1,0 +1,780 @@
+### YamlMime:ManagedReference
+items:
+- uid: AeroGIS.Common.UnitMan.UOM
+  commentId: T:AeroGIS.Common.UnitMan.UOM
+  id: UnitMan.UOM
+  parent: AeroGIS.Common
+  children:
+  - AeroGIS.Common.UnitMan.UOM.Clone
+  - AeroGIS.Common.UnitMan.UOM.Domain
+  - AeroGIS.Common.UnitMan.UOM.IsCompatible(AeroGIS.Common.UnitMan.UOM)
+  - AeroGIS.Common.UnitMan.UOM.IsMaster
+  - AeroGIS.Common.UnitMan.UOM.Label
+  - AeroGIS.Common.UnitMan.UOM.Load(XmlNode,System.Boolean)
+  - AeroGIS.Common.UnitMan.UOM.Master
+  - AeroGIS.Common.UnitMan.UOM.MasterSignature
+  - AeroGIS.Common.UnitMan.UOM.Name
+  - AeroGIS.Common.UnitMan.UOM.Plural
+  - AeroGIS.Common.UnitMan.UOM.Scale
+  - AeroGIS.Common.UnitMan.UOM.Signature
+  langs:
+  - csharp
+  - vb
+  name: UnitMan.UOM
+  nameWithType: UnitMan.UOM
+  fullName: AeroGIS.Common.UnitMan.UOM
+  type: Class
+  source:
+    id: UOM
+    path: ''
+    startLine: 352
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  syntax:
+    content: protected class UOM
+    content.vb: Protected Class UOM
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - protected
+  - class
+  modifiers.vb:
+  - Protected
+  - Class
+- uid: AeroGIS.Common.UnitMan.UOM.Signature
+  commentId: F:AeroGIS.Common.UnitMan.UOM.Signature
+  id: Signature
+  parent: AeroGIS.Common.UnitMan.UOM
+  langs:
+  - csharp
+  - vb
+  name: Signature
+  nameWithType: UnitMan.UOM.Signature
+  fullName: AeroGIS.Common.UnitMan.UOM.Signature
+  type: Field
+  source:
+    id: Signature
+    path: ''
+    startLine: 355
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  syntax:
+    content: public string Signature
+    return:
+      type: System.String
+    content.vb: Public Signature As String
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AeroGIS.Common.UnitMan.UOM.Label
+  commentId: F:AeroGIS.Common.UnitMan.UOM.Label
+  id: Label
+  parent: AeroGIS.Common.UnitMan.UOM
+  langs:
+  - csharp
+  - vb
+  name: Label
+  nameWithType: UnitMan.UOM.Label
+  fullName: AeroGIS.Common.UnitMan.UOM.Label
+  type: Field
+  source:
+    id: Label
+    path: ''
+    startLine: 356
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  syntax:
+    content: public string Label
+    return:
+      type: System.String
+    content.vb: Public Label As String
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AeroGIS.Common.UnitMan.UOM.Name
+  commentId: F:AeroGIS.Common.UnitMan.UOM.Name
+  id: Name
+  parent: AeroGIS.Common.UnitMan.UOM
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: UnitMan.UOM.Name
+  fullName: AeroGIS.Common.UnitMan.UOM.Name
+  type: Field
+  source:
+    id: Name
+    path: ''
+    startLine: 357
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  example: []
+  syntax:
+    content: public string Name
+    return:
+      type: System.String
+    content.vb: Public Name As String
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AeroGIS.Common.UnitMan.UOM.Plural
+  commentId: F:AeroGIS.Common.UnitMan.UOM.Plural
+  id: Plural
+  parent: AeroGIS.Common.UnitMan.UOM
+  langs:
+  - csharp
+  - vb
+  name: Plural
+  nameWithType: UnitMan.UOM.Plural
+  fullName: AeroGIS.Common.UnitMan.UOM.Plural
+  type: Field
+  source:
+    id: Plural
+    path: ''
+    startLine: 358
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  example: []
+  syntax:
+    content: public string Plural
+    return:
+      type: System.String
+    content.vb: Public Plural As String
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AeroGIS.Common.UnitMan.UOM.Scale
+  commentId: F:AeroGIS.Common.UnitMan.UOM.Scale
+  id: Scale
+  parent: AeroGIS.Common.UnitMan.UOM
+  langs:
+  - csharp
+  - vb
+  name: Scale
+  nameWithType: UnitMan.UOM.Scale
+  fullName: AeroGIS.Common.UnitMan.UOM.Scale
+  type: Field
+  source:
+    id: Scale
+    path: ''
+    startLine: 359
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  example: []
+  syntax:
+    content: public double Scale
+    return:
+      type: System.Double
+    content.vb: Public Scale As Double
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AeroGIS.Common.UnitMan.UOM.IsMaster
+  commentId: P:AeroGIS.Common.UnitMan.UOM.IsMaster
+  id: IsMaster
+  parent: AeroGIS.Common.UnitMan.UOM
+  langs:
+  - csharp
+  - vb
+  name: IsMaster
+  nameWithType: UnitMan.UOM.IsMaster
+  fullName: AeroGIS.Common.UnitMan.UOM.IsMaster
+  type: Property
+  source:
+    id: IsMaster
+    path: ''
+    startLine: 362
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  syntax:
+    content: public bool IsMaster { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsMaster As Boolean
+  overload: AeroGIS.Common.UnitMan.UOM.IsMaster*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AeroGIS.Common.UnitMan.UOM.Master
+  commentId: P:AeroGIS.Common.UnitMan.UOM.Master
+  id: Master
+  parent: AeroGIS.Common.UnitMan.UOM
+  langs:
+  - csharp
+  - vb
+  name: Master
+  nameWithType: UnitMan.UOM.Master
+  fullName: AeroGIS.Common.UnitMan.UOM.Master
+  type: Property
+  source:
+    id: Master
+    path: ''
+    startLine: 365
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  syntax:
+    content: public UnitMan.UOM Master { get; set; }
+    parameters: []
+    return:
+      type: AeroGIS.Common.UnitMan.UOM
+    content.vb: Public Property Master As UnitMan.UOM
+  overload: AeroGIS.Common.UnitMan.UOM.Master*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: AeroGIS.Common.UnitMan.UOM.Domain
+  commentId: P:AeroGIS.Common.UnitMan.UOM.Domain
+  id: Domain
+  parent: AeroGIS.Common.UnitMan.UOM
+  langs:
+  - csharp
+  - vb
+  name: Domain
+  nameWithType: UnitMan.UOM.Domain
+  fullName: AeroGIS.Common.UnitMan.UOM.Domain
+  type: Property
+  source:
+    id: Domain
+    path: ''
+    startLine: 368
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  syntax:
+    content: public string Domain { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property Domain As String
+  overload: AeroGIS.Common.UnitMan.UOM.Domain*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AeroGIS.Common.UnitMan.UOM.MasterSignature
+  commentId: P:AeroGIS.Common.UnitMan.UOM.MasterSignature
+  id: MasterSignature
+  parent: AeroGIS.Common.UnitMan.UOM
+  langs:
+  - csharp
+  - vb
+  name: MasterSignature
+  nameWithType: UnitMan.UOM.MasterSignature
+  fullName: AeroGIS.Common.UnitMan.UOM.MasterSignature
+  type: Property
+  source:
+    id: MasterSignature
+    path: ''
+    startLine: 370
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  example: []
+  syntax:
+    content: public string MasterSignature { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property MasterSignature As String
+  overload: AeroGIS.Common.UnitMan.UOM.MasterSignature*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AeroGIS.Common.UnitMan.UOM.Load(XmlNode,System.Boolean)
+  commentId: M:AeroGIS.Common.UnitMan.UOM.Load(XmlNode,System.Boolean)
+  id: Load(XmlNode,System.Boolean)
+  parent: AeroGIS.Common.UnitMan.UOM
+  langs:
+  - csharp
+  - vb
+  name: Load(XmlNode, Boolean)
+  nameWithType: UnitMan.UOM.Load(XmlNode, Boolean)
+  fullName: AeroGIS.Common.UnitMan.UOM.Load(XmlNode, System.Boolean)
+  type: Method
+  source:
+    id: Load
+    path: ''
+    startLine: 372
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  syntax:
+    content: public void Load(XmlNode xn, bool IsMaster)
+    parameters:
+    - id: xn
+      type: XmlNode
+    - id: IsMaster
+      type: System.Boolean
+    content.vb: Public Sub Load(xn As XmlNode, IsMaster As Boolean)
+  overload: AeroGIS.Common.UnitMan.UOM.Load*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AeroGIS.Common.UnitMan.UOM.IsCompatible(AeroGIS.Common.UnitMan.UOM)
+  commentId: M:AeroGIS.Common.UnitMan.UOM.IsCompatible(AeroGIS.Common.UnitMan.UOM)
+  id: IsCompatible(AeroGIS.Common.UnitMan.UOM)
+  parent: AeroGIS.Common.UnitMan.UOM
+  langs:
+  - csharp
+  - vb
+  name: IsCompatible(UnitMan.UOM)
+  nameWithType: UnitMan.UOM.IsCompatible(UnitMan.UOM)
+  fullName: AeroGIS.Common.UnitMan.UOM.IsCompatible(AeroGIS.Common.UnitMan.UOM)
+  type: Method
+  source:
+    id: IsCompatible
+    path: ''
+    startLine: 382
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  syntax:
+    content: public bool IsCompatible(UnitMan.UOM u)
+    parameters:
+    - id: u
+      type: AeroGIS.Common.UnitMan.UOM
+    return:
+      type: System.Boolean
+    content.vb: Public Function IsCompatible(u As UnitMan.UOM) As Boolean
+  overload: AeroGIS.Common.UnitMan.UOM.IsCompatible*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AeroGIS.Common.UnitMan.UOM.Clone
+  commentId: M:AeroGIS.Common.UnitMan.UOM.Clone
+  id: Clone
+  parent: AeroGIS.Common.UnitMan.UOM
+  langs:
+  - csharp
+  - vb
+  name: Clone()
+  nameWithType: UnitMan.UOM.Clone()
+  fullName: AeroGIS.Common.UnitMan.UOM.Clone()
+  type: Method
+  source:
+    id: Clone
+    path: ''
+    startLine: 384
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  syntax:
+    content: public UnitMan.UOM Clone()
+    return:
+      type: AeroGIS.Common.UnitMan.UOM
+    content.vb: Public Function Clone As UnitMan.UOM
+  overload: AeroGIS.Common.UnitMan.UOM.Clone*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: AeroGIS.Common
+  commentId: N:AeroGIS.Common
+  isExternal: false
+  name: AeroGIS.Common
+  nameWithType: AeroGIS.Common
+  fullName: AeroGIS.Common
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  name: Double
+  nameWithType: Double
+  fullName: System.Double
+- uid: AeroGIS.Common.UnitMan.UOM.IsMaster*
+  commentId: Overload:AeroGIS.Common.UnitMan.UOM.IsMaster
+  isExternal: false
+  name: IsMaster
+  nameWithType: UnitMan.UOM.IsMaster
+  fullName: AeroGIS.Common.UnitMan.UOM.IsMaster
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: AeroGIS.Common.UnitMan.UOM.Master*
+  commentId: Overload:AeroGIS.Common.UnitMan.UOM.Master
+  isExternal: false
+  name: Master
+  nameWithType: UnitMan.UOM.Master
+  fullName: AeroGIS.Common.UnitMan.UOM.Master
+- uid: AeroGIS.Common.UnitMan.UOM
+  commentId: T:AeroGIS.Common.UnitMan.UOM
+  parent: AeroGIS.Common
+  isExternal: false
+  name: UnitMan.UOM
+  nameWithType: UnitMan.UOM
+  fullName: AeroGIS.Common.UnitMan.UOM
+- uid: AeroGIS.Common.UnitMan.UOM.Domain*
+  commentId: Overload:AeroGIS.Common.UnitMan.UOM.Domain
+  isExternal: false
+  name: Domain
+  nameWithType: UnitMan.UOM.Domain
+  fullName: AeroGIS.Common.UnitMan.UOM.Domain
+- uid: AeroGIS.Common.UnitMan.UOM.MasterSignature*
+  commentId: Overload:AeroGIS.Common.UnitMan.UOM.MasterSignature
+  isExternal: false
+  name: MasterSignature
+  nameWithType: UnitMan.UOM.MasterSignature
+  fullName: AeroGIS.Common.UnitMan.UOM.MasterSignature
+- uid: AeroGIS.Common.UnitMan.UOM.Load*
+  commentId: Overload:AeroGIS.Common.UnitMan.UOM.Load
+  isExternal: false
+  name: Load
+  nameWithType: UnitMan.UOM.Load
+  fullName: AeroGIS.Common.UnitMan.UOM.Load
+- uid: XmlNode
+  commentId: '!:XmlNode'
+  isExternal: true
+  name: XmlNode
+  nameWithType: XmlNode
+  fullName: XmlNode
+- uid: AeroGIS.Common.UnitMan.UOM.IsCompatible*
+  commentId: Overload:AeroGIS.Common.UnitMan.UOM.IsCompatible
+  isExternal: false
+  name: IsCompatible
+  nameWithType: UnitMan.UOM.IsCompatible
+  fullName: AeroGIS.Common.UnitMan.UOM.IsCompatible
+- uid: AeroGIS.Common.UnitMan.UOM.Clone*
+  commentId: Overload:AeroGIS.Common.UnitMan.UOM.Clone
+  isExternal: false
+  name: Clone
+  nameWithType: UnitMan.UOM.Clone
+  fullName: AeroGIS.Common.UnitMan.UOM.Clone

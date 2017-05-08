@@ -17,17 +17,17 @@ using System.Text.RegularExpressions;
 
 namespace AeroGIS.Common {
     // The names should be exactly as inside XML and must me always synchronized
-    enum StdVar { Mass, Volume, HarvestMass, Yield, Density, AppVolRate, HarvestRate, PaddockArea, AppMassRate,
+    public enum StdVar { Mass, Volume, HarvestMass, Yield, Density, AppVolRate, HarvestRate, PaddockArea, AppMassRate,
                     DefaultPlantingRate }
-    enum StdList { PurchasingUnits, AppVolRate, AppMassRate, Concentration }
+    public enum StdList { PurchasingUnits, AppVolRate, AppMassRate, Concentration }
 
 
     /// <summary>
-    /// Single C# class SDK for units of measurements conversion. The entire system of UOMs could be defined as single XML file.
+    /// Single class API for units of measurement conversion. The entire system of UOMs could be defined as single XML file.
     /// Redundant conversion coefficients effectively eliminated, UnitMan is able to caltulate conversion coefficients in many cases even these coefficients are not pre-defined.
     /// </summary>
     [DebuggerDisplay("UnitMan({_ISO639Code})")]
-    class UnitMan {
+    public class UnitMan {
 
         protected string _ISO639Code = "";
         /// <summary>
@@ -37,13 +37,13 @@ namespace AeroGIS.Common {
 
         protected string _Description;
         /// <summary>
-        /// User defined description of units system. The vslue should be defined in XML definition file.
+        /// User defined description of units system.
         /// </summary>
         public string Description { get { return _Description; } }
 
         /// <summary>
-        /// The regex shall define letters which are valid for UOM lsbels.
-        /// For example "[A-Z,a-z]" for English, [A-Z,a-z,À-ß,à-ÿ] for Russian.
+        /// The regex defines chars which are valid for UOM labels.
+        /// For example "[A-Z,a-z]".
         /// </summary>
         protected string UOMRegex;
                 
@@ -111,7 +111,9 @@ namespace AeroGIS.Common {
         /// Check if an UOM is defined in source XML. If UOM is not defined and loaded, 
         /// then that does not mean it could not be converted. The conversion coefficients
         /// for undefined UOMs will be calculated if it is possible to find master UOMs
-        /// </summary>        
+        /// </summary>
+        /// <param name="ASignature">UOM signature</param>
+        /// <returns>True is the signature is pre-defined in source XML</returns>
         public bool IsDefined(string ASignature) { return UOMs.ContainsKey(ASignature); }
 
         /// <summary>
@@ -231,11 +233,13 @@ namespace AeroGIS.Common {
 
         #region Protected functions
         /// <summary>
-        /// Drcompose a complex UOM into atomic UOMs  
+        /// Decompose a complex UOM into atomic UOMs  
         /// </summary>
-        /// <param name="AComplexSignature">UOM signature of any complexity</param>        
+        /// <param name="AComplexSignature">UOM signature of any complexity</param>
+        /// <returns>Array of atomic UOMs</returns>
+        /// <seealso cref="Recombine"/>
         protected Atom[] Atomize(string AComplexSignature) {
-            string[] uoms = Regex.Split(AComplexSignature, @"[-,1-3]+"); // Extract uoms
+            string[] uoms = Regex.Split(AComplexSignature, @"[-,1-9]+"); // Extract uoms
             string[] pows = Regex.Split(AComplexSignature, UOMRegex + "+"); // Extract powers
             Atom[] ret = new Atom[uoms.Length - 1];
             for (int ct = 0; ct < ret.Length; ct++) {
@@ -245,8 +249,10 @@ namespace AeroGIS.Common {
         }
 
         /// <summary>
-        /// Make UOM signature of atoms
-        /// </summary>        
+        /// Compose UOM signature from array of atomic UOMs
+        /// </summary>
+        /// <param name="AnAtoms">Array of atomic UOMs</param>
+        /// <returns>UOM signature</returns>
         protected string Recombine(Atom[] AnAtoms){
             string rstr = AnAtoms[0].Signature;
             for (int ct = 1; ct < AnAtoms.Length; ct++) rstr += AnAtoms[ct].Signature;
@@ -384,16 +390,28 @@ namespace AeroGIS.Common {
         }
 
 
+        /// <summary>
+        /// Atomic UOM
+        /// </summary>
         [DebuggerDisplay("Atom {Signature}")]
         protected class Atom : IComparable<Atom> {
+            /// <summary>
+            /// Text label
+            /// </summary>
             public string AtomicUOM;
+            /// <summary>
+            /// Signed exponent of UOM in range 1..9. In practice exponents larger than 4 appears rarely.
+            /// </summary>
             public int Exponent;            
+            /// <summary>
+            /// Atomic UOM signature
+            /// </summary>
             public string Signature { get { return AtomicUOM + Exponent; } }            
 
             public Atom(string AnAtomicUOM, int APower) { AtomicUOM = AnAtomicUOM; Exponent = APower; }
             /// <summary>
             /// Sort order for atoms is: positive powers sorted by alphabet, negative powers sorted by alphabet.
-            /// That provides the strong signatures for automatically composed UOMs.
+            /// That provides the unique signatures for automatically composed UOMs.
             /// </summary>            
             public int CompareTo(Atom other) {
                 if (Exponent > 0 && other.Exponent < 0) return -1;
@@ -427,6 +445,11 @@ namespace AeroGIS.Common {
             return LabelOf((string)Variables[key]);
         }
 
+        /// <summary>
+        /// Unusual UOM Farenheit degree could not be converted like others
+        /// </summary>
+        /// <param name="FarTemp">Temperature in Farenheit degrees</param>
+        /// <returns>Temperature in Celsius degrees</returns>
         public double Farenheit2C(double FarTemp) { return (FarTemp - 32.0) / 1.8; }
 
         public string GetStdUOM(StdVar APrecVariable) {

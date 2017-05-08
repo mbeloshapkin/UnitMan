@@ -1,0 +1,1048 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class UnitMan
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class UnitMan
+   ">
+    <meta name="generator" content="docfx 2.17.0.572">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="AeroGIS.Common.UnitMan">
+  
+  
+  <h1 id="AeroGIS_Common_UnitMan" data-uid="AeroGIS.Common.UnitMan">Class UnitMan
+  </h1>
+  <div class="markdown level0 summary"><p>Single class API for units of measurement conversion. The entire system of UOMs could be defined as single XML file.
+Redundant conversion coefficients effectively eliminated, UnitMan is able to caltulate conversion coefficients in many cases even these coefficients are not pre-defined.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+      <div class="level0"><span class="xref">System.Object</span></div>
+      <div class="level"><span class="xref"></span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>:AeroGIS.Common</h6>
+  <h6><strong>Assembly</strong>:cs.temp.dll.dll</h6>
+  <h5 id="AeroGIS_Common_UnitMan_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class UnitMan</code></pre>
+  </div>
+  <h3 id="fields">Fields
+  </h3>
+  
+  
+  <h4 id="AeroGIS_Common_UnitMan_Lists" data-uid="AeroGIS.Common.UnitMan.Lists">Lists</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Dictionary&lt;string, string[]&gt; Lists</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.String</span>[]&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="AeroGIS_Common_UnitMan_UOMRegex" data-uid="AeroGIS.Common.UnitMan.UOMRegex">UOMRegex</h4>
+  <div class="markdown level1 summary"><p>The regex defines chars which are valid for UOM labels.
+For example &quot;[A-Z,a-z]&quot;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected string UOMRegex</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="AeroGIS_Common_UnitMan_Description_" data-uid="AeroGIS.Common.UnitMan.Description*"></a>
+  <h4 id="AeroGIS_Common_UnitMan_Description" data-uid="AeroGIS.Common.UnitMan.Description">Description</h4>
+  <div class="markdown level1 summary"><p>User defined description of units system.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Description { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="AeroGIS_Common_UnitMan_Domains_" data-uid="AeroGIS.Common.UnitMan.Domains*"></a>
+  <h4 id="AeroGIS_Common_UnitMan_Domains" data-uid="AeroGIS.Common.UnitMan.Domains">Domains</h4>
+  <div class="markdown level1 summary"><p>The list of UOM domains.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;string&gt; Domains { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="AeroGIS_Common_UnitMan_ISO639Code_" data-uid="AeroGIS.Common.UnitMan.ISO639Code*"></a>
+  <h4 id="AeroGIS_Common_UnitMan_ISO639Code" data-uid="AeroGIS.Common.UnitMan.ISO639Code">ISO639Code</h4>
+  <div class="markdown level1 summary"><p>ISO 639-2 three letters languge code. The vslue should be defined in XML definition file.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ISO639Code { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="AeroGIS_Common_UnitMan_Atomize_" data-uid="AeroGIS.Common.UnitMan.Atomize*"></a>
+  <h4 id="AeroGIS_Common_UnitMan_Atomize_System_String_" data-uid="AeroGIS.Common.UnitMan.Atomize(System.String)">Atomize(String)</h4>
+  <div class="markdown level1 summary"><p>Decompose a complex UOM into atomic UOMs  </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected UnitMan.Atom[] Atomize(string AComplexSignature)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">AComplexSignature</span></td>
+        <td><p>UOM signature of any complexity</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AeroGIS.Common.UnitMan.Atom.html">UnitMan.Atom</a>[]</td>
+        <td><p>Array of atomic UOMs</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="AeroGIS_Common_UnitMan_Atomize_System_String__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="AeroGIS.Common.UnitMan.html#AeroGIS_Common_UnitMan_Recombine_AeroGIS_Common_UnitMan_Atom___">Recombine(UnitMan.Atom[])</a></div>
+  </div>
+  
+  
+  <a id="AeroGIS_Common_UnitMan_Compose_" data-uid="AeroGIS.Common.UnitMan.Compose*"></a>
+  <h4 id="AeroGIS_Common_UnitMan_Compose_System_String_" data-uid="AeroGIS.Common.UnitMan.Compose(System.String)">Compose(String)</h4>
+  <div class="markdown level1 summary"><p>Compose UOM from pure signature which is not defined in list/ Find master UOMs, calculate scale, generate label. The signature could be of any complexity.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected UnitMan.UOM Compose(string ANewSignature)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">ANewSignature</span></td>
+        <td><p>A new signature</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AeroGIS.Common.UnitMan.UOM.html">UnitMan.UOM</a></td>
+        <td><p>Newly composed UOM. Please, note, the new UOM signature could differ on source signature.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="AeroGIS_Common_UnitMan_Convert_" data-uid="AeroGIS.Common.UnitMan.Convert*"></a>
+  <h4 id="AeroGIS_Common_UnitMan_Convert_System_Double_System_String_System_String_" data-uid="AeroGIS.Common.UnitMan.Convert(System.Double,System.String,System.String)">Convert(Double, String, String)</h4>
+  <div class="markdown level1 summary"><p>Translate a value from one UOM to another. Source and destination UOMs should be compatible, i.e. they shall be of the same domain.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double Convert(double x, string ASrcSignature, string ADstSignature)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">x</span></td>
+        <td><p>Any value</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">ASrcSignature</span></td>
+        <td><p>UOM in wich the value is represented</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">ADstSignature</span></td>
+        <td><p>UOM in which return value wil be represented</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><p>Source value translated into destination UOM</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="AeroGIS_Common_UnitMan_DomainOf_" data-uid="AeroGIS.Common.UnitMan.DomainOf*"></a>
+  <h4 id="AeroGIS_Common_UnitMan_DomainOf_System_String_" data-uid="AeroGIS.Common.UnitMan.DomainOf(System.String)">DomainOf(String)</h4>
+  <div class="markdown level1 summary"><p>Get domain name of UOM</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string DomainOf(string ASignature)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">ASignature</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="AeroGIS_Common_UnitMan_Farenheit2C_" data-uid="AeroGIS.Common.UnitMan.Farenheit2C*"></a>
+  <h4 id="AeroGIS_Common_UnitMan_Farenheit2C_System_Double_" data-uid="AeroGIS.Common.UnitMan.Farenheit2C(System.Double)">Farenheit2C(Double)</h4>
+  <div class="markdown level1 summary"><p>Unusual UOM Farenheit could not be converted like others</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double Farenheit2C(double FarTemp)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">FarTemp</span></td>
+        <td><p>Temperature in Farenheit degrees</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><p>Temperature in Celsius degrees</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="AeroGIS_Common_UnitMan_ForceConvert_" data-uid="AeroGIS.Common.UnitMan.ForceConvert*"></a>
+  <h4 id="AeroGIS_Common_UnitMan_ForceConvert_System_Double_System_String_System_String_" data-uid="AeroGIS.Common.UnitMan.ForceConvert(System.Double,System.String,System.String)">ForceConvert(Double, String, String)</h4>
+  <div class="markdown level1 summary"><p>Crete new UOMs if these UOMs are not defined and translate</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual double ForceConvert(double x, string ASrcSignature, string ADstSignature)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">x</span></td>
+        <td><p>Any value</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">ASrcSignature</span></td>
+        <td><p>UOM in wich the value is represented</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">ADstSignature</span></td>
+        <td><p>UOM in which return value wil be represented</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><p>Source value translated into destination UOM</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="AeroGIS_Common_UnitMan_GetStdUOM_" data-uid="AeroGIS.Common.UnitMan.GetStdUOM*"></a>
+  <h4 id="AeroGIS_Common_UnitMan_GetStdUOM_AeroGIS_Common_StdVar_" data-uid="AeroGIS.Common.UnitMan.GetStdUOM(AeroGIS.Common.StdVar)">GetStdUOM(StdVar)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetStdUOM(StdVar APrecVariable)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AeroGIS.Common.StdVar.html">StdVar</a></td>
+        <td><span class="parametername">APrecVariable</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="AeroGIS_Common_UnitMan_IsDefined_" data-uid="AeroGIS.Common.UnitMan.IsDefined*"></a>
+  <h4 id="AeroGIS_Common_UnitMan_IsDefined_System_String_" data-uid="AeroGIS.Common.UnitMan.IsDefined(System.String)">IsDefined(String)</h4>
+  <div class="markdown level1 summary"><p>Check if an UOM is defined in source XML. If UOM is not defined and loaded, 
+then that does not mean it could not be converted. The conversion coefficients
+for undefined UOMs will be calculated if it is possible to find master UOMs</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsDefined(string ASignature)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">ASignature</span></td>
+        <td><p>UOM signature</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True is the signature is pre-defined in source XML</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="AeroGIS_Common_UnitMan_LabelOf_" data-uid="AeroGIS.Common.UnitMan.LabelOf*"></a>
+  <h4 id="AeroGIS_Common_UnitMan_LabelOf_AeroGIS_Common_StdVar_" data-uid="AeroGIS.Common.UnitMan.LabelOf(AeroGIS.Common.StdVar)">LabelOf(StdVar)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string LabelOf(StdVar AVariable)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AeroGIS.Common.StdVar.html">StdVar</a></td>
+        <td><span class="parametername">AVariable</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="AeroGIS_Common_UnitMan_LabelOf_" data-uid="AeroGIS.Common.UnitMan.LabelOf*"></a>
+  <h4 id="AeroGIS_Common_UnitMan_LabelOf_System_String_" data-uid="AeroGIS.Common.UnitMan.LabelOf(System.String)">LabelOf(String)</h4>
+  <div class="markdown level1 summary"><p>Human readable label for UOM. If UOM signature not found in the dictionry then the signature will be returned instead label.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string LabelOf(string ASignature)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">ASignature</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="AeroGIS_Common_UnitMan_Load_" data-uid="AeroGIS.Common.UnitMan.Load*"></a>
+  <h4 id="AeroGIS_Common_UnitMan_Load_XmlDocument_" data-uid="AeroGIS.Common.UnitMan.Load(XmlDocument)">Load(XmlDocument)</h4>
+  <div class="markdown level1 summary"><p>Load an user defined unit system from XML document.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Load(XmlDocument ADoc)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">XmlDocument</span></td>
+        <td><span class="parametername">ADoc</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="AeroGIS_Common_UnitMan_MatchPrimaryLabel_" data-uid="AeroGIS.Common.UnitMan.MatchPrimaryLabel*"></a>
+  <h4 id="AeroGIS_Common_UnitMan_MatchPrimaryLabel_System_String_" data-uid="AeroGIS.Common.UnitMan.MatchPrimaryLabel(System.String)">MatchPrimaryLabel(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected string MatchPrimaryLabel(string ALabel)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">ALabel</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="AeroGIS_Common_UnitMan_NameOf_" data-uid="AeroGIS.Common.UnitMan.NameOf*"></a>
+  <h4 id="AeroGIS_Common_UnitMan_NameOf_System_String_" data-uid="AeroGIS.Common.UnitMan.NameOf(System.String)">NameOf(String)</h4>
+  <div class="markdown level1 summary"><p>Human readable name of UOM, such as &quot;meter&quot; </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string NameOf(string ASignature)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">ASignature</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="AeroGIS_Common_UnitMan_NormalizeSignature_" data-uid="AeroGIS.Common.UnitMan.NormalizeSignature*"></a>
+  <h4 id="AeroGIS_Common_UnitMan_NormalizeSignature_System_String_" data-uid="AeroGIS.Common.UnitMan.NormalizeSignature(System.String)">NormalizeSignature(String)</h4>
+  <div class="markdown level1 summary"><p>Sort signature atoms by next rules: </p>
+<ol>
+<li>Positive powers are going first</li>
+<li>Atoms of same exponent sign are sorted in alphabet order</li>
+</ol>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected string NormalizeSignature(string ASignature)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">ASignature</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>The signature, sorted as above</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="AeroGIS_Common_UnitMan_ParseLabel_" data-uid="AeroGIS.Common.UnitMan.ParseLabel*"></a>
+  <h4 id="AeroGIS_Common_UnitMan_ParseLabel_System_String_" data-uid="AeroGIS.Common.UnitMan.ParseLabel(System.String)">ParseLabel(String)</h4>
+  <div class="markdown level1 summary"><p>Parse UOM signature using its human readable label like &quot;m/s&quot;, &quot;kg/m2&quot; and so on. 
+Simple and rational UOM labels are supported only. </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ParseLabel(string ALabel)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">ALabel</span></td>
+        <td><p>A human readable label</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>UOM standard signature like &quot;m1s-1&quot;, kg1m-2 and so on. If UOM is not matched than empty string returns.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="AeroGIS_Common_UnitMan_PluralOf_" data-uid="AeroGIS.Common.UnitMan.PluralOf*"></a>
+  <h4 id="AeroGIS_Common_UnitMan_PluralOf_System_String_" data-uid="AeroGIS.Common.UnitMan.PluralOf(System.String)">PluralOf(String)</h4>
+  <div class="markdown level1 summary"><p>Human readable name of UOM in plural form, such as &quot;meters&quot; </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string PluralOf(string ASignature)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">ASignature</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="AeroGIS_Common_UnitMan_Recombine_" data-uid="AeroGIS.Common.UnitMan.Recombine*"></a>
+  <h4 id="AeroGIS_Common_UnitMan_Recombine_AeroGIS_Common_UnitMan_Atom___" data-uid="AeroGIS.Common.UnitMan.Recombine(AeroGIS.Common.UnitMan.Atom[])">Recombine(UnitMan.Atom[])</h4>
+  <div class="markdown level1 summary"><p>Compose UOM signature from array of atomic UOMs</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected string Recombine(UnitMan.Atom[] AnAtoms)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AeroGIS.Common.UnitMan.Atom.html">UnitMan.Atom</a>[]</td>
+        <td><span class="parametername">AnAtoms</span></td>
+        <td><p>Array of atomic UOMs</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>UOM signature</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,334 @@
+### YamlMime:ManagedReference
+items:
+- uid: AeroGIS.Common.StdVar
+  commentId: T:AeroGIS.Common.StdVar
+  id: StdVar
+  parent: AeroGIS.Common
+  children:
+  - AeroGIS.Common.StdVar.AppMassRate
+  - AeroGIS.Common.StdVar.AppVolRate
+  - AeroGIS.Common.StdVar.DefaultPlantingRate
+  - AeroGIS.Common.StdVar.Density
+  - AeroGIS.Common.StdVar.HarvestMass
+  - AeroGIS.Common.StdVar.HarvestRate
+  - AeroGIS.Common.StdVar.Mass
+  - AeroGIS.Common.StdVar.PaddockArea
+  - AeroGIS.Common.StdVar.Volume
+  - AeroGIS.Common.StdVar.Yield
+  langs:
+  - csharp
+  - vb
+  name: StdVar
+  nameWithType: StdVar
+  fullName: AeroGIS.Common.StdVar
+  type: Enum
+  source:
+    id: StdVar
+    path: ''
+    startLine: 19
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  syntax:
+    content: public enum StdVar
+    content.vb: Public Enum StdVar
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: AeroGIS.Common.StdVar.Mass
+  commentId: F:AeroGIS.Common.StdVar.Mass
+  id: Mass
+  parent: AeroGIS.Common.StdVar
+  langs:
+  - csharp
+  - vb
+  name: Mass
+  nameWithType: StdVar.Mass
+  fullName: AeroGIS.Common.StdVar.Mass
+  type: Field
+  source:
+    id: Mass
+    path: ''
+    startLine: 19
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  syntax:
+    content: Mass = 0
+    return:
+      type: AeroGIS.Common.StdVar
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AeroGIS.Common.StdVar.Volume
+  commentId: F:AeroGIS.Common.StdVar.Volume
+  id: Volume
+  parent: AeroGIS.Common.StdVar
+  langs:
+  - csharp
+  - vb
+  name: Volume
+  nameWithType: StdVar.Volume
+  fullName: AeroGIS.Common.StdVar.Volume
+  type: Field
+  source:
+    id: Volume
+    path: ''
+    startLine: 19
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  syntax:
+    content: Volume = 1
+    return:
+      type: AeroGIS.Common.StdVar
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AeroGIS.Common.StdVar.HarvestMass
+  commentId: F:AeroGIS.Common.StdVar.HarvestMass
+  id: HarvestMass
+  parent: AeroGIS.Common.StdVar
+  langs:
+  - csharp
+  - vb
+  name: HarvestMass
+  nameWithType: StdVar.HarvestMass
+  fullName: AeroGIS.Common.StdVar.HarvestMass
+  type: Field
+  source:
+    id: HarvestMass
+    path: ''
+    startLine: 19
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  syntax:
+    content: HarvestMass = 2
+    return:
+      type: AeroGIS.Common.StdVar
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AeroGIS.Common.StdVar.Yield
+  commentId: F:AeroGIS.Common.StdVar.Yield
+  id: Yield
+  parent: AeroGIS.Common.StdVar
+  langs:
+  - csharp
+  - vb
+  name: Yield
+  nameWithType: StdVar.Yield
+  fullName: AeroGIS.Common.StdVar.Yield
+  type: Field
+  source:
+    id: Yield
+    path: ''
+    startLine: 19
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  syntax:
+    content: Yield = 3
+    return:
+      type: AeroGIS.Common.StdVar
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AeroGIS.Common.StdVar.Density
+  commentId: F:AeroGIS.Common.StdVar.Density
+  id: Density
+  parent: AeroGIS.Common.StdVar
+  langs:
+  - csharp
+  - vb
+  name: Density
+  nameWithType: StdVar.Density
+  fullName: AeroGIS.Common.StdVar.Density
+  type: Field
+  source:
+    id: Density
+    path: ''
+    startLine: 19
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  syntax:
+    content: Density = 4
+    return:
+      type: AeroGIS.Common.StdVar
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AeroGIS.Common.StdVar.AppVolRate
+  commentId: F:AeroGIS.Common.StdVar.AppVolRate
+  id: AppVolRate
+  parent: AeroGIS.Common.StdVar
+  langs:
+  - csharp
+  - vb
+  name: AppVolRate
+  nameWithType: StdVar.AppVolRate
+  fullName: AeroGIS.Common.StdVar.AppVolRate
+  type: Field
+  source:
+    id: AppVolRate
+    path: ''
+    startLine: 19
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  syntax:
+    content: AppVolRate = 5
+    return:
+      type: AeroGIS.Common.StdVar
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AeroGIS.Common.StdVar.HarvestRate
+  commentId: F:AeroGIS.Common.StdVar.HarvestRate
+  id: HarvestRate
+  parent: AeroGIS.Common.StdVar
+  langs:
+  - csharp
+  - vb
+  name: HarvestRate
+  nameWithType: StdVar.HarvestRate
+  fullName: AeroGIS.Common.StdVar.HarvestRate
+  type: Field
+  source:
+    id: HarvestRate
+    path: ''
+    startLine: 19
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  syntax:
+    content: HarvestRate = 6
+    return:
+      type: AeroGIS.Common.StdVar
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AeroGIS.Common.StdVar.PaddockArea
+  commentId: F:AeroGIS.Common.StdVar.PaddockArea
+  id: PaddockArea
+  parent: AeroGIS.Common.StdVar
+  langs:
+  - csharp
+  - vb
+  name: PaddockArea
+  nameWithType: StdVar.PaddockArea
+  fullName: AeroGIS.Common.StdVar.PaddockArea
+  type: Field
+  source:
+    id: PaddockArea
+    path: ''
+    startLine: 19
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  syntax:
+    content: PaddockArea = 7
+    return:
+      type: AeroGIS.Common.StdVar
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AeroGIS.Common.StdVar.AppMassRate
+  commentId: F:AeroGIS.Common.StdVar.AppMassRate
+  id: AppMassRate
+  parent: AeroGIS.Common.StdVar
+  langs:
+  - csharp
+  - vb
+  name: AppMassRate
+  nameWithType: StdVar.AppMassRate
+  fullName: AeroGIS.Common.StdVar.AppMassRate
+  type: Field
+  source:
+    id: AppMassRate
+    path: ''
+    startLine: 19
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  syntax:
+    content: AppMassRate = 8
+    return:
+      type: AeroGIS.Common.StdVar
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AeroGIS.Common.StdVar.DefaultPlantingRate
+  commentId: F:AeroGIS.Common.StdVar.DefaultPlantingRate
+  id: DefaultPlantingRate
+  parent: AeroGIS.Common.StdVar
+  langs:
+  - csharp
+  - vb
+  name: DefaultPlantingRate
+  nameWithType: StdVar.DefaultPlantingRate
+  fullName: AeroGIS.Common.StdVar.DefaultPlantingRate
+  type: Field
+  source:
+    id: DefaultPlantingRate
+    path: ''
+    startLine: 20
+  assemblies:
+  - cs.temp.dll
+  namespace: AeroGIS.Common
+  syntax:
+    content: DefaultPlantingRate = 9
+    return:
+      type: AeroGIS.Common.StdVar
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: AeroGIS.Common
+  commentId: N:AeroGIS.Common
+  isExternal: false
+  name: AeroGIS.Common
+  nameWithType: AeroGIS.Common
+  fullName: AeroGIS.Common
+- uid: AeroGIS.Common.StdVar
+  commentId: T:AeroGIS.Common.StdVar
+  parent: AeroGIS.Common
+  isExternal: false
+  name: StdVar
+  nameWithType: StdVar
+  fullName: AeroGIS.Common.StdVar

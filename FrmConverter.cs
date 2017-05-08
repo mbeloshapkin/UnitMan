@@ -79,7 +79,10 @@ namespace Converter {
             return desc == lb? desc : desc + " (" + lb + ")"; /// Automatically generated UOMs could be of same name and label
         }
 
-        private struct TagUOM {
+        /// <summary>
+        /// UOM wrapper for sorted human readable listbox.
+        /// </summary>
+        protected struct TagUOM {
             public string Description, UOM;
             public override string ToString() { return Description; }
         }

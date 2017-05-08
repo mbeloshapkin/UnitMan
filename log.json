@@ -1,0 +1,50 @@
+{"message":"Config file docfx.json found, start generating metadata...","date_time":"2017-05-08T09:03:51.460234Z","message_severity":"info"}
+{"message":"'C:/DevGit/public/UnitMan/FF Converter.csproj,C:\\DevGit\\public\\UnitMan\\filterconfig.yml' keep up-to-date since '5/8/2017 9:00:09 AM', cached result from 'C:/DevGit/public/UnitMan/api' is used.","date_time":"2017-05-08T09:03:53.4712385Z","message_severity":"info"}
+{"message":"Completed executing in 1861.2861 milliseconds.","date_time":"2017-05-08T09:03:53.4812385Z","message_severity":"info"}
+{"message":"Config file docfx.json found, start generating metadata...","date_time":"2017-05-08T09:06:27.2616804Z","message_severity":"info"}
+{"message":"Completed executing in 4199.2662 milliseconds.","date_time":"2017-05-08T09:06:31.6316909Z","message_severity":"info"}
+{"message":"Config file docfx.json found, start generating metadata...","date_time":"2017-05-08T09:08:04.6189705Z","message_severity":"info"}
+{"message":"Successfully generated metadata C:/DevGit/public/UnitMan/obj/xdoc/cache/obj for FFConverter","date_time":"2017-05-08T09:08:08.7329804Z","message_severity":"verbose"}
+{"message":"Metadata file for Converter is saved to api\\Converter.yml.","date_time":"2017-05-08T09:08:08.8029805Z","message_severity":"verbose"}
+{"message":"Metadata file for Converter.FrmConverter is saved to api\\Converter.FrmConverter.yml.","date_time":"2017-05-08T09:08:08.8129805Z","message_severity":"verbose"}
+{"message":"Metadata file for Converter.FrmConverter.TagUOM is saved to api\\Converter.FrmConverter.TagUOM.yml.","date_time":"2017-05-08T09:08:08.8129805Z","message_severity":"verbose"}
+{"message":"Metadata file for AeroGIS.Common is saved to api\\AeroGIS.Common.yml.","date_time":"2017-05-08T09:08:08.8129805Z","message_severity":"verbose"}
+{"message":"Metadata file for AeroGIS.Common.StdVar is saved to api\\AeroGIS.Common.StdVar.yml.","date_time":"2017-05-08T09:08:08.8229805Z","message_severity":"verbose"}
+{"message":"Metadata file for AeroGIS.Common.StdList is saved to api\\AeroGIS.Common.StdList.yml.","date_time":"2017-05-08T09:08:08.8229805Z","message_severity":"verbose"}
+{"message":"Metadata file for AeroGIS.Common.UnitMan is saved to api\\AeroGIS.Common.UnitMan.yml.","date_time":"2017-05-08T09:08:08.8339806Z","message_severity":"verbose"}
+{"message":"Metadata file for AeroGIS.Common.UnitMan.UOM is saved to api\\AeroGIS.Common.UnitMan.UOM.yml.","date_time":"2017-05-08T09:08:08.8439806Z","message_severity":"verbose"}
+{"message":"Metadata file for AeroGIS.Common.UnitMan.Atom is saved to api\\AeroGIS.Common.UnitMan.Atom.yml.","date_time":"2017-05-08T09:08:08.8439806Z","message_severity":"verbose"}
+{"message":"Completed executing in 4069.6635 milliseconds.","date_time":"2017-05-08T09:08:08.8539806Z","message_severity":"info"}
+{"message":"Config file docfx.json found, start generating metadata...","date_time":"2017-05-08T09:32:39.8757045Z","message_severity":"info"}
+{"message":"Successfully generated metadata C:/DevGit/public/UnitMan/obj/xdoc/cache/obj for FFConverter","date_time":"2017-05-08T09:32:44.0117179Z","message_severity":"verbose"}
+{"message":"Metadata file for Converter is saved to api\\Converter.yml.","date_time":"2017-05-08T09:32:44.0937181Z","message_severity":"verbose"}
+{"message":"Metadata file for Converter.FrmConverter is saved to api\\Converter.FrmConverter.yml.","date_time":"2017-05-08T09:32:44.0957182Z","message_severity":"verbose"}
+{"message":"Metadata file for Converter.FrmConverter.TagUOM is saved to api\\Converter.FrmConverter.TagUOM.yml.","date_time":"2017-05-08T09:32:44.0957182Z","message_severity":"verbose"}
+{"message":"Metadata file for AeroGIS.Common is saved to api\\AeroGIS.Common.yml.","date_time":"2017-05-08T09:32:44.0957182Z","message_severity":"verbose"}
+{"message":"Metadata file for AeroGIS.Common.StdVar is saved to api\\AeroGIS.Common.StdVar.yml.","date_time":"2017-05-08T09:32:44.1057182Z","message_severity":"verbose"}
+{"message":"Metadata file for AeroGIS.Common.StdList is saved to api\\AeroGIS.Common.StdList.yml.","date_time":"2017-05-08T09:32:44.1057182Z","message_severity":"verbose"}
+{"message":"Metadata file for AeroGIS.Common.UnitMan is saved to api\\AeroGIS.Common.UnitMan.yml.","date_time":"2017-05-08T09:32:44.1157183Z","message_severity":"verbose"}
+{"message":"Metadata file for AeroGIS.Common.UnitMan.UOM is saved to api\\AeroGIS.Common.UnitMan.UOM.yml.","date_time":"2017-05-08T09:32:44.1257183Z","message_severity":"verbose"}
+{"message":"Metadata file for AeroGIS.Common.UnitMan.Atom is saved to api\\AeroGIS.Common.UnitMan.Atom.yml.","date_time":"2017-05-08T09:32:44.1357183Z","message_severity":"verbose"}
+{"message":"Completed executing in 4104.9479 milliseconds.","date_time":"2017-05-08T09:32:44.1357183Z","message_severity":"info"}
+{"message":"Config file docfx.json found, start generating metadata...","date_time":"2017-05-08T09:35:32.8381447Z","message_severity":"info"}
+{"message":"Successfully generated metadata C:/DevGit/public/UnitMan/obj/xdoc/cache/obj for FFConverter","date_time":"2017-05-08T09:35:37.0021575Z","message_severity":"verbose"}
+{"message":"Metadata file for Converter is saved to api\\Converter.yml.","date_time":"2017-05-08T09:35:37.0821576Z","message_severity":"verbose"}
+{"message":"Metadata file for Converter.FrmConverter is saved to api\\Converter.FrmConverter.yml.","date_time":"2017-05-08T09:35:37.0821576Z","message_severity":"verbose"}
+{"message":"Metadata file for Converter.FrmConverter.TagUOM is saved to api\\Converter.FrmConverter.TagUOM.yml.","date_time":"2017-05-08T09:35:37.0821576Z","message_severity":"verbose"}
+{"message":"Metadata file for AeroGIS.Common is saved to api\\AeroGIS.Common.yml.","date_time":"2017-05-08T09:35:37.0921576Z","message_severity":"verbose"}
+{"message":"Metadata file for AeroGIS.Common.StdVar is saved to api\\AeroGIS.Common.StdVar.yml.","date_time":"2017-05-08T09:35:37.0921576Z","message_severity":"verbose"}
+{"message":"Metadata file for AeroGIS.Common.StdList is saved to api\\AeroGIS.Common.StdList.yml.","date_time":"2017-05-08T09:35:37.0921576Z","message_severity":"verbose"}
+{"message":"Metadata file for AeroGIS.Common.UnitMan is saved to api\\AeroGIS.Common.UnitMan.yml.","date_time":"2017-05-08T09:35:37.1121576Z","message_severity":"verbose"}
+{"message":"Metadata file for AeroGIS.Common.UnitMan.UOM is saved to api\\AeroGIS.Common.UnitMan.UOM.yml.","date_time":"2017-05-08T09:35:37.1121576Z","message_severity":"verbose"}
+{"message":"Metadata file for AeroGIS.Common.UnitMan.Atom is saved to api\\AeroGIS.Common.UnitMan.Atom.yml.","date_time":"2017-05-08T09:35:37.1221577Z","message_severity":"verbose"}
+{"message":"Completed executing in 4125.5371 milliseconds.","date_time":"2017-05-08T09:35:37.1221577Z","message_severity":"info"}
+{"message":"Config file docfx.json found, start generating metadata...","date_time":"2017-05-08T09:35:40.2831649Z","message_severity":"info"}
+{"message":"Completed executing in 4174.5223 milliseconds.","date_time":"2017-05-08T09:35:44.6211899Z","message_severity":"info"}
+{"message":"Config file docfx.json found, start generating metadata...","date_time":"2017-05-08T09:52:50.3121084Z","message_severity":"info"}
+{"message":"Completed executing in 4096.8364 milliseconds.","date_time":"2017-05-08T09:52:54.5691181Z","message_severity":"info"}
+{"message":"Config file docfx.json found, start generating metadata...","date_time":"2017-05-08T09:54:15.8523487Z","message_severity":"info"}
+{"message":"Completed executing in 2448.8987 milliseconds.","date_time":"2017-05-08T09:54:18.4613562Z","message_severity":"info"}
+{"message":"Config file docfx.json found, start generating metadata...","date_time":"2017-05-08T09:57:59.033959Z","message_severity":"info"}
+{"message":"Cache for C:/DevGit/public/UnitMan/filterconfig.yml,C:/DevGit/public/UnitMan/UnitMan.cs in C:\\DevGit\\public\\UnitMan\\obj\\xdoc\\cache\\final\\2070732776 is not valid: Could not find file 'C:\\DevGit\\public\\UnitMan\\api\\.manifest'.","date_time":"2017-05-08T09:57:59.2879602Z","message_severity":"warning"}
+{"message":"Completed executing in 2416.6736 milliseconds.","date_time":"2017-05-08T09:58:01.6169656Z","message_severity":"info"}

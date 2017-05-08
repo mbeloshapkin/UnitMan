@@ -1,0 +1,12 @@
+apiRules:
+- exclude:
+    uidRegex: AeroGIS\.Common\.UnitMan\._Description
+    type: Member
+- exclude:
+    uidRegex: AeroGIS\.Common\.UnitMan\._ISO639Code
+- exclude:
+    uidRegex: AeroGIS\.Common\.UnitMan\.UOMs
+- exclude:
+    uidRegex: AeroGIS\.Common\.UnitMan\.Variables
+- exclude:
+  uidRegex: AeroGIS\.Common\.UnitMan\.Lists
