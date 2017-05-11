@@ -23,22 +23,18 @@ namespace AeroGIS.Common {
 
 
     /// <summary>
-    /// Single class API for units of measurement conversion. The entire system of UOMs could be defined as single XML file.
-    /// Redundant conversion coefficients effectively eliminated, UnitMan is able to caltulate conversion coefficients in many cases even these coefficients are not pre-defined.
-    /// </summary>
+    /// Single class API for UOMs conversion. The entire system of UOMs could be defined as single XML file.
+    /// Redundant conversion coefficients effectively eliminated, UnitMan is able to calculate conversion coefficients in many cases even these coefficients are not pre-defined.
+    /// </summary>    
     [DebuggerDisplay("UnitMan({_ISO639Code})")]
     public class UnitMan {
 
-        protected string _ISO639Code = "";
-        /// <summary>
-        /// ISO 639-2 three letters languge code. The vslue should be defined in XML definition file.
-        /// </summary>
+        protected string _ISO639Code = "";        
+        /// <value>ISO 639-2 three letters languge code. The value should be defined in XML definition file.</value>
         public string ISO639Code { get { return _ISO639Code; } } 
 
-        protected string _Description;
-        /// <summary>
-        /// User defined description of units system.
-        /// </summary>
+        protected string _Description;        
+        /// <value>User defined description of units system</value>
         public string Description { get { return _Description; } }
 
         /// <summary>
@@ -208,18 +204,18 @@ namespace AeroGIS.Common {
         /// <returns>UOM standard signature like "m1s-1", kg1m-2 and so on. If UOM is not matched than empty string returns.</returns>
         public string ParseLabel(string ALabel) {
             if (Regex.IsMatch(ALabel, "^" + UOMRegex + "{1,3}[23]?$")) {  // Simple UOM                
-                return MatchPrimaryLabel(ALabel);
+                return MatchSimpleLabel(ALabel);
             }
 
             if (Regex.IsMatch(ALabel, "^" + UOMRegex + "{1,3}[23]?/" + UOMRegex + "{1,3}[23]?$")) { // Rational UOM
                 string[] sims = ALabel.Split('/');
                 Match numerator = Regex.Match(sims[0], "(?<uom>^" + UOMRegex + "{1,3})(?<pow>[23]?$)");
                 Match denom = Regex.Match(sims[1], "(?<uom>^" + UOMRegex + "{1,3})(?<pow>[23]?$)");
-                string rstr = MatchPrimaryLabel(numerator.Groups["uom"].Value);
+                string rstr = MatchSimpleLabel(numerator.Groups["uom"].Value);
                 if (rstr.Length > 0) {
                     if (numerator.Groups["pow"].Length > 0) rstr += numerator.Groups["pow"].Value;
                     else rstr += "1";
-                    string mden = MatchPrimaryLabel(denom.Groups["uom"].Value);
+                    string mden = MatchSimpleLabel(denom.Groups["uom"].Value);
                     if (mden.Length > 0) {
                         rstr += mden;
                         if (denom.Groups["pow"].Length > 0) rstr += "-" + denom.Groups["pow"].Value;
@@ -262,8 +258,7 @@ namespace AeroGIS.Common {
         /// <summary>
         /// Sort signature atoms by next rules: 
         /// 1. Positive powers are going first
-        /// 2. Atoms of same exponent sign are sorted in alphabet order
-        /// 
+        /// 2. Atoms of same exponent sign sorted in alphabet order        
         /// </summary> 
         /// <returns>The signature, sorted as above</returns>
         protected string NormalizeSignature(string ASignature) {
@@ -273,7 +268,7 @@ namespace AeroGIS.Common {
         }
         
         /// <summary>
-        /// Compose UOM from pure signature which is not defined in list/ Find master UOMs, calculate scale, generate label. The signature could be of any complexity.
+        /// Compose UOM from signature which is not defined in source definition file. Find master UOMs, calculate scale, generate label. The signature could be of any complexity.
         /// </summary>
         /// <param name="ANewSignature">A new signature</param>
         /// <returns>Newly composed UOM. Please, note, the new UOM signature could differ on source signature.</returns>
@@ -337,8 +332,13 @@ namespace AeroGIS.Common {
             return newUOM;
         }
 
-        protected string MatchPrimaryLabel(string ALabel) {
-            string lcu = ALabel.ToLower(); // Good hope this will be standard unit signature
+        /// <summary>
+        /// Check if the simple UOM is defined by it's label. Simple UOM is UOM which consists of single atomic UOM.
+        /// </summary>
+        /// <param name="ALabel">UOM label</param>
+        /// <returns>If UOM is defined then UOM signature. Otherwise - empty string</returns>
+        protected string MatchSimpleLabel(string ALabel) {
+            string lcu = ALabel.ToLower(); // Good hope this will be standard unit signature            
             if (IsDefined(lcu)) return lcu;
             // Ok, try to use it with first capitall letter            
             string cap = ALabel.Substring(0, 1).ToUpper();
@@ -427,7 +427,7 @@ namespace AeroGIS.Common {
         #endregion
 
         #region Debug only
-#if DEBUG
+#if DEBUG        
         protected void CheckSignature(string ASignature) {            
             if(NormalizeSignature(ASignature) != ASignature) throw new Exception("Wrong sequence of atoms in UOM Signature " + ASignature);            
         }
