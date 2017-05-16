@@ -72,8 +72,8 @@
   
   <h1 id="AeroGIS_Common_UnitMan" data-uid="AeroGIS.Common.UnitMan">Class UnitMan
   </h1>
-  <div class="markdown level0 summary"><p>Single class API for units of measurement conversion. The entire system of UOMs could be defined as single XML file.
-Redundant conversion coefficients effectively eliminated, UnitMan is able to caltulate conversion coefficients in many cases even these coefficients are not pre-defined.</p>
+  <div class="markdown level0 summary"><p>Single class API for UOMs conversion. The entire system of UOMs could be defined as single XML file.
+Redundant conversion coefficients effectively eliminated, UnitMan is able to calculate conversion coefficients in many cases even these coefficients are not pre-defined.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -169,8 +169,7 @@ For example &quot;[A-Z,a-z]&quot;.</p>
   
   <a id="AeroGIS_Common_UnitMan_Description_" data-uid="AeroGIS.Common.UnitMan.Description*"></a>
   <h4 id="AeroGIS_Common_UnitMan_Description" data-uid="AeroGIS.Common.UnitMan.Description">Description</h4>
-  <div class="markdown level1 summary"><p>User defined description of units system.</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -187,7 +186,8 @@ For example &quot;[A-Z,a-z]&quot;.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td></td>
+        <td><p>User defined description of units system</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -221,8 +221,7 @@ For example &quot;[A-Z,a-z]&quot;.</p>
   
   <a id="AeroGIS_Common_UnitMan_ISO639Code_" data-uid="AeroGIS.Common.UnitMan.ISO639Code*"></a>
   <h4 id="AeroGIS_Common_UnitMan_ISO639Code" data-uid="AeroGIS.Common.UnitMan.ISO639Code">ISO639Code</h4>
-  <div class="markdown level1 summary"><p>ISO 639-2 three letters languge code. The vslue should be defined in XML definition file.</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -239,7 +238,8 @@ For example &quot;[A-Z,a-z]&quot;.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td></td>
+        <td><p>ISO 639-2 three letters languge code. The value should be defined in XML definition file.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -298,7 +298,7 @@ For example &quot;[A-Z,a-z]&quot;.</p>
   
   <a id="AeroGIS_Common_UnitMan_Compose_" data-uid="AeroGIS.Common.UnitMan.Compose*"></a>
   <h4 id="AeroGIS_Common_UnitMan_Compose_System_String_" data-uid="AeroGIS.Common.UnitMan.Compose(System.String)">Compose(String)</h4>
-  <div class="markdown level1 summary"><p>Compose UOM from pure signature which is not defined in list/ Find master UOMs, calculate scale, generate label. The signature could be of any complexity.</p>
+  <div class="markdown level1 summary"><p>Compose UOM from signature which is not defined in source definition file. Find master UOMs, calculate scale, generate label. The signature could be of any complexity.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -443,7 +443,7 @@ For example &quot;[A-Z,a-z]&quot;.</p>
   
   <a id="AeroGIS_Common_UnitMan_Farenheit2C_" data-uid="AeroGIS.Common.UnitMan.Farenheit2C*"></a>
   <h4 id="AeroGIS_Common_UnitMan_Farenheit2C_System_Double_" data-uid="AeroGIS.Common.UnitMan.Farenheit2C(System.Double)">Farenheit2C(Double)</h4>
-  <div class="markdown level1 summary"><p>Unusual UOM Farenheit could not be converted like others</p>
+  <div class="markdown level1 summary"><p>Unusual UOM Farenheit degree could not be converted like others</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -745,13 +745,14 @@ for undefined UOMs will be calculated if it is possible to find master UOMs</p>
   </table>
   
   
-  <a id="AeroGIS_Common_UnitMan_MatchPrimaryLabel_" data-uid="AeroGIS.Common.UnitMan.MatchPrimaryLabel*"></a>
-  <h4 id="AeroGIS_Common_UnitMan_MatchPrimaryLabel_System_String_" data-uid="AeroGIS.Common.UnitMan.MatchPrimaryLabel(System.String)">MatchPrimaryLabel(String)</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="AeroGIS_Common_UnitMan_MatchSimpleLabel_" data-uid="AeroGIS.Common.UnitMan.MatchSimpleLabel*"></a>
+  <h4 id="AeroGIS_Common_UnitMan_MatchSimpleLabel_System_String_" data-uid="AeroGIS.Common.UnitMan.MatchSimpleLabel(System.String)">MatchSimpleLabel(String)</h4>
+  <div class="markdown level1 summary"><p>Check if the simple UOM is defined by it&#39;s label. Simple UOM is UOM which consists of single atomic UOM.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected string MatchPrimaryLabel(string ALabel)</code></pre>
+    <pre><code class="lang-csharp hljs">protected string MatchSimpleLabel(string ALabel)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -766,7 +767,8 @@ for undefined UOMs will be calculated if it is possible to find master UOMs</p>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">ALabel</span></td>
-        <td></td>
+        <td><p>UOM label</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -781,7 +783,8 @@ for undefined UOMs will be calculated if it is possible to find master UOMs</p>
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td></td>
+        <td><p>If UOM is defined then UOM signature. Otherwise - empty string</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -835,7 +838,7 @@ for undefined UOMs will be calculated if it is possible to find master UOMs</p>
   <div class="markdown level1 summary"><p>Sort signature atoms by next rules: </p>
 <ol>
 <li>Positive powers are going first</li>
-<li>Atoms of same exponent sign are sorted in alphabet order</li>
+<li>Atoms of same exponent sign sorted in alphabet order        </li>
 </ol>
 </div>
   <div class="markdown level1 conceptual"></div>

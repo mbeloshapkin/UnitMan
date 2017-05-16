@@ -361,18 +361,18 @@ references:
   commentId: Overload:AeroGIS.Common.UnitMan.Load
   fullName: AeroGIS.Common.UnitMan.Load
   nameWithType: UnitMan.Load
-- uid: AeroGIS.Common.UnitMan.MatchPrimaryLabel(System.String)
-  name: MatchPrimaryLabel(String)
-  href: api/AeroGIS.Common.UnitMan.html#AeroGIS_Common_UnitMan_MatchPrimaryLabel_System_String_
-  commentId: M:AeroGIS.Common.UnitMan.MatchPrimaryLabel(System.String)
-  fullName: AeroGIS.Common.UnitMan.MatchPrimaryLabel(System.String)
-  nameWithType: UnitMan.MatchPrimaryLabel(String)
-- uid: AeroGIS.Common.UnitMan.MatchPrimaryLabel*
-  name: MatchPrimaryLabel
-  href: api/AeroGIS.Common.UnitMan.html#AeroGIS_Common_UnitMan_MatchPrimaryLabel_
-  commentId: Overload:AeroGIS.Common.UnitMan.MatchPrimaryLabel
-  fullName: AeroGIS.Common.UnitMan.MatchPrimaryLabel
-  nameWithType: UnitMan.MatchPrimaryLabel
+- uid: AeroGIS.Common.UnitMan.MatchSimpleLabel(System.String)
+  name: MatchSimpleLabel(String)
+  href: api/AeroGIS.Common.UnitMan.html#AeroGIS_Common_UnitMan_MatchSimpleLabel_System_String_
+  commentId: M:AeroGIS.Common.UnitMan.MatchSimpleLabel(System.String)
+  fullName: AeroGIS.Common.UnitMan.MatchSimpleLabel(System.String)
+  nameWithType: UnitMan.MatchSimpleLabel(String)
+- uid: AeroGIS.Common.UnitMan.MatchSimpleLabel*
+  name: MatchSimpleLabel
+  href: api/AeroGIS.Common.UnitMan.html#AeroGIS_Common_UnitMan_MatchSimpleLabel_
+  commentId: Overload:AeroGIS.Common.UnitMan.MatchSimpleLabel
+  fullName: AeroGIS.Common.UnitMan.MatchSimpleLabel
+  nameWithType: UnitMan.MatchSimpleLabel
 - uid: AeroGIS.Common.UnitMan.NameOf(System.String)
   name: NameOf(String)
   href: api/AeroGIS.Common.UnitMan.html#AeroGIS_Common_UnitMan_NameOf_System_String_

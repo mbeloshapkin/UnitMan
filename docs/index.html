@@ -61,13 +61,38 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="unitmancs---simple-api-for-uom-conversion">UnitMan.cs - simple API for UOM Conversion</h1>
 
+<p><a href="https://opensource.org/licenses/MS-PL"><img src="https://img.shields.io/badge/license-MS--PL-yellowgreen.svg" alt="License: MS-PL"></a>  </p>
 <ul>
 <li><a href="https://github.com/mbeloshapkin/UnitMan/blob/master/UnitMan.cs">Source Code</a></li>
 <li><a href="https://mbeloshapkin.github.io/UnitMan/api/AeroGIS.Common.UnitMan.html">API Reference</a></li>
 </ul>
+<h2 id="concept">Concept</h2>
+<h3 id="simplicity-of-api">Simplicity of API</h3>
+<p>UnitMan is simplest (I hope) possible API for UOM conversion. It consists of single C# class. The code may looks as below.  </p>
+<pre><code class="lang-csharp">var UM = new UnitMan();
+...
+XmlDocument xUoms = new XmlDocument();
+xUoms.Load(&quot;MyUOMDefinitions.xml&quot;);
+UM.Load(&quot;xUoms&quot;);
+...
+double psi = UM.Convert(pressure_Kgcm2, &quot;kg1cm-2&quot;, &quot;lb1in-2&quot;);`
+</code></pre><h3 id="automatic-calculation-of-conversion-coefficients">Automatic calculation of conversion coefficients</h3>
+<p>You no need to define all the conversion coefficients. UnitMan can calculate that automatically. In the example above you no need to define what is pressure. You no need to define how much pounds per square inch in one kilogram per square meter. You just need to define how much inches in one meter and how much pounds in one kilogramm. The conversion coefficient for pressure will be calculated automatically</p>
+<h3 id="uom-signatures">UOM Signatures</h3>
+<p>UnitMan API does not define any classes, records or object for UOM representation. UOMs are completely described by it&#39;s text UOM signature.   </p>
+<h2 id="uom-definition-files">UOM Definition files</h2>
+<p>UnitMan loads UOM definitions from XML documents. Root node of the document must have some mandatory attributes.</p>
+<pre><code class="lang-xml">&lt;UnitSystem Version=&quot;2.0&quot; ISO639Code = &quot;ENA&quot; Description = &quot;Some readable description&quot; UOMRegEx = &quot;[A-Z,a-z]&quot;&gt;
+</code></pre><ul>
+<li>Version - format version. Must be 2.0</li>
+<li>ISO639Code - language code which defines the UI culture of user. Single application may operate for users of different UI cultures and more than one definition file could be loaded by host application</li>
+<li>Description - brief description of subject to which the system of meaurement could be used. Or something similar to that. For example, &quot;nuclear phisics&quot;, &quot;astronomy&quot;, &quot;construction&quot;, etc.</li>
+<li>UOMRegEx - the regex which defines letters, which can be used for UOM label, excluding digits. The latin letters are usually enough, until you don&#39;t use greek letters or oother national alphabets.    </li>
+</ul>
+<h3 id="master-uoms-and-uom-domains">Master UOMS and UOM Domains</h3>
 <h1 id="free-flexible-uom-converter">Free Flexible UOM Converter</h1>
-<p>Define your own unit system, just write XML or edit definition file. 
-Add any UOMs in any languages and drop to trash UOM definitions that not usable for your application</p>
+<p>FF Converter is just a code example for UnitMan API. Nevertheless, it is fully functional application and it could be handy in practice. If you need for simple and flexible UOM converter then download it here and install. Define your own unit system using sample XML UOM definition files as templates. 
+Add any UOMs in any languages and drop to trash UOM definitions that looks useless for you.</p>
 <p><img src="https://github.com/mbeloshapkin/UnitMan/blob/master/Img/FFC-Screenshot.png?raw=true" alt="screenshot"></p>
 </article>
           </div>
@@ -76,9 +101,6 @@ Add any UOMs in any languages and drop to trash UOM definitions that not usable 
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/mbeloshapkin/UnitMan/blob/master/README.md/#L1" class="contribution-link">Improve this Doc</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
