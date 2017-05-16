@@ -12,3 +12,4 @@ _UpgradeReport_Files
 /bin/
 /obj/
 /SolutionBackup/
+*.sh
